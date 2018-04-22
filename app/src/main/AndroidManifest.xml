@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Map_and_List" />
+        <activity android:name=".Host"></activity>
     </application>
 
 </manifest>
