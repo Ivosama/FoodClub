@@ -12,4 +12,79 @@
         android:layout_centerInParent="true"
         android:text="Host Activity" />
 
+    <EditText
+        android:id="@+id/eventName_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="Event's name"
+        android:inputType="textPersonName"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/whatCooking_input"
+        android:layout_width="335dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/eventName_input"
+        android:ems="10"
+        android:hint="What are you cooking?"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/place_input"
+        android:layout_width="335dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/whatCooking_input"
+        android:ems="10"
+        android:hint="Place"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/time_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/place_input"
+        android:ems="10"
+        android:hint="Time"
+        android:inputType="time"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/price_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/time_input"
+        android:ems="10"
+        android:hint="Price in DKK"
+        android:inputType="numberDecimal"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/description_input"
+        android:layout_width="346dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="174dp"
+        android:ems="10"
+        android:hint="Short description"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/post_event_button"
+        android:layout_width="236dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp"
+        android:background="@android:color/holo_blue_dark"
+        android:text="Post" />
+
 </RelativeLayout>
