@@ -9,15 +9,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Host Activity" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Host an Event" />
 
     <EditText
         android:id="@+id/eventName_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/whatCooking_input"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_weight="1"
         android:ems="10"
         android:hint="Event's name"
@@ -28,8 +30,8 @@
         android:id="@+id/whatCooking_input"
         android:layout_width="335dp"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/place_input"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/eventName_input"
         android:ems="10"
         android:hint="What are you cooking?"
         android:inputType="textPersonName" />
@@ -38,8 +40,8 @@
         android:id="@+id/place_input"
         android:layout_width="335dp"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/time_input"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/whatCooking_input"
         android:ems="10"
         android:hint="Place"
         android:inputType="textPersonName" />
@@ -48,8 +50,8 @@
         android:id="@+id/time_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/price_input"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/place_input"
         android:ems="10"
         android:hint="Time"
         android:inputType="time"
@@ -60,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/time_input"
+        android:layout_centerVertical="true"
         android:ems="10"
         android:hint="Price in DKK"
         android:inputType="numberDecimal"
@@ -72,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="174dp"
+        android:layout_marginBottom="130dp"
         android:ems="10"
         android:hint="Short description"
         android:inputType="textMultiLine" />
