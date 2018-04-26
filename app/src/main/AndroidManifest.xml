@@ -17,7 +17,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".Map_and_List" />
-        <activity android:name=".Host"></activity>
+        <activity android:name=".Host" />
+        <activity
+            android:name=".viewEvent"
+            android:label="@string/title_activity_view_event"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
