@@ -1,9 +1,13 @@
 package com.example.ivand.foodclub;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +17,8 @@ public class Map_and_List extends AppCompatActivity {
     ListView listView;
     List list;
     ArrayAdapter adapter;
+
+
 
     {
         list = new ArrayList();
@@ -38,5 +44,25 @@ public class Map_and_List extends AppCompatActivity {
         adapter = new ArrayAdapter(Map_and_List.this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
 
+        Object[] eventList = new Object[list.size()];
+        eventList = list.toArray(eventList);
+
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Toast.makeText(Map_and_List.this, eventList[position], Toast.LENGTH_SHORT).show();
+                openViewEvent();
+            }
+
+
+        });
+
+    }
+
+    public void openViewEvent(){
+        Intent intent = new Intent(this, viewEvent.class);
+        startActivity(intent);
     }
 }
