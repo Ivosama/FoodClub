@@ -8,6 +8,8 @@ import android.widget.EditText;
 
 public class Host extends AppCompatActivity {
 
+
+
     String eventName, whatCooking, place, description;
     int price;
     //missing input and variables for the time
@@ -44,4 +46,7 @@ public class Host extends AppCompatActivity {
             }
         });
     }
+}
+
+
 }
