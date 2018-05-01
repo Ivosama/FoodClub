@@ -1,5 +1,7 @@
 package com.example.ivand.foodclub;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -39,15 +41,39 @@ public class Host extends AppCompatActivity {
         post_event_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 eventName = eventName_input.getText().toString();
                 whatCooking = whatCooking_input.getText().toString();
                 place = place_input.getText().toString();
                 description = description_input.getText().toString();
                 price = Integer.valueOf(price_input.getText().toString());
                 Event event = new Event(ID, dist, eventName, whatCooking, place, description, price);
+
+                confirmPost();
             }
         });
+
+    } private void confirmPost(){
+        final AlertDialog.Builder confirm = new AlertDialog.Builder(this);
+        confirm.setMessage("Are you sure you want to create this event?");
+        confirm.setCancelable(false);
+
+            confirm.setPositiveButton("Aye", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //DO LATER - Functionality for accepting the event creation
+                }
+            });
+            confirm.setNegativeButton("Nah", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    confirm.setCancelable(true);
+                }
+            });
+            confirm.create().show();
     }
+
+
 }
 
 
