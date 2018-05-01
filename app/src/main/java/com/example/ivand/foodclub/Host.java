@@ -12,6 +12,8 @@ public class Host extends AppCompatActivity {
 
     String eventName, whatCooking, place, description;
     int price;
+    int ID = 0;
+    int dist = 5;
     //missing input and variables for the time
 
     EditText eventName_input;
@@ -42,7 +44,7 @@ public class Host extends AppCompatActivity {
                 place = place_input.getText().toString();
                 description = description_input.getText().toString();
                 price = Integer.valueOf(price_input.getText().toString());
-
+                Event event = new Event(ID, dist, eventName, whatCooking, place, description, price);
             }
         });
     }
