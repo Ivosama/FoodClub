@@ -3,24 +3,29 @@ package com.example.ivand.foodclub;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class event implements Parcelable {
+public class Event implements Parcelable {
+    int ID;
+    int dist;
     String name;
     String menu;
     String place;
     String description;
-    String price;
-    public static final Parcelable.Creator<event> CREATOR = new Parcelable.Creator<event>() {
-        public event createFromParcel(Parcel in) {
-            return new event(in);
+    int price;
+
+    public static final Parcelable.Creator<Event> CREATOR = new Parcelable.Creator<Event>() {
+        public Event createFromParcel(Parcel in) {
+            return new Event(in);
         }
 
-        public event[] newArray(int size) {
-            return new event[size];
+        public Event[] newArray(int size) {
+            return new Event[size];
         }
     };
 
         //constructor
-        public event(String name, String menu, String place, String description, String price) {
+        public Event(int ID, int dist, String name, String menu, String place, String description, int price) {
+            this.ID = ID;
+            this.dist = dist;
             this.name = name;
             this.menu = menu;
             this.place = place;
@@ -30,12 +35,14 @@ public class event implements Parcelable {
         }
 
 
-    public event(Parcel in){
+    public Event(Parcel in){
+            this.ID = in.readInt();
+            this.dist = in.readInt();
         this.name = in.readString();
         this.menu = in.readString();
         this.place = in.readString();
         this.description = in.readString();
-        this.price = in.readString();
+        this.price = in.readInt();
     }
 
     @Override
@@ -45,11 +52,13 @@ public class event implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(this.ID);
+            dest.writeInt(this.dist);
         dest.writeString(this.name);
         dest.writeString(this.menu);
         dest.writeString(this.place);
         dest.writeString(this.description);
-        dest.writeString(this.price);
+        dest.writeInt(this.price);
     }
 
 
