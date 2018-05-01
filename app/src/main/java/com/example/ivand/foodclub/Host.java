@@ -42,14 +42,14 @@ public class Host extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                eventName = eventName_input.getText().toString();
-                whatCooking = whatCooking_input.getText().toString();
-                place = place_input.getText().toString();
-                description = description_input.getText().toString();
-                price = Integer.valueOf(price_input.getText().toString());
-                Event event = new Event(ID, dist, eventName, whatCooking, place, description, price);
+                    eventName = eventName_input.getText().toString();
+                    whatCooking = whatCooking_input.getText().toString();
+                    place = place_input.getText().toString();
+                    description = description_input.getText().toString();
+                    price = Integer.valueOf(price_input.getText().toString());
+                    Event event = new Event(ID, dist, eventName, whatCooking, place, description, price);
 
-                confirmPost();
+                    confirmPost();
             }
         });
 
