@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     ImageButton imgBtnEat;
     ImageButton imgBtnHost;
+    ImageButton imageProfile;
 
 
     @Override
@@ -33,14 +34,17 @@ public class MainActivity extends AppCompatActivity {
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
+        imageProfile = (ImageButton) findViewById(R.id.imageProfile);
         imgBtnEat = (ImageButton) findViewById(R.id.img_btn_eat);
         imgBtnHost = (ImageButton) findViewById(R.id.img_btn_host);
+
         imgBtnEat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMapAndList();
             }
         });
+
         imgBtnHost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         mDrawerLayout.addDrawerListener(
+
+
                 new DrawerLayout.DrawerListener() {
                     @Override
                     public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -75,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onDrawerOpened(View drawerView) {
                         // Respond when the drawer is opened
+
+                        openProfile();
                     }
 
                     @Override
@@ -86,10 +94,16 @@ public class MainActivity extends AppCompatActivity {
                     public void onDrawerStateChanged(int newState) {
                         // Respond when the drawer motion state changes
                     }
+
+
                 }
+
+
         );
 
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -110,5 +124,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Host.class);
         startActivity(intent);
     }
+    public void openProfile() {
+        Intent intent = new Intent(this,ProfileActivity.class);
+        startActivity(intent);
+    }
+
+
 
 }

@@ -10,7 +10,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imageProfile"
         android:layout_width="294dp"
         android:layout_height="110dp"
         android:background="@null"
