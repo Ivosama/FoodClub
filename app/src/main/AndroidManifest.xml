@@ -8,27 +8,33 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-                  android:label="Main Activity"
-                  android:screenOrientation="portrait">
+        android:theme="@style/AppTheme.NoActionBar">
+
+        <!-- android:theme="@style/Theme.AppCompat.Light.NoActionBar" -->
+        <activity
+            android:name=".MainActivity"
+            android:label="Main Activity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Map_and_List"
-                  android:label="Map and List"
-                  android:screenOrientation="portrait"/>
-        <activity android:name=".Host"
-                  android:label="Host"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Map_and_List"
+            android:label="Map and List"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Host"
+            android:label="Host"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".viewEvent"
             android:label="@string/title_activity_view_event"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

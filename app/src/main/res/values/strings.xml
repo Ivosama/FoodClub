@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FoodClub</string>
     <string name="title_activity_view_event">viewEvent</string>
+    <string name="title_activity_my_profile">activity_my_profile</string>
 </resources>
