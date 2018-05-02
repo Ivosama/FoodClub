@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
@@ -21,10 +23,31 @@ public class MainActivity extends AppCompatActivity {
     ImageButton imgBtnHost;
     ImageButton imageProfile;
 
+    public ArrayList<Event> eventArrayListMain = new ArrayList<Event>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // ARRAY STUFF
+        Event fakeEvent1 = new Event("Zephan's event");
+        Event fakeEvent2 = new Event("Poul's event");
+
+        eventArrayListMain.add(fakeEvent1);
+        eventArrayListMain.add(fakeEvent2);
+
+        Event receivedEvent = new Event();
+        Bundle bundle = getIntent().getExtras();
+        try {
+            receivedEvent = bundle.getParcelable("com.package.eventObject");
+            eventArrayListMain.add(receivedEvent);
+        } catch (Exception e) {
+
+        }
+
+
+        // END OF ARRAY STUFF
+
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -116,7 +139,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openMapAndList(){
-        Intent intent = new Intent(this, Map_and_List.class);
+        Intent intent = new Intent(MainActivity.this, Map_and_List.class); // Create intent to send Parcel to Map and List
+        intent.putExtra("com.package.eventObjectList", eventArrayListMain);
         startActivity(intent);
     }
 

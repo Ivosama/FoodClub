@@ -31,18 +31,9 @@ public class Map_and_List extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_and__list);
 
-        Event fakeEvent1 = new Event("Event number1");
-        Event fakeEvent2 = new Event("Event number2 motherfucker");
-        eventArrayList.add(fakeEvent1);
-        eventArrayList.add(fakeEvent2);
-        Event receivedEvent = new Event();
-        Bundle bundle = getIntent().getExtras();
-        try {
-            receivedEvent = bundle.getParcelable("com.package.eventObject");
-            eventArrayList.add(receivedEvent);
-        } catch (Exception e) {
 
-        }
+        Bundle bundle = getIntent().getExtras();
+
 
         try {
             eventArrayList = bundle.getParcelableArrayList("com.package.eventObjectList");
