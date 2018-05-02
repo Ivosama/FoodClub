@@ -9,8 +9,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
 
 public class viewEvent extends AppCompatActivity {
+
+    private TextView title = (TextView)findViewById(R.id.eventTitleText);
+    private TextView food = (TextView)findViewById(R.id.eventFoodText);
+    private TextView place = (TextView)findViewById(R.id.eventPlaceText);
+    private TextView time = (TextView)findViewById(R.id.eventTimeText);
+    private TextView price = (TextView)findViewById(R.id.eventTitleText);
+    private TextView description = (TextView)findViewById(R.id.eventTitleText);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +28,14 @@ public class viewEvent extends AppCompatActivity {
         setContentView(R.layout.activity_view_event);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Event receivedEvent = new Event();
+        Bundle bundle = getIntent().getExtras();
+        try {
+            receivedEvent = bundle.getParcelable("com.package.eventObject");
+        } catch (Exception e) {
+
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
