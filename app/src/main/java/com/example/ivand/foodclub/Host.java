@@ -1,6 +1,7 @@
 package com.example.ivand.foodclub;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -49,11 +50,11 @@ public class Host extends AppCompatActivity {
                     price = Integer.valueOf(price_input.getText().toString());
                     Event event = new Event(ID, dist, eventName, whatCooking, place, description, price);
 
-                    confirmPost();
+                    confirmPost(event);
             }
         });
 
-    } private void confirmPost(){
+    } private void confirmPost(final Event event){
         final AlertDialog.Builder confirm = new AlertDialog.Builder(this);
         confirm.setMessage("Are you sure you want to create this event?");
         confirm.setCancelable(false);
@@ -61,6 +62,9 @@ public class Host extends AppCompatActivity {
             confirm.setPositiveButton("Aye", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(Host.this, MainActivity.class); // Create intent to send Parcel to Map and List
+                    intent.putExtra("com.package.eventObject", event);
+                    startActivity(intent);
                     //DO LATER - Functionality for accepting the event creation
                 }
             });
