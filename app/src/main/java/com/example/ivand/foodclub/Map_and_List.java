@@ -47,18 +47,7 @@ public class Map_and_List extends AppCompatActivity {
             String tempName = tempEvent.getName();
             list.add(tempName);
         }
-        /*
-        list.add("Fuck off");
-        list.add("Fuck off some more");
-        list.add("Fuck off some more");
-        list.add("Fuck off some more");
-        list.add("Fuck off some more");
-        list.add("Fuck off some more");
-        list.add("Fuck off some more");
-        list.add("Fuck off some more");
-        list.add("Fuck off some more");
-        list.add("Fuck off some more");
-        */
+
         adapter = new ArrayAdapter(Map_and_List.this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
 
@@ -70,8 +59,13 @@ public class Map_and_List extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(Map_and_List.this, eventList[position], Toast.LENGTH_SHORT).show();
-                openViewEvent();
+                Toast.makeText(getApplicationContext(), "Clicked this " + position, Toast.LENGTH_SHORT);
+                //Toast.makeText(Map_and_List.this, eventArrayList[6].name, Toast.LENGTH_SHORT).show();
+                Event event = eventArrayList.get(position);
+                Intent intent = new Intent(Map_and_List.this, viewEvent.class); // Create intent to send Parcel to Map and List
+                intent.putExtra("com.package.eventObject", event);
+                startActivity(intent);
+                //openViewEvent();
             }
 
 
