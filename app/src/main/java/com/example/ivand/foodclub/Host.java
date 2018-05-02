@@ -15,7 +15,7 @@ public class Host extends AppCompatActivity {
 
 
     String eventName, whatCooking, place, description;
-    int price =0;
+    int price = 0;
     int ID = 0;
     int dist = 5;
     //missing input and variables for the time
