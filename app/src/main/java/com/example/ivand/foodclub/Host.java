@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,7 +48,13 @@ public class Host extends AppCompatActivity {
                     whatCooking = whatCooking_input.getText().toString();
                     place = place_input.getText().toString();
                     description = description_input.getText().toString();
-                    price = Integer.valueOf(price_input.getText().toString());
+
+                    if(price != 0) {
+                        price = Integer.valueOf(price_input.getText().toString());
+                    }else{
+                        price = 0;
+                    }
+
                     Event event = new Event(ID, dist, eventName, whatCooking, place, description, price);
 
                     confirmPost(event);
