@@ -22,6 +22,15 @@ public class Event implements Parcelable {
         }
     };
 
+
+    public Event() {
+
+    }
+
+    public Event(String name) {
+        this.name = name;
+    }
+
         //constructor
         public Event(int ID, int dist, String name, String menu, String place, String description, int price) {
             this.ID = ID;
@@ -34,6 +43,9 @@ public class Event implements Parcelable {
 
         }
 
+        public String getName() {
+            return(this.name);
+        }
 
     public Event(Parcel in){
             this.ID = in.readInt();
