@@ -129,8 +129,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onDrawerOpened(View drawerView) {
                         // Respond when the drawer is opened
-
-                        //openTehSignup();
+                        openTehSignup();
                     }
 
                     @Override
@@ -176,10 +175,10 @@ public class MainActivity extends AppCompatActivity {
     //    Intent intent = new Intent(this,ProfileActivity.class);
    //     startActivity(intent);
    // }
-   /* public void openTehSignup() {
+   public void openTehSignup() {
         Intent intent = new Intent(this,SignUpActivity.class);
         startActivity(intent);
-    }*/
+    }
 
    public String loadSave(){
        String temp = readFromFile(getBaseContext());
