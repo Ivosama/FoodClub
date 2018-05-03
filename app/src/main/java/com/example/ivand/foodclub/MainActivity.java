@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
         Role fakeRole1 = new Role("DishWasher");
         Role fakeRole2 = new Role("Musician");
         fakeRole1.holderID = "Poul";
-        fakeEvent1.roles[0] = fakeRole1;
-        fakeEvent2.roles[0] = fakeRole2;
+        //fakeEvent1.roles[0] = fakeRole1;
+        //fakeEvent2.roles[0] = fakeRole2;
 
         eventArrayListMain.add(fakeEvent1);
         eventArrayListMain.add(fakeEvent2);
@@ -129,7 +129,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onDrawerOpened(View drawerView) {
                         // Respond when the drawer is opened
-                        openTehSignup();
+
+                        //openTehSignup();
                     }
 
                     @Override
@@ -175,10 +176,10 @@ public class MainActivity extends AppCompatActivity {
     //    Intent intent = new Intent(this,ProfileActivity.class);
    //     startActivity(intent);
    // }
-   public void openTehSignup() {
+   /* public void openTehSignup() {
         Intent intent = new Intent(this,SignUpActivity.class);
         startActivity(intent);
-    }
+    }*/
 
    public String loadSave(){
        String temp = readFromFile(getBaseContext());
