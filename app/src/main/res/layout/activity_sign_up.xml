@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
+                <Button style = "@style/Widget.AppCompat.Button.Colored"
                     android:id="@+id/buttonPicture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -74,12 +74,13 @@
 
                 <EditText
                     android:id="@+id/editTextLastName"
-                    android:layout_width="206dp"
-                    android:layout_height="38dp"
+                    android:layout_width="200dp"
+                    android:layout_height="0dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
                     android:text="what is your name young one?"
+                    android:lines= "1"
                     android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -89,11 +90,12 @@
 
                 <EditText
                     android:id="@+id/editTextFirstName"
-                    android:layout_width="203dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
+                    android:lines= "1"
                     android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -132,7 +134,7 @@
 
                 <EditText
                     android:id="@+id/editTextEmail"
-                    android:layout_width="227dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
@@ -140,6 +142,7 @@
                     android:ems="10"
                     android:inputType="textEmailAddress"
                     android:text="so we can send you spam"
+                    android:lines= "1"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.092"
@@ -163,13 +166,14 @@
 
                 <EditText
                     android:id="@+id/editTextPassword"
-                    android:layout_width="226dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
                     android:ems="10"
                     android:inputType="textPassword"
+                    android:lines= "1"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.091"
@@ -207,7 +211,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textProfileDescription"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <Button
+                <Button style = "@style/Widget.AppCompat.Button.Borderless.Colored"
                     android:id="@+id/buttonSave"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
