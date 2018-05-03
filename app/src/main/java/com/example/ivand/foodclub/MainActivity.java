@@ -1,5 +1,6 @@
 package com.example.ivand.foodclub;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -9,11 +10,19 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
 
         eventArrayListMain.add(fakeEvent1);
         eventArrayListMain.add(fakeEvent2);
+        File file = new File(getApplicationContext().getFilesDir(),"userEvent");
+        if(file.exists()) {
+            String[] separated = loadSave().split("`");
+            Event userEvent = new Event(Integer.valueOf(separated[0]), Integer.valueOf(separated[1]), separated[2], separated[3], separated[4], separated[5], Integer.valueOf(separated[6]));
+            eventArrayListMain.add(userEvent);
+        }
+
 
         Event receivedEvent = new Event();
         Bundle bundle = getIntent().getExtras();
@@ -114,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onDrawerOpened(View drawerView) {
                         // Respond when the drawer is opened
 
-                        openTehSignup();
+                        //openTehSignup();
                     }
 
                     @Override
@@ -160,10 +176,44 @@ public class MainActivity extends AppCompatActivity {
     //    Intent intent = new Intent(this,ProfileActivity.class);
    //     startActivity(intent);
    // }
-    public void openTehSignup() {
+   /* public void openTehSignup() {
         Intent intent = new Intent(this,SignUpActivity.class);
         startActivity(intent);
-    }
+    }*/
 
+   public String loadSave(){
+       String temp = readFromFile(getBaseContext());
+       return temp;
+       }
+
+    private String readFromFile(Context context) {
+
+        String ret = "";
+
+        try {
+            InputStream inputStream = context.openFileInput("userEvent");
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+
+        return ret;
+    }
 
 }
