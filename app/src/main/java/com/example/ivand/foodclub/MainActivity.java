@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onDrawerOpened(View drawerView) {
                         // Respond when the drawer is opened
 
-                        openProfile();
+                        openTehSignup();
                     }
 
                     @Override
@@ -153,11 +153,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Host.class);
         startActivity(intent);
     }
-    public void openProfile() {
-        Intent intent = new Intent(this,ProfileActivity.class);
+   // public void openProfile() {
+    //    Intent intent = new Intent(this,ProfileActivity.class);
+   //     startActivity(intent);
+   // }
+    public void openTehSignup() {
+        Intent intent = new Intent(this,SignUpActivity.class);
         startActivity(intent);
     }
-
 
 
 }
