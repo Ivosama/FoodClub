@@ -33,8 +33,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // ARRAY STUFF
-        Event fakeEvent1 = new Event("Zephan's event");
-        Event fakeEvent2 = new Event("Poul's event");
+        //Event fakeEvent1 = new Event(1, 2, "Zephan's event", "pasta with nothing", "Zephan's basement / dungeon", "Please come to my party", 20);
+        //Event fakeEvent2 = new Event(2, 3, "Poul's event", "pasta with ketchup", "Poul's place", "Please come to my party, I have ketchup", 20);
+
+        Event fakeEvent1 = new Event("Poul's Event motherfuckers!");
+        Event fakeEvent2 = new Event("Zephan's event is this one");
 
         eventArrayListMain.add(fakeEvent1);
         eventArrayListMain.add(fakeEvent2);

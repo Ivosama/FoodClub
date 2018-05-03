@@ -14,12 +14,12 @@ import android.widget.TextView;
 
 public class viewEvent extends AppCompatActivity {
 
-    private TextView title = (TextView)findViewById(R.id.eventTitleText);
-    private TextView food = (TextView)findViewById(R.id.eventFoodText);
-    private TextView place = (TextView)findViewById(R.id.eventPlaceText);
-    private TextView time = (TextView)findViewById(R.id.eventTimeText);
-    private TextView price = (TextView)findViewById(R.id.eventTitleText);
-    private TextView description = (TextView)findViewById(R.id.eventTitleText);
+    private TextView title;
+    private TextView food;
+    private TextView place;
+    private TextView time;
+    private TextView price;
+    private TextView description;
 
 
     @Override
@@ -29,13 +29,35 @@ public class viewEvent extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        title = (TextView)findViewById(R.id.eventTitleText);
+        food = (TextView)findViewById(R.id.eventFoodText);
+        place = (TextView)findViewById(R.id.eventPlaceText);
+        time = (TextView)findViewById(R.id.eventTimeText);
+        price = (TextView)findViewById(R.id.eventPriceText);
+        description = (TextView)findViewById(R.id.eventDescriptionText);
+
         Event receivedEvent = new Event();
         Bundle bundle = getIntent().getExtras();
+
         try {
             receivedEvent = bundle.getParcelable("com.package.eventObject");
+            title.setText(receivedEvent.name);
+
         } catch (Exception e) {
 
         }
+
+        try {
+            food.setText(receivedEvent.menu);
+            place.setText(receivedEvent.place);
+            time.setText(receivedEvent.name);
+            price.setText(receivedEvent.price);
+            description.setText(receivedEvent.description);
+        } catch (Exception e) {
+
+        }
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

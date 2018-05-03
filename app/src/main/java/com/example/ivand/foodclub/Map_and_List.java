@@ -59,11 +59,15 @@ public class Map_and_List extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "Clicked this " + position, Toast.LENGTH_SHORT);
+                //Toast.makeText(getApplicationContext(), "Clicked this " + position, Toast.LENGTH_LONG);
                 //Toast.makeText(Map_and_List.this, eventArrayList[6].name, Toast.LENGTH_SHORT).show();
-                Event event = eventArrayList.get(position);
+
+
                 Intent intent = new Intent(Map_and_List.this, viewEvent.class); // Create intent to send Parcel to Map and List
+                Event event = eventArrayList.get(position);
                 intent.putExtra("com.package.eventObject", event);
+
+                //Toast.makeText(getApplicationContext(), "position = " + position + " name = " + event.name, Toast.LENGTH_LONG).show();
                 startActivity(intent);
                 //openViewEvent();
             }
