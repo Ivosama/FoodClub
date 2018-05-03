@@ -29,6 +29,8 @@ public class viewEvent extends AppCompatActivity {
     private TextView price;
     private TextView description;
 
+    Role[] roles = new Role[10];
+
     ListView listView;
     List list;
     ArrayAdapter adapter;
@@ -68,12 +70,13 @@ public class viewEvent extends AppCompatActivity {
 
         }
 
-        for (int i = 0; i < receivedEvent.roles.length; i++) {
-            if (receivedEvent.roles[i] != null) {
-                Role tempRole = (Role) receivedEvent.roles[i];
+        /*
+        for (int i = 0; i < receivedEvent.roles.size(); i++) {
+            if (receivedEvent.roles.get(i) != null) {
+                Role tempRole = (Role) receivedEvent.roles.get(i);
                 eventRoleList.add(tempRole);
             }
-        }
+        }*/
 
         listView = (ListView) findViewById(R.id.eventRolesList);
         for (int i = 0; i < eventRoleList.size(); i++) {

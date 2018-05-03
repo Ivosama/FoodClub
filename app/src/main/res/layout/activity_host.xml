@@ -57,7 +57,7 @@
         android:layout_marginStart="0dp"
 
         android:clickable="true"
-        android:onClick="showTimePickerDialog"
+        android:onClick="showTimePicker"
 
         android:text="Time"
         android:paddingLeft="3dp"
