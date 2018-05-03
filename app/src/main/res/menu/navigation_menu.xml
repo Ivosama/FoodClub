@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Go to your Room"
+        android:id="@+id/goToRoom_id"
+        android:icon="@drawable/pot1"/>
+
+    <item
+        android:id="@+id/profile_id"
+        android:title="Profile"
+        android:icon="@drawable/profile"/>
+
+    <item
+        android:id="@+id/logout_id"
+        android:title="logout"
+        android:icon="@drawable/logout"/>
+
+</menu>

@@ -2,28 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="192dp"
+    android:layout_height="160dp"
     android:background="?attr/colorPrimaryDark"
     android:gravity="bottom"
     android:orientation="vertical"
     android:padding="16dp"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageButton
-        android:id="@+id/imageProfile"
-        android:layout_width="294dp"
-        android:layout_height="110dp"
-        android:background="@null"
-        android:baselineAligned="false"
-        android:cropToPadding="false"
-
-        android:scaleType="fitStart"
-        app:srcCompat="@drawable/profile_icon" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/putin"
+        android:scaleType="centerCrop"
+        android:id="@+id/imageProfile"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="    Your Profile"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        android:text="Your name and LN"
+        android:padding="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
 </LinearLayout>
