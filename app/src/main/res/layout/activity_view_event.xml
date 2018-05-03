@@ -49,6 +49,7 @@
                             android:layout_below="@+id/eventFood"
                             android:layout_marginTop="51dp"
                             android:text="Place"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textSize="22sp" />
 
                         <TextView
@@ -79,6 +80,7 @@
                             android:layout_below="@+id/eventPriceText"
                             android:layout_marginTop="26dp"
                             android:text="Description"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textSize="22sp" />
 
                         <include
@@ -123,6 +125,7 @@
                             android:layout_below="@+id/eventTime"
                             android:layout_marginTop="54dp"
                             android:text="Expected price"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textSize="22sp" />
 
                         <TextView
@@ -133,6 +136,7 @@
                             android:layout_below="@+id/eventTitle"
                             android:layout_marginTop="48dp"
                             android:text="Menu"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textSize="22sp" />
 
                         <TextView
@@ -152,6 +156,7 @@
                             android:layout_below="@+id/eventPlace"
                             android:layout_marginTop="45dp"
                             android:text="Time"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textSize="22sp" />
 
 
