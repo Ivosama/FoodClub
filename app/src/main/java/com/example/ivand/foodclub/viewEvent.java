@@ -51,7 +51,7 @@ public class viewEvent extends AppCompatActivity {
             food.setText(receivedEvent.menu);
             place.setText(receivedEvent.place);
             time.setText(receivedEvent.name);
-            price.setText(receivedEvent.price);
+            price.setText("" + receivedEvent.price);
             description.setText(receivedEvent.description);
         } catch (Exception e) {
 
