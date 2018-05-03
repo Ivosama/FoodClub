@@ -6,11 +6,13 @@ import android.os.Parcelable;
 public class Event implements Parcelable {
     int ID;
     int dist;
+    int maxRoles = 10;
     String name;
     String menu;
     String place;
     String description;
     int price;
+    Role[] roles = new Role[maxRoles];
 
     public static final Parcelable.Creator<Event> CREATOR = new Parcelable.Creator<Event>() {
         public Event createFromParcel(Parcel in) {

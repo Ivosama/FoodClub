@@ -10,7 +10,8 @@
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:id="@+id/appBarLayout">
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab"
@@ -32,6 +33,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+                        <include
+                            layout="@layout/content_view_event"
+                            android:layout_width="387dp"
+                            android:layout_height="532dp" />
+
                         <TextView
                             android:id="@+id/eventTitleText"
                             android:layout_width="wrap_content"
@@ -45,9 +51,9 @@
                             android:id="@+id/eventPlace"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/eventFood"
-                            android:layout_below="@+id/eventFood"
-                            android:layout_marginTop="51dp"
+                            android:layout_alignStart="@+id/eventFoodText"
+                            android:layout_below="@+id/eventFoodText"
+                            android:layout_marginTop="44dp"
                             android:text="Place"
                             android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textSize="22sp" />
@@ -59,7 +65,7 @@
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
                             android:layout_marginStart="26dp"
-                            android:layout_marginTop="75dp"
+                            android:layout_marginTop="72dp"
                             android:text="Title"
                             android:textSize="22sp" />
 
@@ -78,25 +84,29 @@
                             android:layout_height="wrap_content"
                             android:layout_alignStart="@+id/eventTimeText"
                             android:layout_below="@+id/eventPriceText"
-                            android:layout_marginTop="26dp"
+                            android:layout_marginTop="44dp"
                             android:text="Description"
                             android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textSize="22sp" />
-
-                        <include
-                            layout="@layout/content_view_event"
-                            android:layout_width="387dp"
-                            android:layout_height="532dp" />
 
                         <TextView
                             android:id="@+id/eventDescriptionText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginStart="26dp"
+                            android:layout_alignStart="@+id/eventDescription"
+                            android:layout_below="@+id/eventDescription"
                             android:textSize="20sp"
                             android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/eventRoles"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/eventTimeText"
+                            android:layout_below="@+id/eventDescriptionText"
+                            android:layout_marginTop="44dp"
+                            android:text="Roles"
+                            android:textSize="22sp" />
 
 
                         <TextView
@@ -122,8 +132,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignStart="@+id/eventDescription"
-                            android:layout_below="@+id/eventTime"
-                            android:layout_marginTop="54dp"
+                            android:layout_below="@+id/eventTimeText"
+                            android:layout_marginTop="44dp"
                             android:text="Expected price"
                             android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textSize="22sp" />
@@ -132,9 +142,9 @@
                             android:id="@+id/eventFood"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/eventTitle"
-                            android:layout_below="@+id/eventTitle"
-                            android:layout_marginTop="48dp"
+                            android:layout_alignStart="@+id/eventTitleText"
+                            android:layout_below="@+id/eventTitleText"
+                            android:layout_marginTop="44dp"
                             android:text="Menu"
                             android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textSize="22sp" />
@@ -152,12 +162,21 @@
                             android:id="@+id/eventTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/eventPlace"
-                            android:layout_below="@+id/eventPlace"
-                            android:layout_marginTop="45dp"
+                            android:layout_alignStart="@+id/eventPlaceText"
+                            android:layout_below="@+id/eventPlaceText"
+                            android:layout_marginTop="44dp"
                             android:text="Time"
                             android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textSize="22sp" />
+
+                        <ListView
+                            android:id="@+id/eventRolesList"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_below="@+id/eventRoles"
+                            android:layout_marginTop="44dp"
+                            android:scrollbars="none" />
 
 
                 </RelativeLayout>
