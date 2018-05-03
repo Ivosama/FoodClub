@@ -103,7 +103,7 @@ public class Host extends AppCompatActivity {
         newFragment.show(getFragmentManager(), "timePicker");
     }
 
-
+/* Class for Time Picker Dialog */
     public class TimePickerFragment extends DialogFragment
             implements TimePickerDialog.OnTimeSetListener {
 
@@ -126,8 +126,29 @@ public class Host extends AppCompatActivity {
                     DateFormat.is24HourFormat(getActivity()));
         }
 
+        /*Function for getting time from the time picker dialog,
+        then printing it in the textView
+         */
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            String time = valueOf(hourOfDay).toString() + ":" + valueOf(minute).toString();
+            /* Turn the time integers into strings, and then split it up
+            to add zeroes in front of 1 digit time (eg. 8:2 should be 08:02)
+             */
+            String timeTemp = valueOf(hourOfDay).toString() + ":" + valueOf(minute).toString();
+            String[] tempTime = timeTemp.split(":");
+
+            if(tempTime[0].length() < 2){
+                tempTime[0] = "0"+tempTime[0];
+            } else {
+                tempTime[0] = tempTime[0];
+            }
+            if (tempTime[1].length() < 2){
+                tempTime[1] = "0"+tempTime[1];
+            } else {
+                tempTime[1] = tempTime[1];
+            }
+
+            //Assemble new string with necessary zeroes, and print to textView
+            String time = tempTime[0] + ":" + tempTime[1];
             frag_time_input.setText(time);
         }
     }
