@@ -33,11 +33,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // ARRAY STUFF
-        //Event fakeEvent1 = new Event(1, 2, "Zephan's event", "pasta with nothing", "Zephan's basement / dungeon", "Please come to my party", 20);
-        //Event fakeEvent2 = new Event(2, 3, "Poul's event", "pasta with ketchup", "Poul's place", "Please come to my party, I have ketchup", 20);
 
         Event fakeEvent1 = new Event(0, 1, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!", 5);
         Event fakeEvent2 = new Event("Zephan's event is this one");
+
+        Role fakeRole1 = new Role("DishWasher");
+        Role fakeRole2 = new Role("Musician");
+        fakeRole1.holderID = "Poul";
+        fakeEvent1.roles[0] = fakeRole1;
+        fakeEvent2.roles[0] = fakeRole2;
 
         eventArrayListMain.add(fakeEvent1);
         eventArrayListMain.add(fakeEvent2);
@@ -50,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
-
 
         // END OF ARRAY STUFF
 

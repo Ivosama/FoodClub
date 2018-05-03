@@ -21,7 +21,6 @@ public class Map_and_List extends AppCompatActivity {
 
     public ArrayList<Event> eventArrayList = new ArrayList<Event>();
 
-
     {
         list = new ArrayList();
     }
@@ -44,6 +43,7 @@ public class Map_and_List extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.eventList);
         for (int i = 0; i < eventArrayList.size(); i++) {
             Event tempEvent = eventArrayList.get(i);
+
             String tempName = tempEvent.getName();
             list.add(tempName);
         }

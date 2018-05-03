@@ -10,7 +10,8 @@
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:id="@+id/appBarLayout">
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab"
@@ -95,6 +96,16 @@
                             android:textSize="20sp"
                             android:text="TextView" />
 
+                        <TextView
+                            android:id="@+id/eventRoles"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/eventTimeText"
+                            android:layout_below="@+id/eventDescriptionText"
+                            android:layout_marginTop="44dp"
+                            android:text="Roles"
+                            android:textSize="22sp" />
+
 
                         <TextView
                             android:id="@+id/eventTimeText"
@@ -152,6 +163,15 @@
                             android:layout_marginTop="44dp"
                             android:text="Time"
                             android:textSize="22sp" />
+
+                        <ListView
+                            android:id="@+id/eventRolesList"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_below="@+id/eventRoles"
+                            android:layout_marginTop="44dp"
+                            android:scrollbars="none" />
 
 
                 </RelativeLayout>
