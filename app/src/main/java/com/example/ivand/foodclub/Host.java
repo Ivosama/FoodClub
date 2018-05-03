@@ -1,24 +1,32 @@
 package com.example.ivand.foodclub;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 public class Host extends AppCompatActivity {
 
 
 
-    String eventName, whatCooking, place, description;
+    String eventName, whatCooking, place, description, frank;
     int price = 0;
     int ID = 0;
     int dist = 5;
     //missing input and variables for the time
+
 
     EditText eventName_input;
     EditText whatCooking_input;
@@ -56,7 +64,7 @@ public class Host extends AppCompatActivity {
                     }
 
                     Event event = new Event(ID, dist, eventName, whatCooking, place, description, price);
-
+                    saveEvent();
                     confirmPost(event);
             }
         });
@@ -84,7 +92,29 @@ public class Host extends AppCompatActivity {
             confirm.create().show();
     }
 
+    public void saveEvent(){
+        File file = new File(getFilesDir(), "userEvent");
+        frank = "";
+        frank += (ID + "`");
+        frank += (dist + "`");
+        frank += (eventName + "`");
+        frank += (whatCooking + "`");
+        frank += (place + "`");
+        frank += (description + "`");
+        frank += (price + "`");
+        writeToFile(frank, getBaseContext());
+    }
 
+    private void writeToFile(String data,Context context) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("userEvent", Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
 }
 
 
