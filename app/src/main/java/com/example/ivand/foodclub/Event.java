@@ -3,16 +3,17 @@ package com.example.ivand.foodclub;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 public class Event implements Parcelable {
     int ID;
     int dist;
-    int maxRoles = 10;
     String name;
     String menu;
     String place;
     String description;
     int price;
-    Role[] roles = new Role[maxRoles];
+    public ArrayList<Role> roles;
 
     public static final Parcelable.Creator<Event> CREATOR = new Parcelable.Creator<Event>() {
         public Event createFromParcel(Parcel in) {
@@ -23,6 +24,15 @@ public class Event implements Parcelable {
             return new Event[size];
         }
     };
+
+    public void addRole(Role role) {
+        Role tempRole = role;
+        this.roles.add(tempRole);
+    }
+    public Role getRole() {
+        return (roles.get(roles.size()-1));
+    }
+
 
 
     public Event() {
@@ -35,6 +45,7 @@ public class Event implements Parcelable {
 
         //constructor
         public Event(int ID, int dist, String name, String menu, String place, String description, int price) {
+
             this.ID = ID;
             this.dist = dist;
             this.name = name;
@@ -45,7 +56,8 @@ public class Event implements Parcelable {
 
         }
 
-        public String getName() {
+
+    public String getName() {
             return(this.name);
         }
 
