@@ -24,7 +24,7 @@ public class Host extends AppCompatActivity {
 
 
 
-    String eventName, whatCooking, place, description;
+    String eventName, whatCooking, place, description, time;
     int price = 0;
     int ID = 0;
     int dist = 5;
@@ -62,6 +62,7 @@ public class Host extends AppCompatActivity {
                     whatCooking = whatCooking_input.getText().toString();
                     place = place_input.getText().toString();
                     description = description_input.getText().toString();
+                    time = time_input.getText().toString();
 
                     if(price != 0) {
                         price = Integer.valueOf(price_input.getText().toString());
@@ -69,7 +70,7 @@ public class Host extends AppCompatActivity {
                         price = 0;
                     }
 
-                    Event event = new Event(ID, dist, eventName, whatCooking, place, description, price);
+                    Event event = new Event(ID, dist, eventName, whatCooking, place, description, time, price);
 
                     confirmPost(event);
             }

@@ -12,6 +12,7 @@ public class Event implements Parcelable {
     String menu;
     String place;
     String description;
+    String time;
     int price;
     public ArrayList<Role> roles;
 
@@ -44,7 +45,7 @@ public class Event implements Parcelable {
     }
 
         //constructor
-        public Event(int ID, int dist, String name, String menu, String place, String description, int price) {
+        public Event(int ID, int dist, String name, String menu, String place, String description, String time, int price) {
 
             this.ID = ID;
             this.dist = dist;
@@ -52,6 +53,7 @@ public class Event implements Parcelable {
             this.menu = menu;
             this.place = place;
             this.description = description;
+            this.time = time;
             this.price = price;
 
         }
@@ -68,6 +70,7 @@ public class Event implements Parcelable {
         this.menu = in.readString();
         this.place = in.readString();
         this.description = in.readString();
+        this.time = in.readString();
         this.price = in.readInt();
     }
 
@@ -84,6 +87,7 @@ public class Event implements Parcelable {
         dest.writeString(this.menu);
         dest.writeString(this.place);
         dest.writeString(this.description);
+        dest.writeString(this.time);
         dest.writeInt(this.price);
     }
 
