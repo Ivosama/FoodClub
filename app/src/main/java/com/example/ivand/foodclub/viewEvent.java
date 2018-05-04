@@ -62,7 +62,7 @@ public class viewEvent extends AppCompatActivity {
             title.setText(receivedEvent.name);
             food.setText(receivedEvent.menu);
             place.setText(receivedEvent.place);
-            time.setText(receivedEvent.name);
+            time.setText(receivedEvent.time);
             price.setText("" + receivedEvent.price);
             description.setText(receivedEvent.description);
 
@@ -70,8 +70,8 @@ public class viewEvent extends AppCompatActivity {
 
         }
 
-        /*
-        for (int i = 0; i < receivedEvent.roles.size(); i++) {
+
+        /*for (int i = 0; i < receivedEvent.roles.size(); i++) {
             if (receivedEvent.roles.get(i) != null) {
                 Role tempRole = (Role) receivedEvent.roles.get(i);
                 eventRoleList.add(tempRole);
