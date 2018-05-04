@@ -26,6 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -63,7 +64,10 @@ public class MainActivity extends AppCompatActivity {
         if(file.exists()) {
             String[] separated = loadSave().split("`");
             Event userEvent = new Event(Integer.valueOf(separated[0]), Integer.valueOf(separated[1]), separated[2], separated[3], separated[4], separated[5], separated[6], Integer.valueOf(separated[7]));
-            eventArrayListMain.add(userEvent);
+            if(!eventArrayListMain.contains(userEvent)) {
+                eventArrayListMain.add(userEvent);
+            }
+
         }
 
 
@@ -208,6 +212,29 @@ public class MainActivity extends AppCompatActivity {
         return ret;
     }
 
+    public void saveEvent(String ID, String dist, String eventName, String whatCooking, String place, String description, String price){
+        File file = new File(getFilesDir(), "userEvent");
+        String frank = "";
+        frank += (ID + "`");
+        frank += (dist + "`");
+        frank += (eventName + "`");
+        frank += (whatCooking + "`");
+        frank += (place + "`");
+        frank += (description + "`");
+        frank += (price + "`");
+        writeToFile(frank, getBaseContext());
+    }
+
+    private void writeToFile(String data,Context context) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("userEvent", Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

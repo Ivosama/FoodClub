@@ -30,6 +30,7 @@ public class Host extends AppCompatActivity {
     int dist = 5;
     //missing input and variables for the time
 
+
     EditText eventName_input;
     EditText whatCooking_input;
     EditText place_input;
@@ -64,11 +65,11 @@ public class Host extends AppCompatActivity {
                     description = description_input.getText().toString();
                     time = time_input.getText().toString();
 
-                    if(price != 0) {
-                        price = Integer.valueOf(price_input.getText().toString());
-                    }else{
-                        price = 0;
-                    }
+                if (price != 0) {
+                    price = Integer.valueOf(price_input.getText().toString());
+                } else {
+                    price = 0;
+                }
 
                     Event event = new Event(ID, dist, eventName, whatCooking, place, description, time, price);
 
@@ -76,27 +77,29 @@ public class Host extends AppCompatActivity {
             }
         });
 
-    } private void confirmPost(final Event event){
+    }
+
+    private void confirmPost(final Event event) {
         final AlertDialog.Builder confirm = new AlertDialog.Builder(this);
         confirm.setMessage("Are you sure you want to create this event?");
         confirm.setCancelable(false);
 
-            confirm.setPositiveButton("Aye", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(Host.this, MainActivity.class); // Create intent to send Parcel to Map and List
-                    intent.putExtra("com.package.eventObject", event);
-                    startActivity(intent);
-                    //DO LATER - Functionality for accepting the event creation
-                }
-            });
-            confirm.setNegativeButton("Nah", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    confirm.setCancelable(true);
-                }
-            });
-            confirm.create().show();
+        confirm.setPositiveButton("Aye", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Host.this, MainActivity.class); // Create intent to send Parcel to Map and List
+                intent.putExtra("com.package.eventObject", event);
+                startActivity(intent);
+                //DO LATER - Functionality for accepting the event creation
+            }
+        });
+        confirm.setNegativeButton("Nah", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                confirm.setCancelable(true);
+            }
+        });
+        confirm.create().show();
     }
 
     public void showTimePicker(View v) {
