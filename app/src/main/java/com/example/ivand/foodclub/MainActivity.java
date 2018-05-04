@@ -169,10 +169,10 @@ public class MainActivity extends AppCompatActivity {
     //    Intent intent = new Intent(this,ProfileActivity.class);
    //     startActivity(intent);
    // }
-   /* public void openTehSignup() {
+   public void openTehSignup() {
         Intent intent = new Intent(this,SignUpActivity.class);
         startActivity(intent);
-    }*/
+    }
 
    public String loadSave(){
        String temp = readFromFile(getBaseContext());
@@ -221,7 +221,15 @@ public class MainActivity extends AppCompatActivity {
             case R.id.chat_id:
                 Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
                 break;
-
+            case R.id.logout_id:
+                Toast.makeText(this, "log out code", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.goToRoom_id:
+                Toast.makeText(this,"Go to room test", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.profile_id:
+                Toast.makeText(this,"Go to profile", Toast.LENGTH_SHORT).show();
+                break;
 
         }
         return super.onOptionsItemSelected(item);
