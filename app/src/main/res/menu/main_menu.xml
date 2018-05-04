@@ -12,5 +12,11 @@
         android:icon="@drawable/chat"
         app:showAsAction="ifRoom"></item>
 
+    <item
+        android:title=""
+        android:id="@+id/addRole_id"
+        android:icon="@drawable/add_roles"
+        app:showAsAction="always"></item>
+
 
 </menu>

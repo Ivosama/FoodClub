@@ -94,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         drawerLayout = findViewById(R.id.drawer_layout);
 
+        getSupportActionBar().setTitle("Food Club");
+
         imageProfile = (ImageButton) findViewById(R.id.imageProfile);
         imgBtnEat = (ImageButton) findViewById(R.id.img_btn_eat);
         imgBtnHost = (ImageButton) findViewById(R.id.img_btn_host);
@@ -120,38 +122,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.setDrawerListener(toggle);
 
         toggle.syncState();
-
-
-/*
-        drawerLayout.addDrawerListener(
-
-                new DrawerLayout.DrawerListener() {
-                    @Override
-                    public void onDrawerSlide(View drawerView, float slideOffset) {
-                        // Respond when the drawer's position changes
-                    }
-
-                    @Override
-                    public void onDrawerOpened(View drawerView) {
-                        // Respond when the drawer is opened
-
-                        //openTehSignup();
-                    }
-
-                    @Override
-                    public void onDrawerClosed(View drawerView) {
-                        // Respond when the drawer is closed
-                    }
-
-                    @Override
-                    public void onDrawerStateChanged(int newState) {
-                        // Respond when the drawer motion state changes
-                    }
-
-
-                }
-
-        );*/
 
     }
 
@@ -251,7 +221,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.chat_id:
                 Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
                 break;
-
+            case R.id.addRole_id:
+//Send this to poul and paste here the popUp code
+                eventArrayListMain.get(0).addRole(new Role());
         }
         return super.onOptionsItemSelected(item);
     }
