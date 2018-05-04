@@ -29,7 +29,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
     Toolbar toolbar;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         // ARRAY STUFF
 
-        Event fakeEvent1 = new Event(0, 1, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!","12,5", 5);
+        Event fakeEvent1 = new Event(0, 1, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!","12:30", 5);
         Event fakeEvent2 = new Event(1, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00",  10);
 
         Role fakeRole1 = new Role("DishWasher");
@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
     ////this is changed
         navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.open_drawer, R.string.close_drawer);
         drawerLayout.setDrawerListener(toggle);
@@ -171,10 +172,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Host.class);
         startActivity(intent);
     }
-   // public void openProfile() {
-    //    Intent intent = new Intent(this,ProfileActivity.class);
-   //     startActivity(intent);
-   // }
+    public void openProfile() {
+       Intent intent = new Intent(this,ProfileActivity.class);
+       startActivity(intent);
+    }
    public void openTehSignup() {
         Intent intent = new Intent(this,SignUpActivity.class);
         startActivity(intent);
@@ -250,18 +251,30 @@ public class MainActivity extends AppCompatActivity {
             case R.id.chat_id:
                 Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.logout_id:
-                Toast.makeText(this, "log out code", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.goToRoom_id:
-                Toast.makeText(this,"Go to room test", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.profile_id:
-                Toast.makeText(this,"Go to profile", Toast.LENGTH_SHORT).show();
-                break;
 
         }
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.logout_id:
+                Toast.makeText(this, "log out code", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.goToRoom_id:
+                Toast.makeText(this, "Go to room test", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.profile_id:
+                openProfile();
+                //Toast.makeText(this, "Go to profile", Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+        return false;
+    }
 }
