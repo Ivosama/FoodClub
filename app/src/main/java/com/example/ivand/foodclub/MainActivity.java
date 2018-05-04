@@ -221,7 +221,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.chat_id:
                 Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
                 break;
-
+            case R.id.addRole_id:
+//Send this to poul and paste here the popUp code
+                eventArrayListMain.get(0).addRole(new Role());
         }
         return super.onOptionsItemSelected(item);
     }
