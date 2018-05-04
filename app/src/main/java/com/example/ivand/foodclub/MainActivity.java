@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Role fakeRole2 = new Role("Musician");
 
         //fakeEvent1.roles.add(fakeRole1);
-        //fakeEvent2.roles.add(fakeRole1);
+        fakeEvent2.roles.add(fakeRole1);
 
         eventArrayListMain.add(fakeEvent1);
         eventArrayListMain.add(fakeEvent2);

@@ -70,13 +70,13 @@ public class viewEvent extends AppCompatActivity {
 
         }
 
-        /*
+
         for (int i = 0; i < receivedEvent.roles.size(); i++) {
             if (receivedEvent.roles.get(i) != null) {
                 Role tempRole = (Role) receivedEvent.roles.get(i);
                 eventRoleList.add(tempRole);
             }
-        }*/
+        }
 
         listView = (ListView) findViewById(R.id.eventRolesList);
         for (int i = 0; i < eventRoleList.size(); i++) {
