@@ -26,6 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // ARRAY STUFF
 
-        Event fakeEvent1 = new Event(0, 1, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!","12,5", 5);
+        Event fakeEvent1 = new Event(0, 1, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!","12:30", 5);
         Event fakeEvent2 = new Event(1, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00",  10);
 
         Role fakeRole1 = new Role("DishWasher");
@@ -63,7 +64,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(file.exists()) {
             String[] separated = loadSave().split("`");
             Event userEvent = new Event(Integer.valueOf(separated[0]), Integer.valueOf(separated[1]), separated[2], separated[3], separated[4], separated[5], separated[6], Integer.valueOf(separated[7]));
-            eventArrayListMain.add(userEvent);
+            if(!eventArrayListMain.contains(userEvent)) {
+                eventArrayListMain.add(userEvent);
+            }
+
         }
 
 
@@ -209,6 +213,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return ret;
     }
 
+    public void saveEvent(String ID, String dist, String eventName, String whatCooking, String place, String description, String price){
+        File file = new File(getFilesDir(), "userEvent");
+        String frank = "";
+        frank += (ID + "`");
+        frank += (dist + "`");
+        frank += (eventName + "`");
+        frank += (whatCooking + "`");
+        frank += (place + "`");
+        frank += (description + "`");
+        frank += (price + "`");
+        writeToFile(frank, getBaseContext());
+    }
+
+    private void writeToFile(String data,Context context) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("userEvent", Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
