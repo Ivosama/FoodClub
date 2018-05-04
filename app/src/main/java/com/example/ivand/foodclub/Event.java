@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Event implements Parcelable {
     int ID;
     int dist;
+    int ownerID;
     String name;
     String menu;
     String place;
@@ -34,6 +35,17 @@ public class Event implements Parcelable {
         return (roles.get(roles.size()-1));
     }
 
+    public int getOwnerID() {
+        return (ownerID);
+    }
+
+    public int getID() {
+        return (this.ID);
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
 
     public Event() {
@@ -57,8 +69,21 @@ public class Event implements Parcelable {
             this.price = price;
 
 
-
         }
+    public Event(int ID, int ownerID, int dist, String name, String menu, String place, String description, String time, int price) {
+
+        this.ID = ID;
+        this.ownerID = ownerID;
+        this.dist = dist;
+        this.name = name;
+        this.menu = menu;
+        this.place = place;
+        this.description = description;
+        this.time = time;
+        this.price = price;
+
+
+    }
 
 
     public String getName() {
@@ -67,6 +92,7 @@ public class Event implements Parcelable {
 
     public Event(Parcel in){
             this.ID = in.readInt();
+            this.ownerID = in.readInt();
             this.dist = in.readInt();
         this.name = in.readString();
         this.menu = in.readString();
@@ -88,6 +114,7 @@ public class Event implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
             dest.writeInt(this.ID);
+            dest.writeInt(this.ownerID);
             dest.writeInt(this.dist);
         dest.writeString(this.name);
         dest.writeString(this.menu);

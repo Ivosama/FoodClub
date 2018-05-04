@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,7 @@ public class viewEvent extends AppCompatActivity {
         price = (TextView)findViewById(R.id.eventPriceText);
         description = (TextView)findViewById(R.id.eventDescriptionText);
 
+
         Event receivedEvent = new Event();
         Bundle bundle = getIntent().getExtras();
 
@@ -72,21 +74,24 @@ public class viewEvent extends AppCompatActivity {
 
 
         for (int i = 0; i < receivedEvent.roles.size(); i++) {
-            if (receivedEvent.roles.get(i) != null) {
+            int size = receivedEvent.roles.size();
+            //Toast.makeText(getApplicationContext(),"" + size, Toast.LENGTH_LONG).show();
+            try {
                 Role tempRole = (Role) receivedEvent.roles.get(i);
+                Toast.makeText(getApplicationContext(), tempRole.title, Toast.LENGTH_LONG).show();
                 eventRoleList.add(tempRole);
+            } catch (Exception e) {
+
             }
         }
 
         listView = (ListView) findViewById(R.id.eventRolesList);
         for (int i = 0; i < eventRoleList.size(); i++) {
-            try {
-                Role tempRole = (Role) eventRoleList.get(i);
-                String tempName = tempRole.getTitle();
-                list.add(tempName);
-            } catch (Exception e) {
-
-            }
+            int size = eventRoleList.size();
+            Toast.makeText(getApplicationContext(),"" + size, Toast.LENGTH_LONG).show();
+            Role tempRole = (Role) eventRoleList.get(i);
+            String tempName = tempRole.getTitle();
+            list.add(tempName);
 
         }
 
@@ -103,11 +108,11 @@ public class viewEvent extends AppCompatActivity {
                 //Toast.makeText(Map_and_List.this, eventArrayList[6].name, Toast.LENGTH_SHORT).show();
 
 
-                Intent intent = new Intent(viewEvent.this, viewEvent.class); // Create intent to send Parcel to Map and List
-                Role role = eventRoleList.get(position);
+                //Intent intent = new Intent(viewEvent.this, viewEvent.class); // Create intent to send Parcel to Map and List
+                //Role role = eventRoleList.get(position);
 
-                //Toast.makeText(getApplicationContext(), "position = " + position + " name = " + event.name, Toast.LENGTH_LONG).show();
-                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "position = " + position + " name = " + eventRoleList.get(position).title, Toast.LENGTH_LONG).show();
+                //startActivity(intent);
                 //openViewEvent();
             }
 
