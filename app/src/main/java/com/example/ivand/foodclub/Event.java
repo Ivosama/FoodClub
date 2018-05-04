@@ -69,6 +69,9 @@ public class Event implements Parcelable {
         this.place = in.readString();
         this.description = in.readString();
         this.price = in.readInt();
+
+        this.roles = new ArrayList<>();
+        in.readTypedList(roles, Role.CREATOR);
     }
 
     @Override
@@ -85,6 +88,7 @@ public class Event implements Parcelable {
         dest.writeString(this.place);
         dest.writeString(this.description);
         dest.writeInt(this.price);
+        dest.writeTypedList(roles);
     }
 
 

@@ -50,13 +50,12 @@ public class MainActivity extends AppCompatActivity {
         // ARRAY STUFF
 
         Event fakeEvent1 = new Event(0, 1, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!", 5);
-        Event fakeEvent2 = new Event("Zephan's event is this one");
+        Event fakeEvent2 = new Event(1, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", 10);
 
         Role fakeRole1 = new Role("DishWasher");
         Role fakeRole2 = new Role("Musician");
         fakeRole1.holderID = "Poul";
-        //fakeEvent1.roles[0] = fakeRole1;
-        //fakeEvent2.roles[0] = fakeRole2;
+        //fakeEvent1.roles.add(fakeRole1);
 
         eventArrayListMain.add(fakeEvent1);
         eventArrayListMain.add(fakeEvent2);
