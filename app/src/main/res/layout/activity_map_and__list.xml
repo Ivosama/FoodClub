@@ -7,11 +7,11 @@
     tools:context=".Map_and_List">
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Map and List Activity"
-        android:id="@+id/textView2" />
+        android:text="Map and List Activity" />
 
     <ListView
         android:id="@+id/eventList"
@@ -19,5 +19,13 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView2" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="249dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/map_view" />
 
 </RelativeLayout>

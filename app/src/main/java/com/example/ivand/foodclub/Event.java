@@ -14,7 +14,7 @@ public class Event implements Parcelable {
     String description;
     String time;
     int price;
-    public ArrayList<Role> roles;
+    public ArrayList<Role> roles = new ArrayList<>();
 
     public static final Parcelable.Creator<Event> CREATOR = new Parcelable.Creator<Event>() {
         public Event createFromParcel(Parcel in) {
@@ -56,6 +56,8 @@ public class Event implements Parcelable {
             this.time = time;
             this.price = price;
 
+
+
         }
 
 
@@ -72,6 +74,7 @@ public class Event implements Parcelable {
         this.description = in.readString();
         this.time = in.readString();
         this.price = in.readInt();
+
 
         this.roles = new ArrayList<>();
         in.readTypedList(roles, Role.CREATOR);
