@@ -62,7 +62,7 @@ public class viewEvent extends AppCompatActivity {
             title.setText(receivedEvent.name);
             food.setText(receivedEvent.menu);
             place.setText(receivedEvent.place);
-            time.setText(receivedEvent.name);
+            time.setText(receivedEvent.time);
             price.setText("" + receivedEvent.price);
             description.setText(receivedEvent.description);
 
