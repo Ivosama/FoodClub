@@ -55,11 +55,14 @@ public class MainActivity extends AppCompatActivity {
 
         Role fakeRole1 = new Role("DishWasher");
         Role fakeRole2 = new Role("Musician");
-        fakeRole1.holderID = "Poul";
+
         //fakeEvent1.roles.add(fakeRole1);
+        //fakeEvent2.roles.add(fakeRole1);
 
         eventArrayListMain.add(fakeEvent1);
         eventArrayListMain.add(fakeEvent2);
+
+
         File file = new File(getApplicationContext().getFilesDir(),"userEvent");
         if(file.exists()) {
             String[] separated = loadSave().split("`");

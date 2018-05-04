@@ -56,6 +56,8 @@ public class Event implements Parcelable {
             this.time = time;
             this.price = price;
 
+
+
         }
 
 
@@ -72,6 +74,7 @@ public class Event implements Parcelable {
         this.description = in.readString();
         this.time = in.readString();
         this.price = in.readInt();
+
 
         this.roles = new ArrayList<>();
         in.readTypedList(roles, Role.CREATOR);

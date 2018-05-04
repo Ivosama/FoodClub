@@ -42,6 +42,13 @@ public class Role implements Parcelable {
         dest.writeString(this.holderID);
     }
 
+    Role(int roleID, String title, String holderId, boolean isTaken) {
+        this.roleID = roleID;
+        this.title = title;
+        this.holderID = holderId;
+        this.isTaken = isTaken;
+    }
+
     Role() {
 
     }
