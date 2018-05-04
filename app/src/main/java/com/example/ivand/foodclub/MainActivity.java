@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         // ARRAY STUFF
 
-        Event fakeEvent1 = new Event(0, 1, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!","12,5", 5);
+        Event fakeEvent1 = new Event(0, 1, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!","12:30", 5);
         Event fakeEvent2 = new Event(1, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00",  10);
 
         Role fakeRole1 = new Role("DishWasher");
