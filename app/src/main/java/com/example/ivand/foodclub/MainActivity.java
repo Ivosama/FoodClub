@@ -28,7 +28,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
     Toolbar toolbar;
@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
     ////this is changed
         navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.open_drawer, R.string.close_drawer);
         drawerLayout.setDrawerListener(toggle);
@@ -220,18 +221,30 @@ public class MainActivity extends AppCompatActivity {
             case R.id.chat_id:
                 Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.logout_id:
-                Toast.makeText(this, "log out code", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.goToRoom_id:
-                Toast.makeText(this,"Go to room test", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.profile_id:
-                Toast.makeText(this,"Go to profile", Toast.LENGTH_SHORT).show();
-                break;
+
 
         }
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.logout_id:
+                Toast.makeText(this, "log out code", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.goToRoom_id:
+                Toast.makeText(this, "Go to room test", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.profile_id:
+                Toast.makeText(this, "Go to profile", Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+        return false;
+    }
 }
