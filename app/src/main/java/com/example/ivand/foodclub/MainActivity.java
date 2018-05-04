@@ -169,10 +169,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(this, Host.class);
         startActivity(intent);
     }
-   // public void openProfile() {
-    //    Intent intent = new Intent(this,ProfileActivity.class);
-   //     startActivity(intent);
-   // }
+    public void openProfile() {
+       Intent intent = new Intent(this,ProfileActivity.class);
+       startActivity(intent);
+    }
    public void openTehSignup() {
         Intent intent = new Intent(this,SignUpActivity.class);
         startActivity(intent);
@@ -249,7 +249,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
                 break;
 
-
         }
         return super.onOptionsItemSelected(item);
     }
@@ -268,7 +267,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Go to room test", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.profile_id:
-                Toast.makeText(this, "Go to profile", Toast.LENGTH_SHORT).show();
+                openProfile();
+                //Toast.makeText(this, "Go to profile", Toast.LENGTH_SHORT).show();
                 break;
 
         }
