@@ -93,7 +93,7 @@ public class SignUpActivity extends AppCompatActivity {
         User user = new User(id,firstName,lastName,email, allergies, password,description);
         Bundle data = getIntent().getExtras();
         Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
-        intent.putExtra("com.package.userObject",new User(id,firstName,lastName,email, allergies, password,description));
+        intent.putExtra("com.package.userObject", user);
         startActivity(intent);
         finish();
     }

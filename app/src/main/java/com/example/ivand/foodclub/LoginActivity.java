@@ -22,6 +22,8 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
 
+    public User user; // Global user object for password / email check
+
     @InjectView(R.id.input_email) EditText _emailText;
     @InjectView(R.id.input_password) EditText _passwordText;
     @InjectView(R.id.btn_login) Button _loginButton;
@@ -32,6 +34,15 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
+
+        // Receive bundle when activity is opened from create menu
+        Bundle bundle = getIntent().getExtras();
+        // Happens here
+        try {
+            user = bundle.getParcelable("com.package.userObject");
+        } catch (Exception e) {
+
+        }
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -122,20 +133,16 @@ public class LoginActivity extends AppCompatActivity {
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
         Bundle data = getIntent().getExtras();
-        if (data!= null) {
-            if (data.containsKey(email)) {
-                User user = (User) data.getParcelable("com.package.userObject");
-                    _emailText.setError(null);
-                    String upassword = user.getPassword();
-                    if (upassword.equals(user.getPassword())) {
-                        _passwordText.setError(null);
-                    } else {
-                        valid = false;
-                    }
+        if (user!= null) {
 
+            _emailText.setError(null);
+            String upassword = user.getPassword();
+            if (upassword.equals(user.getPassword())) {
+                _passwordText.setError(null);
             } else {
                 valid = false;
             }
+
         }else{
             valid = false;
         }
