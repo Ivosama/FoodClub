@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
 
 
-    public boolean userApplied, userIsHosting;
+    public boolean userApplied, userIsHosting, userExist;
 
     ImageButton imgBtnEat;
     ImageButton imgBtnHost;
@@ -232,6 +232,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 eventArrayListMain.get(0).addRole(new Role());
         }
         return super.onOptionsItemSelected(item);
+
     }
 
 
