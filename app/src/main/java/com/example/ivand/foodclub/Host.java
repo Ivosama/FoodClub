@@ -23,22 +23,21 @@ import static java.lang.String.valueOf;
 public class Host extends AppCompatActivity {
 
 
-
+    // Initial variables
     String eventName, whatCooking, place, description, time;
     int price = 0;
     int ID = 0;
     int dist = 5;
-    //missing input and variables for the time
 
-
+    // Text fields
     EditText eventName_input;
     EditText whatCooking_input;
     EditText place_input;
     EditText description_input;
     EditText price_input;
-
     TextView time_input;
 
+    // Buttons
     Button post_event_button;
 
     @Override
@@ -90,7 +89,6 @@ public class Host extends AppCompatActivity {
                 Intent intent = new Intent(Host.this, MainActivity.class); // Create intent to send Parcel to Map and List
                 intent.putExtra("com.package.eventObject", event);
                 startActivity(intent);
-                //DO LATER - Functionality for accepting the event creation
             }
         });
         confirm.setNegativeButton("Nah", new DialogInterface.OnClickListener() {
