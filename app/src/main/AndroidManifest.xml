@@ -18,7 +18,7 @@
         <!-- android:theme="@style/Theme.AppCompat.Light.NoActionBar" -->
         <activity
             android:name=".MainActivity"
-            android:label="Main Activity"
+            android:label="Food Club"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,6 +44,10 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".SignUpActivity"></activity>
+
+        <activity android:name=".PopUpRole"
+            android:theme="@style/AppTheme.AddRolePopUp">
+        </activity>
     </application>
 
 </manifest>

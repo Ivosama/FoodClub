@@ -12,11 +12,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -229,6 +235,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.addRole_id:
 //Send this to poul and paste here the popUp code
+                startActivity(new Intent(MainActivity.this, PopUpRole.class));
+                Toast.makeText(this,"Open AddRole PopUp", Toast.LENGTH_SHORT).show();
                 eventArrayListMain.get(0).addRole(new Role());
         }
         return super.onOptionsItemSelected(item);
