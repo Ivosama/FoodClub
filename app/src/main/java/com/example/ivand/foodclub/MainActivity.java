@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     NavigationView navigationView;
 
+    private User user;
 
     public boolean userApplied, userIsHosting;
 
@@ -48,9 +49,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Event receivedEvent = new Event();
+        Bundle bundle = getIntent().getExtras();
+        try {
+            receivedEvent = bundle.getParcelable("com.package.eventObject");
+            eventArrayListMain.add(receivedEvent);
+        } catch (Exception e) {
+
+        }
+        try {
+            user = bundle.getParcelable("com.package.userObject");
+            Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+
+        }
+
         //PROFILE STUFF
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+
+        /*
+        if (user == null) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }*/
+
 
         // ARRAY STUFF
 
@@ -80,14 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
-        Event receivedEvent = new Event();
-        Bundle bundle = getIntent().getExtras();
-        try {
-            receivedEvent = bundle.getParcelable("com.package.eventObject");
-            eventArrayListMain.add(receivedEvent);
-        } catch (Exception e) {
 
-        }
 
         // END OF ARRAY STUFF
 
