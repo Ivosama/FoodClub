@@ -53,7 +53,9 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true">
 
                 <TextView
                     android:id="@+id/textViewLastName"
@@ -105,7 +107,7 @@
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="156dp"
-                    android:layout_marginTop="216dp"
+                    android:layout_marginTop="232dp"
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:text="First Name"

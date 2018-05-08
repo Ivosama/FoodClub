@@ -80,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
+        progressDialog.dismiss();
 
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
@@ -121,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
+
         finish();
     }
 
