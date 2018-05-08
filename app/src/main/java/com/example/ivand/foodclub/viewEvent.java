@@ -30,6 +30,9 @@ public class viewEvent extends AppCompatActivity {
     private TextView price;
     private TextView description;
 
+    User user = new User();
+    Event receivedEvent = new Event();
+
     Role[] roles = new Role[10];
 
     ListView listView;
@@ -56,7 +59,7 @@ public class viewEvent extends AppCompatActivity {
         description = (TextView)findViewById(R.id.eventDescriptionText);
 
 
-        Event receivedEvent = new Event();
+
         Bundle bundle = getIntent().getExtras();
 
         try {
@@ -71,6 +74,13 @@ public class viewEvent extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+        try {
+            user = bundle.getParcelable("com.package.userObject");
+            Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+
+        }
+
 
 
         for (int i = 0; i < receivedEvent.roles.size(); i++) {
@@ -78,7 +88,7 @@ public class viewEvent extends AppCompatActivity {
             //Toast.makeText(getApplicationContext(),"" + size, Toast.LENGTH_LONG).show();
             try {
                 Role tempRole = (Role) receivedEvent.roles.get(i);
-                Toast.makeText(getApplicationContext(), tempRole.title, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), tempRole.title, Toast.LENGTH_SHORT).show();
                 eventRoleList.add(tempRole);
             } catch (Exception e) {
 
@@ -117,6 +127,22 @@ public class viewEvent extends AppCompatActivity {
             }
 
 
+        });
+
+        Button deleteButton = (Button) findViewById(R.id.deleteButt);
+        if (user.getId() == receivedEvent.ownerID) {
+            deleteButton.setVisibility(View.VISIBLE);
+        } else {
+            deleteButton.setVisibility(View.GONE);
+        }
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                receivedEvent.ownerID = 0;
+                Intent intent = new Intent(viewEvent.this, MainActivity.class);
+                intent.putExtra("com.package.eventObject", receivedEvent);
+                startActivity(intent);
+            }
         });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

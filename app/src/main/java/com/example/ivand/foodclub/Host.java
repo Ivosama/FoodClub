@@ -40,6 +40,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
     int price = 0;
     int ID = 0;
     int dist = 5;
+    User user = new User();
 
     // Text fields
     EditText eventName_input;
@@ -74,6 +75,14 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
         drawerLayout.setDrawerListener(toggle);
 
         toggle.syncState();
+
+        Bundle bundle = getIntent().getExtras();
+        try {
+            user = bundle.getParcelable("com.package.userObject");
+
+        } catch (Exception e) {
+
+        }
 
         time_input = (TextView)findViewById(R.id.time_input);
 
@@ -174,15 +183,18 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
         confirm.setMessage("Are you sure you want to create this event?");
         confirm.setCancelable(false);
 
-        confirm.setPositiveButton("Aye", new DialogInterface.OnClickListener() {
+        confirm.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                event.ownerID = user.getId();
                 Intent intent = new Intent(Host.this, MainActivity.class); // Create intent to send Parcel to Map and List
                 intent.putExtra("com.package.eventObject", event);
+                String ownerID = Integer.toString(event.getOwnerID());
+                Toast.makeText(getApplicationContext(), ownerID, Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });
-        confirm.setNegativeButton("Nah", new DialogInterface.OnClickListener() {
+        confirm.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 confirm.setCancelable(true);

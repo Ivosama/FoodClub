@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
 
     private User user;
+    private boolean isLoggedIn;
 
     public boolean userApplied, userIsHosting, userExist;
 
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
 
         Event receivedEvent = new Event();
+
         Bundle bundle = getIntent().getExtras();
         try {
             receivedEvent = bundle.getParcelable("com.package.eventObject");
@@ -65,6 +67,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         try {
             user = bundle.getParcelable("com.package.userObject");
+
+        } catch (Exception e) {
+            user = new User(1);
+        }
+
+
+
+
+        try {
             Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_LONG).show();
         } catch (Exception e) {
 
@@ -81,8 +92,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // ARRAY STUFF
 
-        Event fakeEvent1 = new Event(0, 1, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!","12:30", 5);
+        Event fakeEvent1 = new Event(1, 1, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!","12:30", 5);
+        fakeEvent1.ownerID = 1;
         Event fakeEvent2 = new Event(1, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00",  10);
+        fakeEvent2.ownerID = 2;
 
         User fakeUser = new User(1,"abc","abc","1234","no","2@2.com","caca");
         Role fakeRole1 = new Role("DishWasher");
@@ -94,7 +107,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         eventArrayListMain.add(fakeEvent1);
         eventArrayListMain.add(fakeEvent2);
 
-
+        for (int i = 0; i < eventArrayListMain.size(); i++) {
+            int removalID;
+            if (eventArrayListMain.get(i).getOwnerID() == 0) {
+                removalID = eventArrayListMain.get(i).getID();
+                for (int j = 0; j < eventArrayListMain.size(); j++) {
+                    if (eventArrayListMain.get(i).getID() == removalID) {
+                        eventArrayListMain.remove(i);
+                    }
+                }
+            }
+        }
 
         File file = new File(getApplicationContext().getFilesDir(),"userEvent");
         if(file.exists()) {
@@ -153,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.main_menu_main, menu);
 
         return true;
     }
@@ -161,6 +184,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void openMapAndList(){
         Intent intent = new Intent(MainActivity.this, Map_and_List.class); // Create intent to send Parcel to Map and List
         intent.putExtra("com.package.eventObjectList", eventArrayListMain);
+        intent.putExtra("com.package.userObject", user);
         startActivity(intent);
     }
 
@@ -170,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     public void openProfile() {
        Intent intent = new Intent(this,ProfileActivity.class);
+       intent.putExtra("com.package.userObject", user);
        startActivity(intent);
     }
    public void openTehSignup() {
@@ -248,11 +273,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.chat_id:
                 Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.addRole_id:
-//Send this to poul and paste here the popUp code
-                startActivity(new Intent(MainActivity.this, PopUpRole.class));
-                Toast.makeText(this,"Open AddRole PopUp", Toast.LENGTH_SHORT).show();
-                eventArrayListMain.get(0).addRole(new Role());
         }
         return super.onOptionsItemSelected(item);
 

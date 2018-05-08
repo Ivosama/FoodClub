@@ -26,6 +26,7 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
     ListView listView;
     List list;
     ArrayAdapter adapter;
+    User user = new User();
 
     private DrawerLayout drawerLayout;
     Toolbar toolbar;
@@ -67,6 +68,11 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
         } catch (Exception e) {
 
         }
+        try {
+            user = bundle.getParcelable("com.package.userObject");
+        } catch (Exception e) {
+
+        }
 
         listView = (ListView) findViewById(R.id.eventList);
         for (int i = 0; i < eventArrayList.size(); i++) {
@@ -93,7 +99,8 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(Map_and_List.this, viewEvent.class); // Create intent to send Parcel to Map and List
                 Event event = eventArrayList.get(position);
                 intent.putExtra("com.package.eventObject", event);
-                //Toast.makeText(getApplicationContext(), "position = " + position + " name = " + event.name, Toast.LENGTH_LONG).show();
+                intent.putExtra("com.package.userObject", user);
+                Toast.makeText(getApplicationContext(), "position = " + position + " name = " + event.name, Toast.LENGTH_LONG).show();
                 startActivity(intent);
                 //openViewEvent();
             }
@@ -112,7 +119,7 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.main_menu_map, menu);
 
         return true;
     }
@@ -129,11 +136,6 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
             case R.id.chat_id:
                 Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.addRole_id:
-//Send this to poul and paste here the popUp code
-                //startActivity(new Intent(Map_and_List.this, PopUpRole.class));
-                Toast.makeText(this,"Open AddRole PopUp", Toast.LENGTH_SHORT).show();
-
         }
         return super.onOptionsItemSelected(item);
 
