@@ -99,10 +99,11 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(Map_and_List.this, viewEvent.class); // Create intent to send Parcel to Map and List
                 Event event = eventArrayList.get(position);
                 intent.putExtra("com.package.eventObject", event);
-                intent.putExtra("com.package.userObject", user);
+                User tempUser = user;
+                intent.putExtra("com.package.userObject", tempUser);
                 Toast.makeText(getApplicationContext(), "position = " + position + " name = " + event.name, Toast.LENGTH_LONG).show();
-                startActivity(intent);
-                //openViewEvent();
+                //startActivity(intent);
+                openViewEvent();
             }
 
 

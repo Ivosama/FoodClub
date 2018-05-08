@@ -190,6 +190,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void openHost(){
         Intent intent = new Intent(this, Host.class);
+        intent.putExtra("com.package.userObject", user);
         startActivity(intent);
     }
     public void openProfile() {

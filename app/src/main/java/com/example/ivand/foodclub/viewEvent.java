@@ -75,26 +75,29 @@ public class viewEvent extends AppCompatActivity {
 
         }
         try {
-            user = bundle.getParcelable("com.package.userObject");
+            User tempUser = bundle.getParcelable("com.package.userObject");
+            user = tempUser;
             Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
 
         }
 
+        // Assign roles from received event to actual list, if roles exist
+        if (receivedEvent.roles != null) {
+            for (int i = 0; i < receivedEvent.roles.size(); i++) {
+                int size = receivedEvent.roles.size();
+                //Toast.makeText(getApplicationContext(),"" + size, Toast.LENGTH_LONG).show();
+                try {
+                    Role tempRole = (Role) receivedEvent.roles.get(i);
+                    Toast.makeText(getApplicationContext(), tempRole.title, Toast.LENGTH_SHORT).show();
+                    eventRoleList.add(tempRole);
+                } catch (Exception e) {
 
-
-        for (int i = 0; i < receivedEvent.roles.size(); i++) {
-            int size = receivedEvent.roles.size();
-            //Toast.makeText(getApplicationContext(),"" + size, Toast.LENGTH_LONG).show();
-            try {
-                Role tempRole = (Role) receivedEvent.roles.get(i);
-                Toast.makeText(getApplicationContext(), tempRole.title, Toast.LENGTH_SHORT).show();
-                eventRoleList.add(tempRole);
-            } catch (Exception e) {
-
+                }
             }
         }
 
+        // Populate the graphical Role listview with roles from the event
         listView = (ListView) findViewById(R.id.eventRolesList);
         for (int i = 0; i < eventRoleList.size(); i++) {
             int size = eventRoleList.size();
