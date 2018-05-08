@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         try {
             receivedEvent = bundle.getParcelable("com.package.eventObject");
             eventArrayListMain.add(receivedEvent);
+            saveEvent(Integer.toString(receivedEvent.ID), Integer.toString(receivedEvent.dist), receivedEvent.name, receivedEvent.menu, receivedEvent.place, receivedEvent.description, Integer.toString(receivedEvent.price));
+
         } catch (Exception e) {
 
         }
@@ -81,10 +83,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // ARRAY STUFF
 
-        Event fakeEvent1 = new Event(0, 1, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!","12:30", 5);
-        Event fakeEvent2 = new Event(1, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00",  10);
+        Event fakeEvent1 = new Event(0, 1, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!", "12:30", 5);
+        Event fakeEvent2 = new Event(1, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00", 10);
 
-        User fakeUser = new User(1,"abc","abc","1234","no","2@2.com","caca");
+        User fakeUser = new User(1, "abc", "abc", "1234", "no", "2@2.com", "caca");
         Role fakeRole1 = new Role("DishWasher");
         Role fakeRole2 = new Role("Musician");
 
@@ -95,12 +97,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         eventArrayListMain.add(fakeEvent2);
 
 
-
-        File file = new File(getApplicationContext().getFilesDir(),"userEvent");
-        if(file.exists()) {
-            String[] separated = loadSave().split("`");
+        File file = new File(getApplicationContext().getFilesDir(), "userEvent");
+        if (file.exists()) {
+            String[] separated = loadSave().split("`");     //loadSave returns the entire file as string, this line makes an array with each element in the file
             Event userEvent = new Event(Integer.valueOf(separated[0]), Integer.valueOf(separated[1]), separated[2], separated[3], separated[4], separated[5], separated[6], Integer.valueOf(separated[7]));
-            if(!eventArrayListMain.contains(userEvent)) {
+            //Event userEvent = new Event("poop");
+            if (!eventArrayListMain.contains(userEvent)) {
                 eventArrayListMain.add(userEvent);
             }
 
@@ -140,11 +142,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-    ////this is changed
+        ////this is changed
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.open_drawer, R.string.close_drawer);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
         drawerLayout.setDrawerListener(toggle);
 
         toggle.syncState();
@@ -158,29 +160,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public void openMapAndList(){
+    public void openMapAndList() {
         Intent intent = new Intent(MainActivity.this, Map_and_List.class); // Create intent to send Parcel to Map and List
         intent.putExtra("com.package.eventObjectList", eventArrayListMain);
         startActivity(intent);
     }
 
-    public void openHost(){
+    public void openHost() {
         Intent intent = new Intent(this, Host.class);
         startActivity(intent);
     }
     public void openProfile() {
-       Intent intent = new Intent(this,ProfileActivity.class);
-       startActivity(intent);
-    }
-   public void openTehSignup() {
-        Intent intent = new Intent(this,LoginActivity.class);
+        Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
 
-   public String loadSave(){
-       String temp = readFromFile(getBaseContext());
-       return temp;
-       }
+    public void openTehSignup() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public String loadSave() {
+        String temp = readFromFile(getBaseContext());
+        return temp;
+    }
 
     private String readFromFile(Context context) {
 
@@ -189,21 +192,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         try {
             InputStream inputStream = context.openFileInput("userEvent");
 
-            if ( inputStream != null ) {
+            if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String receiveString = "";
                 StringBuilder stringBuilder = new StringBuilder();
 
-                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                while ((receiveString = bufferedReader.readLine()) != null) {
                     stringBuilder.append(receiveString);
                 }
 
                 inputStream.close();
                 ret = stringBuilder.toString();
             }
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             Log.e("login activity", "File not found: " + e.toString());
         } catch (IOException e) {
             Log.e("login activity", "Can not read file: " + e.toString());
@@ -212,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return ret;
     }
 
-    public void saveEvent(String ID, String dist, String eventName, String whatCooking, String place, String description, String price){
+    public void saveEvent(String ID, String dist, String eventName, String whatCooking, String place, String description, String price) {
         File file = new File(getFilesDir(), "userEvent");
         String frank = "";
         frank += (ID + "`");
@@ -225,33 +227,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         writeToFile(frank, getBaseContext());
     }
 
-    private void writeToFile(String data,Context context) {
+    private void writeToFile(String data, Context context) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("userEvent", Context.MODE_PRIVATE));
             outputStreamWriter.write(data);
             outputStreamWriter.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
-//Code for listening to the menu bottons in tooldbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
             case R.id.aboutUs_id:
                 Toast.makeText(this, "About us clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.chat_id:
-                Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "go to chat", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.addRole_id:
 //Send this to poul and paste here the popUp code
                 startActivity(new Intent(MainActivity.this, PopUpRole.class));
-                Toast.makeText(this,"Open AddRole PopUp", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Open AddRole PopUp", Toast.LENGTH_SHORT).show();
                 eventArrayListMain.get(0).addRole(new Role());
         }
         return super.onOptionsItemSelected(item);
@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "log out code", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.goToRoom_id:
-               // Toast.makeText(this, "Go to room test", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, "Go to room test", Toast.LENGTH_SHORT).show();
                 openTehSignup();
                 break;
             case R.id.profile_id:
