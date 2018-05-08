@@ -5,23 +5,35 @@ import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
 import static java.lang.String.valueOf;
 
-public class Host extends AppCompatActivity {
+public class Host extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private DrawerLayout drawerLayout;
+    Toolbar toolbar;
+    NavigationView navigationView;
 
     // Initial variables
     String eventName, whatCooking, place, description, time;
@@ -40,10 +52,28 @@ public class Host extends AppCompatActivity {
     // Buttons
     Button post_event_button;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_host);
+        setContentView(R.layout.navigation_drawer_host);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        drawerLayout = findViewById(R.id.drawer_layout);
+
+        getSupportActionBar().setTitle("Host an event");
+
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
+        drawerLayout.setDrawerListener(toggle);
+
+        toggle.syncState();
 
         time_input = (TextView)findViewById(R.id.time_input);
 
@@ -78,6 +108,67 @@ public class Host extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.aboutUs_id:
+                Toast.makeText(this, "About us clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.chat_id:
+                Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.addRole_id:
+//Send this to poul and paste here the popUp code
+                //startActivity(new Intent(Map_and_List.this, PopUpRole.class));
+                Toast.makeText(this,"Open AddRole PopUp", Toast.LENGTH_SHORT).show();
+
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    //Code for listening to buttons in the drawer menu
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.logout_id:
+                Toast.makeText(this, "log out code", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.goToRoom_id:
+                // Toast.makeText(this, "Go to room test", Toast.LENGTH_SHORT).show();
+                openTehSignup();
+                break;
+            case R.id.profile_id:
+                openProfile();
+                //Toast.makeText(this, "Go to profile", Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+        return false;
+    }
+
+    public void openProfile() {
+        Intent intent = new Intent(this,ProfileActivity.class);
+        startActivity(intent);
+    }
+    public void openTehSignup() {
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
+    }
+
     private void confirmPost(final Event event) {
         final AlertDialog.Builder confirm = new AlertDialog.Builder(this);
         confirm.setMessage("Are you sure you want to create this event?");
@@ -105,7 +196,7 @@ public class Host extends AppCompatActivity {
         newFragment.show(getFragmentManager(), "timePicker");
     }
 
-/* Class for Time Picker Dialog */
+    /* Class for Time Picker Dialog */
     public class TimePickerFragment extends DialogFragment
             implements TimePickerDialog.OnTimeSetListener {
 
@@ -154,7 +245,6 @@ public class Host extends AppCompatActivity {
             frag_time_input.setText(time);
         }
     }
-
 
 }
 

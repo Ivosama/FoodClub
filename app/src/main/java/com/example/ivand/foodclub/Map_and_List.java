@@ -1,9 +1,17 @@
 package com.example.ivand.foodclub;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,11 +21,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Map_and_List extends AppCompatActivity {
+public class Map_and_List extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     ListView listView;
     List list;
     ArrayAdapter adapter;
+
+    private DrawerLayout drawerLayout;
+    Toolbar toolbar;
+    NavigationView navigationView;
 
     public ArrayList<Event> eventArrayList = new ArrayList<Event>();
 
@@ -28,8 +40,24 @@ public class Map_and_List extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map_and__list);
+        setContentView(R.layout.navigation_drawer_map);
 
+// start of implementation of toolbar
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        drawerLayout = findViewById(R.id.drawer_layout);
+
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
+        drawerLayout.setDrawerListener(toggle);
+
+        toggle.syncState();
 
         Bundle bundle = getIntent().getExtras();
 
@@ -55,7 +83,6 @@ public class Map_and_List extends AppCompatActivity {
         eventList = list.toArray(eventList);
 
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -76,8 +103,72 @@ public class Map_and_List extends AppCompatActivity {
 
     }
 
-    public void openViewEvent(){
+
+    public void openViewEvent() {
         Intent intent = new Intent(this, viewEvent.class);
         startActivity(intent);
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.aboutUs_id:
+                Toast.makeText(this, "About us clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.chat_id:
+                Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.addRole_id:
+//Send this to poul and paste here the popUp code
+                //startActivity(new Intent(Map_and_List.this, PopUpRole.class));
+                Toast.makeText(this,"Open AddRole PopUp", Toast.LENGTH_SHORT).show();
+
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    //Code for listening to buttons in the drawer menu
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.logout_id:
+                Toast.makeText(this, "log out code", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.goToRoom_id:
+                // Toast.makeText(this, "Go to room test", Toast.LENGTH_SHORT).show();
+                openTehSignup();
+                break;
+            case R.id.profile_id:
+                openProfile();
+                //Toast.makeText(this, "Go to profile", Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+        return false;
+    }
+
+    public void openProfile() {
+        Intent intent = new Intent(this,ProfileActivity.class);
+        startActivity(intent);
+    }
+    public void openTehSignup() {
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
+    }
+
 }

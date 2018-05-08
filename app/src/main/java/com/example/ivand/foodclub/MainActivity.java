@@ -235,6 +235,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
+//Code for listening to the menu bottons in tooldbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -257,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
+//Code for listening to buttons in the drawer menu
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 

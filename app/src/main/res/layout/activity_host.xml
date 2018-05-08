@@ -6,14 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".Host">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp"
-        android:text="Host an Event"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
     <EditText
         android:id="@+id/eventName_input"
