@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
-                this.finish();
+                //this.finish();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("com.package.userObject", user);
                 startActivity(intent);

@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 
 public class Event implements Parcelable {
+
     int ID;
     int dist;
     int ownerID;

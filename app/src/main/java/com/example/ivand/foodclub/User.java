@@ -40,6 +40,10 @@ public class User implements Parcelable {
 
     }
 
+    public  User(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
