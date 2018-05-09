@@ -40,7 +40,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
 
     // Initial variables
     String eventName, whatCooking, place, description, time;
-    int price;
+    int price = 0;
     int ID = 0;
     int dist = 5;
     User user = new User();
@@ -142,7 +142,14 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                     price = Integer.valueOf(price_input.getText().toString());
 
 
-
+                    event.setID(1);
+                    event.ownerID = 1;
+                    event.name = eventName;
+                    event.menu = whatCooking;
+                    event.place = place;
+                    event.description = description;
+                    event.price = price;
+                    event.roles = roles;
                     confirmPost(event);
 //framework to changing the layout of the toolbars
                     MainActivity.userIsHosting = true;

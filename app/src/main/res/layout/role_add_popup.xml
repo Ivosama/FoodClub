@@ -92,7 +92,8 @@
         android:layout_alignEnd="@+id/amountRole1_input"
         android:layout_alignTop="@+id/role5_input"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="number"
+        android:text="0" />
 
     <EditText
         android:id="@+id/amountRole4_input"
@@ -101,7 +102,8 @@
         android:layout_above="@+id/role5_input"
         android:layout_alignEnd="@+id/amountRole1_input"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="number"
+        android:text="0" />
 
     <EditText
         android:id="@+id/amountRole3_input"
@@ -110,7 +112,8 @@
         android:layout_alignEnd="@+id/amountRole1_input"
         android:layout_below="@+id/role2_input"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="number"
+        android:text="0" />
 
     <EditText
         android:id="@+id/amountRole2_input"
@@ -119,7 +122,8 @@
         android:layout_alignEnd="@+id/amountRole1_input"
         android:layout_below="@+id/role1_input"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="number"
+        android:text="0" />
 
     <EditText
         android:id="@+id/amountRole1_input"
@@ -128,6 +132,7 @@
         android:layout_alignTop="@+id/role1_input"
         android:layout_toEndOf="@+id/restraint"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="number"
+        android:text="0" />
 
 </RelativeLayout>

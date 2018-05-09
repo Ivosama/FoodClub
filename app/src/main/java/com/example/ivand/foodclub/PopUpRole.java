@@ -121,6 +121,7 @@ public class PopUpRole extends Activity{
                 for (int j = 0; j < totalAmountRoles; j++) {
                     Toast.makeText(getApplicationContext(), receivedEvent.roles.get(j).title, Toast.LENGTH_SHORT).show();
                 }*/
+
                 Intent intent = new Intent(PopUpRole.this, Host.class);
                 intent.putExtra("com.package.eventObject", receivedEvent);
                 startActivity(intent);
