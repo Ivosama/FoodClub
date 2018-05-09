@@ -63,7 +63,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         try {
             receivedEvent = bundle.getParcelable("com.package.eventObject");
             //eventArrayListMain.add(receivedEvent);
-            saveEvent(receivedEvent);
+            if (receivedEvent.ownerID != 0) {
+                saveEvent(receivedEvent);
+            }
+
         } catch (Exception e) {
 
         }
@@ -96,6 +99,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Event fakeEvent1 = new Event(1, 1,5,  "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!","12:30", 5);
         //fakeEvent1.ownerID = 1;
+        /*if (receivedEvent.getOwnerID() == 0 && receivedEvent.ID == fakeEvent1.ID) {
+            fakeEvent1.ownerID = 0;
+        }*/
         Event fakeEvent2 = new Event(1, 2, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00",  10);
         //fakeEvent2.ownerID = 2;
 
@@ -109,6 +115,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         eventArrayListMain.add(fakeEvent1);
         eventArrayListMain.add(fakeEvent2);
+        if (receivedEvent.getOwnerID() == 0) {
+            for (int i = 0; i < eventArrayListMain.size(); i++) {
+                if (receivedEvent.ID == eventArrayListMain.get(i).ID) {
+                    eventArrayListMain.get(i).ownerID = 0;
+                }
+            }
+        }
+
 
         for (int i = 0; i < eventArrayListMain.size(); i++) {
             int removalID;
