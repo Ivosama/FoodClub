@@ -189,6 +189,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                 event.ownerID = user.getId();
                 Intent intent = new Intent(Host.this, MainActivity.class); // Create intent to send Parcel to Map and List
                 intent.putExtra("com.package.eventObject", event);
+                intent.putExtra("com.package.userObject", user);
                 String ownerID = Integer.toString(event.getOwnerID());
                 Toast.makeText(getApplicationContext(), ownerID, Toast.LENGTH_LONG).show();
                 startActivity(intent);
