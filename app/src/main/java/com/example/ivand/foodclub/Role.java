@@ -29,6 +29,13 @@ public class Role implements Parcelable {
         this.roleID = in.readInt();
         this.title = in.readString();
         this.holderID = in.readInt();
+        int isTaken = in.readByte();
+        if (isTaken > 0) {
+            this.isTaken = true;
+        } else {
+            this.isTaken = false;
+        }
+
     }
     @Override
     public int describeContents() {
@@ -40,6 +47,7 @@ public class Role implements Parcelable {
         dest.writeInt(this.roleID);
         dest.writeString(this.title);
         dest.writeInt(this.holderID);
+        dest.writeByte((byte) (this.isTaken ? 1 : 0));
     }
 
     Role(int roleID, String title, int holderId, boolean isTaken) {
