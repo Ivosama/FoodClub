@@ -152,15 +152,6 @@ public class viewEvent extends AppCompatActivity {
                 confirmDelete();
             }
         });
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Messages not yet implemented", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 }
 
 
