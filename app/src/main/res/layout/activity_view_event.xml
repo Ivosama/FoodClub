@@ -32,14 +32,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                        <Button
-                            android:id="@+id/deleteButt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignBottom="@+id/eventTitleText"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="23dp"
-                            android:text="Delete Event" />
+                    <Button
+                        android:id="@+id/deleteButt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/eventTitleText"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="23dp"
+                        android:text="Delete Event" />
 
                     <ListView
                         android:id="@+id/eventRolesList"
@@ -183,6 +183,15 @@
                             android:text="Time"
                             android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textSize="22sp" />
+
+                    <Button
+                        android:id="@+id/leaveButt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/eventTitleText"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="23dp"
+                        android:text="Leave Event" />
 
 
                 </RelativeLayout>
