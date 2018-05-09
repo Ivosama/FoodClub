@@ -6,195 +6,166 @@
     android:layout_height="match_parent"
     tools:context="com.example.ivand.foodclub.viewEvent" >
 
-        <android.support.design.widget.AppBarLayout
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="440dp">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            android:id="@+id/appBarLayout">
+            android:layout_height="wrap_content">
 
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fab"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/fab"
-                    android:layout_below="@+id/eventFoodText"
-                    android:layout_gravity="bottom|end"
-                    android:layout_weight="1"
-                    app:srcCompat="@android:drawable/ic_dialog_email" />
+            <Button
+                android:id="@+id/deleteButt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/eventTitleText"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="23dp"
+                android:text="Delete Event" />
 
-        </android.support.design.widget.AppBarLayout>
+            <TextView
+                android:id="@+id/eventTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/eventTitle"
+                android:layout_below="@+id/eventTitle"
+                android:text="TextView"
+                android:textSize="20sp" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/eventPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/eventFoodText"
+                android:layout_below="@+id/eventFoodText"
+                android:layout_marginTop="44dp"
+                android:text="Place"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="22sp" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/eventTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="72dp"
+                android:text="Title"
+                android:textSize="22sp" />
 
-                    <Button
-                        android:id="@+id/deleteButt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/eventTitleText"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="23dp"
-                        android:text="Delete Event" />
+            <TextView
+                android:id="@+id/eventPriceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/eventPrice"
+                android:layout_below="@+id/eventPrice"
+                android:text="TextView"
+                android:textSize="20sp" />
 
-                    <ListView
-                        android:id="@+id/eventRolesList"
-                        android:layout_width="match_parent"
-                        android:layout_height="342dp"
-                        android:layout_below="@id/eventRoles"
-                        android:scrollbars="none" />
+            <TextView
+                android:id="@+id/eventDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/eventTimeText"
+                android:layout_below="@+id/eventPriceText"
+                android:layout_marginTop="44dp"
+                android:text="Description"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="22sp" />
 
-                        <include
-                            layout="@layout/content_view_event"
-                            android:layout_width="387dp"
-                            android:layout_height="532dp" />
-
-                        <TextView
-                            android:id="@+id/eventTitleText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/eventTitle"
-                            android:layout_below="@+id/eventTitle"
-                            android:text="TextView"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:id="@+id/eventPlace"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/eventFoodText"
-                            android:layout_below="@+id/eventFoodText"
-                            android:layout_marginTop="44dp"
-                            android:text="Place"
-                            android:textAppearance="@style/TextAppearance.AppCompat"
-                            android:textSize="22sp" />
-
-                        <TextView
-                            android:id="@+id/eventTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginStart="26dp"
-                            android:layout_marginTop="72dp"
-                            android:text="Title"
-                            android:textSize="22sp" />
-
-                        <TextView
-                            android:id="@+id/eventPriceText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/eventPrice"
-                            android:layout_below="@+id/eventPrice"
-                            android:text="TextView"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:id="@+id/eventDescription"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/eventTimeText"
-                            android:layout_below="@+id/eventPriceText"
-                            android:layout_marginTop="44dp"
-                            android:text="Description"
-                            android:textAppearance="@style/TextAppearance.AppCompat"
-                            android:textSize="22sp" />
-
-                        <TextView
-                            android:id="@+id/eventDescriptionText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/eventDescription"
-                            android:layout_below="@+id/eventDescription"
-                            android:textSize="20sp"
-                            android:text="TextView" />
-
-                        <TextView
-                            android:id="@+id/eventRoles"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/eventTimeText"
-                            android:layout_below="@+id/eventDescriptionText"
-                            android:layout_marginTop="44dp"
-                            android:text="Roles"
-                            android:textSize="22sp" />
+            <TextView
+                android:id="@+id/eventDescriptionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/eventDescription"
+                android:layout_below="@+id/eventDescription"
+                android:text="TextView"
+                android:textSize="20sp" />
 
 
-                        <TextView
-                            android:id="@+id/eventTimeText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/eventTime"
-                            android:layout_below="@+id/eventTime"
-                            android:text="TextView"
-                            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/eventTimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/eventTime"
+                android:layout_below="@+id/eventTime"
+                android:text="TextView"
+                android:textSize="20sp" />
 
-                        <TextView
-                            android:id="@+id/eventPlaceText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/eventPlace"
-                            android:layout_below="@+id/eventPlace"
-                            android:text="TextView"
-                            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/eventPlaceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/eventPlace"
+                android:layout_below="@+id/eventPlace"
+                android:text="TextView"
+                android:textSize="20sp" />
 
-                        <TextView
-                            android:id="@+id/eventPrice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/eventDescription"
-                            android:layout_below="@+id/eventTimeText"
-                            android:layout_marginTop="44dp"
-                            android:text="Expected price"
-                            android:textAppearance="@style/TextAppearance.AppCompat"
-                            android:textSize="22sp" />
+            <TextView
+                android:id="@+id/eventPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/eventDescription"
+                android:layout_below="@+id/eventTimeText"
+                android:layout_marginTop="44dp"
+                android:text="Expected price"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="22sp" />
 
-                        <TextView
-                            android:id="@+id/eventFood"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/eventTitleText"
-                            android:layout_below="@+id/eventTitleText"
-                            android:layout_marginTop="44dp"
-                            android:text="Menu"
-                            android:textAppearance="@style/TextAppearance.AppCompat"
-                            android:textSize="22sp" />
+            <TextView
+                android:id="@+id/eventFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/eventTitleText"
+                android:layout_below="@+id/eventTitleText"
+                android:layout_marginTop="44dp"
+                android:text="Menu"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="22sp" />
 
-                        <TextView
-                            android:id="@+id/eventFoodText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/eventFood"
-                            android:layout_below="@+id/eventFood"
-                            android:text="TextView"
-                            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/eventFoodText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/eventFood"
+                android:layout_below="@+id/eventFood"
+                android:text="TextView"
+                android:textSize="20sp" />
 
-                        <TextView
-                            android:id="@+id/eventTime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/eventPlaceText"
-                            android:layout_below="@+id/eventPlaceText"
-                            android:layout_marginTop="44dp"
-                            android:text="Time"
-                            android:textAppearance="@style/TextAppearance.AppCompat"
-                            android:textSize="22sp" />
+            <TextView
+                android:id="@+id/eventTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/eventPlaceText"
+                android:layout_below="@+id/eventPlaceText"
+                android:layout_marginTop="44dp"
+                android:text="Time"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="22sp" />
 
-                    <Button
-                        android:id="@+id/leaveButt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/eventTitleText"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="23dp"
-                        android:text="Leave Event" />
+        </RelativeLayout>
+    </ScrollView>
 
+    <TextView
+        android:id="@+id/roles_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/scroll_view"
+        android:layout_above="@id/eventRolesList"
+        android:layout_marginLeft="15dp"
+        android:text="Roles"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
-                </RelativeLayout>
-        </ScrollView>
+    <ListView
+        android:id="@+id/eventRolesList"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-127dp" />
 
 </RelativeLayout>
