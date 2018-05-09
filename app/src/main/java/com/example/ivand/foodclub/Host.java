@@ -35,6 +35,8 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
     Toolbar toolbar;
     NavigationView navigationView;
 
+    public boolean userApplied, userInEvent, userIsHosting, userExist;
+
     // Initial variables
     String eventName, whatCooking, place, description, time;
     int price = 0;
@@ -143,6 +145,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                 Toast.makeText(this, "About us clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.chat_id:
+                openChat();
                 Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.addRole_id:
@@ -167,7 +170,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                     price = 0;
                 }
                 // Pop-up functionality (eg. opening the pop-up and sending the event to it).
-                currentEvent = new Event(ID, dist, eventName, whatCooking, place, description, time, price);
+                currentEvent = new Event(ID, 1, dist, eventName, whatCooking, place, description, time, price);
                 Intent intent = new Intent(Host.this, PopUpRole.class);
                 intent.putExtra("com.package.eventRoles", currentEvent);
                 Toast.makeText(this,"Open AddRole PopUp", Toast.LENGTH_SHORT).show();
@@ -175,6 +178,11 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
         }
         return super.onOptionsItemSelected(item);
 
+    }
+
+    public void openChat(){
+        Intent intent = new Intent(this, Chat.class);
+        startActivity(intent);
     }
 
     //Code for listening to buttons in the drawer menu

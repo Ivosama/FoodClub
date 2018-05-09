@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private User user;
     private boolean isLoggedIn;
 
-    public boolean userApplied, userIsHosting, userExist;
+    public boolean userApplied, userInEvent, userIsHosting, userExist;
 
     ImageButton imgBtnEat;
     ImageButton imgBtnHost;
@@ -132,9 +132,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
         }
-
-
-
 
         // END OF ARRAY STUFF
 

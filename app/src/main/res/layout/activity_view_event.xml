@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.ivand.foodclub.viewEvent" >
 
-
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,9 +45,7 @@
                             android:id="@+id/eventRolesList"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_below="@+id/eventRoles"
+                            android:layout_below="@id/eventRoles"
                             android:scrollbars="none" />
 
                         <include
