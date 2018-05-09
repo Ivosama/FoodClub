@@ -86,9 +86,8 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
 
         }
 
-        Bundle bundle2 = getIntent().getExtras();
         try {
-            receivedEvent = bundle2.getParcelable("com.package.eventObject");
+            receivedEvent = bundle.getParcelable("com.package.eventObject");
 
         } catch (Exception e) {
 

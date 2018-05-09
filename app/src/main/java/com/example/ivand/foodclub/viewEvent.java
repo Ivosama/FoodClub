@@ -149,6 +149,7 @@ public class viewEvent extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Put the second popup
                 receivedEvent.ownerID = 0;
                 Intent intent = new Intent(viewEvent.this, MainActivity.class);
                 intent.putExtra("com.package.eventObject", receivedEvent);

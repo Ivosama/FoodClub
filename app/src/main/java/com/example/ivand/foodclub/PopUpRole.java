@@ -17,11 +17,13 @@ import android.widget.Toast;
 public class PopUpRole extends Activity{
 
     Event receivedEvent = new Event();
+    Role tempRole = new Role();
 
     Button finish_btn;
 
     String role1, role2, role3, role4, role5 = "";
     int amountRole1, amountRole2, amountRole3, amountRole4, amountRole5 = 0;
+    int totalAmountRoles = 0;
 
     EditText role1_input, role2_input, role3_input, role4_input, role5_input;
     EditText amountRole1_input, amountRole2_input, amountRole3_input, amountRole4_input, amountRole5_input;
@@ -52,39 +54,39 @@ public class PopUpRole extends Activity{
 
 
         role1_input= (EditText) findViewById(R.id.role1_input);
-        /*
+
         role2_input= (EditText) findViewById(R.id.role2_input);
         role3_input= (EditText) findViewById(R.id.role3_input);
         role4_input= (EditText) findViewById(R.id.role4_input);
         role5_input= (EditText) findViewById(R.id.role5_input);
-        */
+
 
         amountRole1_input= (EditText) findViewById(R.id.amountRole1_input);
-        /*
+
         amountRole2_input= (EditText) findViewById(R.id.amountRole2_input);
         amountRole3_input= (EditText) findViewById(R.id.amountRole3_input);
         amountRole4_input= (EditText) findViewById(R.id.amountRole4_input);
         amountRole5_input= (EditText) findViewById(R.id.amountRole5_input);
-        */
+
 
 
         finish_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 role1 = role1_input.getText().toString();
-                /*
+
                 role2 = role2_input.getText().toString();
                 role3 = role3_input.getText().toString();
                 role4 = role4_input.getText().toString();
                 role5 = role5_input.getText().toString();
-                */
+
 
                 if(amountRole1 != 0){
                     amountRole1 = Integer.valueOf(amountRole1_input.getText().toString());
                 } else{
                     amountRole1 = 0;
                 }
-                /*
+
                 if(amountRole2 != 0){
                     amountRole2 = Integer.valueOf(amountRole2_input.getText().toString());
                 } else{
@@ -105,7 +107,17 @@ public class PopUpRole extends Activity{
                 } else{
                     amountRole5 = 0;
                 }
-                */
+
+                totalAmountRoles = amountRole1 + amountRole2 + amountRole3 + amountRole4 + amountRole5;
+
+                for (int i = 0; i < totalAmountRoles; i++) {
+                    if (i < amountRole1) {
+                        tempRole = new Role(i, role1, 0, false);
+
+                        receivedEvent.roles.add(tempRole);
+                    }
+                }
+
 
                 int i;
                 for(i=0; i<amountRole1; i++){
@@ -113,7 +125,7 @@ public class PopUpRole extends Activity{
                 }
 
 
-                /*
+
                 for(i=0; i<amountRole2; i++){
                     receivedEvent.addRole(new Role(i,role2));
                 }
@@ -126,7 +138,7 @@ public class PopUpRole extends Activity{
                 for(i=0; i<amountRole5; i++){
                     receivedEvent.addRole(new Role(i,role5));
                 }
-                */
+
 
                 Intent intent = new Intent(PopUpRole.this, Host.class);
                 intent.putExtra("com.package.eventRoles", receivedEvent);

@@ -10,7 +10,7 @@ import android.os.Parcelable;
 public class Role implements Parcelable {
 
     public String title;
-    public String holderID = "";
+    public int holderID = 0;
     public int roleID;
     public boolean isTaken;
 
@@ -28,7 +28,7 @@ public class Role implements Parcelable {
     public Role(Parcel in){
         this.roleID = in.readInt();
         this.title = in.readString();
-        this.holderID = in.readString();
+        this.holderID = in.readInt();
     }
     @Override
     public int describeContents() {
@@ -39,10 +39,10 @@ public class Role implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.roleID);
         dest.writeString(this.title);
-        dest.writeString(this.holderID);
+        dest.writeInt(this.holderID);
     }
 
-    Role(int roleID, String title, String holderId, boolean isTaken) {
+    Role(int roleID, String title, int holderId, boolean isTaken) {
         this.roleID = roleID;
         this.title = title;
         this.holderID = holderId;
@@ -67,10 +67,10 @@ public class Role implements Parcelable {
         return (title);
     }
 
-    void setHolderID(String ID) {
+    void setHolderID(int ID) {
         this.holderID = ID;
     }
-    String getHolderID() {
+    int getHolderID() {
         return (holderID);
     }
 
