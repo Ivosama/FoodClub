@@ -39,7 +39,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
 
     // Initial variables
     String eventName, whatCooking, place, description, time;
-    int price = 0;
+    int price;
     int ID = 0;
     int dist = 5;
     User user = new User();
@@ -114,11 +114,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                     description = description_input.getText().toString();
                     time = time_input.getText().toString();
 
-                if (price != 0) {
                     price = Integer.valueOf(price_input.getText().toString());
-                } else {
-                    price = 0;
-                }
 
                     Event event = new Event(ID, 1, dist, eventName, whatCooking, place, description, time, price);
 
