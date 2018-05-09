@@ -170,12 +170,13 @@ public class viewEvent extends AppCompatActivity {
         leaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                confirmLeave();
             }
         });
 }
 
 
+    // Function used for confirming a user deleting an event
     private void confirmDelete() {
         final AlertDialog.Builder confirmDelete = new AlertDialog.Builder(this);
         confirmDelete.setMessage("Are you sure you want to create this event?");
@@ -204,6 +205,7 @@ public class viewEvent extends AppCompatActivity {
     }
 
 
+    // Function used for confirming a users wish to join an event as a role
     private void confirmJoin(final Role role){
         final AlertDialog.Builder confirmJ = new AlertDialog.Builder(this);
         confirmJ.setMessage("Do you want to join the event as a " + role.title + "?");
@@ -230,6 +232,30 @@ public class viewEvent extends AppCompatActivity {
             }
         });
         confirmJ.create().show();
+    }
+
+
+    // Function to be used for the user pressing the leave button on an event
+    private void confirmLeave() {
+        final AlertDialog.Builder confirmLeave = new AlertDialog.Builder(this);
+        confirmLeave.setMessage("Are you sure you want to leave this event?");
+        confirmLeave.setCancelable(false);
+
+        confirmLeave.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(viewEvent.this, MainActivity.class);
+                // Change holder id variable etc.
+                startActivity(intent);
+            }
+        });
+        confirmLeave.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                confirmLeave.setCancelable(true);
+            }
+        });
+        confirmLeave.create().show();
     }
 
 }
