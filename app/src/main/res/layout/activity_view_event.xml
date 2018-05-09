@@ -41,12 +41,12 @@
                             android:layout_marginEnd="23dp"
                             android:text="Delete Event" />
 
-                        <ListView
-                            android:id="@+id/eventRolesList"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/eventRoles"
-                            android:scrollbars="none" />
+                    <ListView
+                        android:id="@+id/eventRolesList"
+                        android:layout_width="match_parent"
+                        android:layout_height="342dp"
+                        android:layout_below="@id/eventRoles"
+                        android:scrollbars="none" />
 
                         <include
                             layout="@layout/content_view_event"

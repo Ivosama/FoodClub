@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private User user;
     private boolean isLoggedIn;
 
-    public boolean userApplied, userInEvent, userIsHosting, userExist;
+    public static boolean userApplied, userInEvent, userIsHosting, userExist;
 
     ImageButton imgBtnEat;
     ImageButton imgBtnHost;
@@ -134,8 +134,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (roleCount % 4 == 0) {//makes sure it's not fucked
                     roleCount = roleCount / 4;      //Divides itself by 4, because each role has 4 elements.
                     for (int i = 0; i < roleCount; i++) {
-                        Role tempRole = new Role(Integer.valueOf(separated[(10 + (i * 4))]), separated[(11 + (i * 4))], Integer.valueOf(separated[(12 + (i * 4))]), Boolean.parseBoolean(separated[(13 + (i * 4))]));     //ID, name, holderID, taken
-                        fakeEvent1.roles.add(tempRole);
+                        Role tempRole = new Role(Integer.valueOf(separated[(9 + (i * 4))]), separated[(10 + (i * 4))], Integer.valueOf(separated[(11 + (i * 4))]), Boolean.parseBoolean(separated[(12 + (i * 4))]));     //ID, name, holderID, taken
+                        userEvent.roles.add(tempRole);
                     }
                 }
             }
@@ -153,7 +153,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        getSupportActionBar().setTitle("Food Club");
+        if(MainActivity.userApplied || Host.userApplied || Map_and_List.userApplied){
+            getSupportActionBar().setTitle("Awaiting confirmation...");
+        }
+        else if(MainActivity.userIsHosting || Host.userIsHosting || Map_and_List.userIsHosting) {
+            getSupportActionBar().setTitle("Waiting for users...");
+        }
+        else{
+            getSupportActionBar().setTitle("Food Club");
+        }
+
+
 
         imageProfile = (ImageButton) findViewById(R.id.imageProfile);
         imgBtnEat = (ImageButton) findViewById(R.id.img_btn_eat);

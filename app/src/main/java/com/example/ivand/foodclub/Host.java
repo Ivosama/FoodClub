@@ -36,7 +36,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
     Toolbar toolbar;
     NavigationView navigationView;
 
-    public boolean userApplied, userInEvent, userIsHosting, userExist;
+    public static boolean userApplied, userInEvent, userIsHosting, userExist;
 
     // Initial variables
     String eventName, whatCooking, place, description, time;
@@ -82,6 +82,16 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
         drawerLayout.setDrawerListener(toggle);
 
         toggle.syncState();
+
+        if(MainActivity.userApplied || Host.userApplied || Map_and_List.userApplied){
+            getSupportActionBar().setTitle("Awaiting confirmation...");
+        }
+        else if(MainActivity.userIsHosting || Host.userIsHosting || Map_and_List.userIsHosting) {
+            getSupportActionBar().setTitle("Waiting for users...");
+        }
+        else{
+            getSupportActionBar().setTitle("Food Club");
+        }
 
         Bundle bundle = getIntent().getExtras();
         try {
@@ -134,6 +144,10 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
 
 
                     confirmPost(event);
+//framework to changing the layout of the toolbars
+                    MainActivity.userIsHosting = true;
+                    Map_and_List.userIsHosting = true;
+                    Host.userIsHosting = true;
             }
         });
 
