@@ -222,6 +222,8 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 event.ownerID = user.getId();
+                Role tempRole = new Role(5, "pooper", 1, false);
+                event.roles.add(tempRole);
                 Intent intent = new Intent(Host.this, MainActivity.class); // Create intent to send Parcel to Map and List
                 intent.putExtra("com.package.eventObject", event);
                 intent.putExtra("com.package.userObject", user);
