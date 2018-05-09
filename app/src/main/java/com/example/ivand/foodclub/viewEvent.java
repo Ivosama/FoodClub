@@ -132,7 +132,7 @@ public class viewEvent extends AppCompatActivity {
                 Role role = eventRoleList.get(position);
                 confirmJoin(role);
 
-                Toast.makeText(getApplicationContext(), "position = " + position + " name = " + eventRoleList.get(position).title, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "position = " + position + " name = " + eventRoleList.get(position).title, Toast.LENGTH_LONG).show();
                 //startActivity(intent);
                 //openViewEvent();
             }
@@ -149,7 +149,6 @@ public class viewEvent extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Put the second popup
                 confirmDelete();
             }
         });
@@ -190,7 +189,7 @@ public class viewEvent extends AppCompatActivity {
     }
 
 
-    private void confirmJoin(Role role){
+    private void confirmJoin(final Role role){
         final AlertDialog.Builder confirmJ = new AlertDialog.Builder(this);
         confirmJ.setMessage("Do you want to join the event as a " + role.title + "?");
                 confirmJ.setCancelable(false);
@@ -199,6 +198,11 @@ public class viewEvent extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(viewEvent.this , MainActivity.class);
+                role.holderID = user.getId();
+                role.isTaken = true;
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "you are now signed up as " + role.title, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "role.isTaken is now" + role.isTaken, Toast.LENGTH_SHORT).show();
             }
         });
         confirmJ.setNegativeButton("nah", new DialogInterface.OnClickListener() {
