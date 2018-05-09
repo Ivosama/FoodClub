@@ -28,6 +28,8 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
     ArrayAdapter adapter;
     User user = new User();
 
+    public boolean userApplied, userInEvent, userIsHosting, userExist;
+
     private DrawerLayout drawerLayout;
     Toolbar toolbar;
     NavigationView navigationView;
@@ -62,7 +64,6 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         Bundle bundle = getIntent().getExtras();
-
 
         try {
             eventArrayList = bundle.getParcelableArrayList("com.package.eventObjectList");
@@ -136,6 +137,8 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "About us clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.chat_id:
+                userInEvent=true;
+                openChat();
                 Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
                 break;
         }
@@ -164,6 +167,15 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
 
         }
         return false;
+    }
+
+    public void openChat() {
+        if (userInEvent) {
+            Intent intent = new Intent(this, Chat.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "You haven't join an event", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void openProfile() {

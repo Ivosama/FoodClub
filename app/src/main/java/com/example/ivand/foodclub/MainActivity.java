@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private User user;
     private boolean isLoggedIn;
 
-    public boolean userApplied, userIsHosting, userExist;
+    public boolean userApplied, userInEvent, userIsHosting, userExist;
 
     ImageButton imgBtnEat;
     ImageButton imgBtnHost;
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Bundle bundle = getIntent().getExtras();
         try {
             receivedEvent = bundle.getParcelable("com.package.eventObject");
-            eventArrayListMain.add(receivedEvent);
+            //eventArrayListMain.add(receivedEvent);
             saveEvent(receivedEvent);
         } catch (Exception e) {
 
@@ -129,12 +129,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //Event userEvent = new Event(Integer.valueOf(separated[0]), Integer.valueOf(separated[1]), Integer.valueOf(separated[2]), separated[3], separated[4], separated[5], separated[6], separated[7], Integer.valueOf(separated[8]));
             if(!eventArrayListMain.contains(userEvent)) {
                 eventArrayListMain.add(userEvent);
+                int roleCount = 0;  //new int for counting how many roles in this saved event
+                roleCount = separated.length - 9;   //roleCount becomes the remaining elements in the array after event-related elements are removed
+                if (roleCount % 4 == 0) {//makes sure it's not fucked
+                    roleCount = roleCount / 4;      //Divides itself by 4, because each role has 4 elements.
+                    for (int i = 0; i < roleCount; i++) {
+                        Role tempRole = new Role(Integer.valueOf(separated[(10 + (i * 4))]), separated[(11 + (i * 4))], Integer.valueOf(separated[(12 + (i * 4))]), Boolean.parseBoolean(separated[(13 + (i * 4))]));     //ID, name, holderID, taken
+                        fakeEvent1.roles.add(tempRole);
+                    }
+                }
             }
 
         }
-
-
-
 
         // END OF ARRAY STUFF
 
@@ -255,6 +261,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         frank += (event.description + "`");
         frank += (event.time + "`");
         frank += (event.price + "`");
+        for(int i = 0; i < event.roles.size(); i++){
+            frank += (Integer.toString(event.roles.get(i).getRoleID()) + "`");
+            frank += (event.roles.get(i).getTitle() + "`");
+            frank += (Integer.toString(event.roles.get(i).getHolderID()) + "`");    //converts IDs to strings and throws them at Frank
+            frank += (Boolean.toString(event.roles.get(i).isTaken) + "`");  //gets isTaken bool, converts to string, gives to Frank
+        }
         writeToFile(frank, getBaseContext());
     }
 

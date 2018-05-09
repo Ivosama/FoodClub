@@ -130,9 +130,9 @@ public class viewEvent extends AppCompatActivity {
 
                 //Intent intent = new Intent(viewEvent.this, viewEvent.class); // Create intent to send Parcel to Map and List
                 Role role = eventRoleList.get(position);
-                // Put the popup here Poul
+                confirmJoin(role);
 
-                Toast.makeText(getApplicationContext(), "position = " + position + " name = " + eventRoleList.get(position).title, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "position = " + position + " name = " + eventRoleList.get(position).title, Toast.LENGTH_LONG).show();
                 //startActivity(intent);
                 //openViewEvent();
             }
@@ -149,12 +149,7 @@ public class viewEvent extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Put the second popup
-                receivedEvent.ownerID = 0;
-                Intent intent = new Intent(viewEvent.this, MainActivity.class);
-                intent.putExtra("com.package.eventObject", receivedEvent);
-                intent.putExtra("com.package.userObject", user);
-                startActivity(intent);
+                confirmDelete();
             }
         });
 
@@ -166,27 +161,48 @@ public class viewEvent extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+}
 
-     /*                             ***WIP***
-            CODE FOR GETTING POP-UP CONFIRMATION OF JOINING EVENT AS A ROLE
 
-        join_event_button = (Button) findViewById(R.id.join_event_button);
-        join_event_button.setOnClickListener(new View.OnClickListener() {
+    private void confirmDelete() {
+        final AlertDialog.Builder confirmDelete = new AlertDialog.Builder(this);
+        confirmDelete.setMessage("Are you sure you want to create this event?");
+        confirmDelete.setCancelable(false);
+
+        confirmDelete.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                confirmJoin();
+            public void onClick(DialogInterface dialog, int which) {
+                receivedEvent.ownerID = 0;
+                Intent intent = new Intent(viewEvent.this, MainActivity.class);
+                intent.putExtra("com.package.eventObject", receivedEvent);
+                intent.putExtra("com.package.userObject", user);
+                startActivity(intent);
             }
         });
+        confirmDelete.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                confirmDelete.setCancelable(true);
+            }
+        });
+        confirmDelete.create().show();
+    }
 
-    } private void confirmJoin(){
+
+    private void confirmJoin(final Role role){
         final AlertDialog.Builder confirmJ = new AlertDialog.Builder(this);
-        confirmJ.setMessage("Do you want to join the event as a " + //event.role// + "?");
-        confirmJ.setCancelable(false);
+        confirmJ.setMessage("Do you want to join the event as a " + role.title + "?");
+                confirmJ.setCancelable(false);
 
         confirmJ.setPositiveButton("yeah", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //DO LATER - Functionality for accepting to join event as "role"
+                Intent intent = new Intent(viewEvent.this , MainActivity.class);
+                role.holderID = user.getId();
+                role.isTaken = true;
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "you are now signed up as " + role.title, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "role.isTaken is now" + role.isTaken, Toast.LENGTH_SHORT).show();
             }
         });
         confirmJ.setNegativeButton("nah", new DialogInterface.OnClickListener() {
@@ -197,8 +213,5 @@ public class viewEvent extends AppCompatActivity {
         });
         confirmJ.create().show();
     }
-            *** END OF POP-UP CODE ***
-    */
 
-}
 }

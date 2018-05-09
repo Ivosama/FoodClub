@@ -36,9 +36,11 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
     Toolbar toolbar;
     NavigationView navigationView;
 
+    public boolean userApplied, userInEvent, userIsHosting, userExist;
+
     // Initial variables
     String eventName, whatCooking, place, description, time;
-    int price = 0;
+    int price;
     int ID = 0;
     int dist = 5;
     User user = new User();
@@ -127,11 +129,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                     description = description_input.getText().toString();
                     time = time_input.getText().toString();
 
-                if (price != 0) {
                     price = Integer.valueOf(price_input.getText().toString());
-                } else {
-                    price = 0;
-                }
 
 
 
@@ -158,6 +156,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                 Toast.makeText(this, "About us clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.chat_id:
+                openChat();
                 Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.addRole_id:
@@ -190,6 +189,11 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
         }
         return super.onOptionsItemSelected(item);
 
+    }
+
+    public void openChat(){
+        Intent intent = new Intent(this, Chat.class);
+        startActivity(intent);
     }
 
     //Code for listening to buttons in the drawer menu
