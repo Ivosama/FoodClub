@@ -174,6 +174,9 @@ public class viewEvent extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 receivedEvent.ownerID = 0;
                 Intent intent = new Intent(viewEvent.this, MainActivity.class);
+                MainActivity.userIsHosting = false;
+                Map_and_List.userIsHosting = false;
+                Host.userIsHosting = false;
                 intent.putExtra("com.package.eventObject", receivedEvent);
                 intent.putExtra("com.package.userObject", user);
                 startActivity(intent);
@@ -200,6 +203,9 @@ public class viewEvent extends AppCompatActivity {
                 Intent intent = new Intent(viewEvent.this , MainActivity.class);
                 role.holderID = user.getId();
                 role.isTaken = true;
+                MainActivity.userApplied = true;
+                Map_and_List.userApplied = true;
+                Host.userApplied = true;
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(), "you are now signed up as " + role.title, Toast.LENGTH_SHORT).show();
                 Toast.makeText(getApplicationContext(), "role.isTaken is now" + role.isTaken, Toast.LENGTH_SHORT).show();

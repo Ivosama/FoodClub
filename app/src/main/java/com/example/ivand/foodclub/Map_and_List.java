@@ -28,7 +28,7 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
     ArrayAdapter adapter;
     User user = new User();
 
-    public boolean userApplied, userInEvent, userIsHosting, userExist;
+    public static boolean userApplied, userInEvent, userIsHosting, userExist;
 
     private DrawerLayout drawerLayout;
     Toolbar toolbar;
@@ -62,6 +62,16 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
         drawerLayout.setDrawerListener(toggle);
 
         toggle.syncState();
+
+        if(MainActivity.userApplied || Host.userApplied || Map_and_List.userApplied){
+            getSupportActionBar().setTitle("Awaiting confirmation...");
+        }
+        else if(MainActivity.userIsHosting || Host.userIsHosting || Map_and_List.userIsHosting) {
+            getSupportActionBar().setTitle("Waiting for users...");
+        }
+        else{
+            getSupportActionBar().setTitle("Food Club");
+        }
 
         Bundle bundle = getIntent().getExtras();
 

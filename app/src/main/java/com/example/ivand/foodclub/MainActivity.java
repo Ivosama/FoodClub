@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private User user;
     private boolean isLoggedIn;
 
-    public boolean userApplied, userInEvent, userIsHosting, userExist;
+    public static boolean userApplied, userInEvent, userIsHosting, userExist;
 
     ImageButton imgBtnEat;
     ImageButton imgBtnHost;
@@ -152,7 +152,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        getSupportActionBar().setTitle("Food Club");
+        if(MainActivity.userApplied || Host.userApplied || Map_and_List.userApplied){
+            getSupportActionBar().setTitle("Awaiting confirmation...");
+        }
+        else if(MainActivity.userIsHosting || Host.userIsHosting || Map_and_List.userIsHosting) {
+            getSupportActionBar().setTitle("Waiting for users...");
+        }
+        else{
+            getSupportActionBar().setTitle("Food Club");
+        }
+
+
 
         imageProfile = (ImageButton) findViewById(R.id.imageProfile);
         imgBtnEat = (ImageButton) findViewById(R.id.img_btn_eat);

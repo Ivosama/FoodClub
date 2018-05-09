@@ -10,6 +10,6 @@
         android:title=""
         android:id="@+id/chat_id"
         android:icon="@drawable/chat"
-        app:showAsAction="ifRoom"></item>
+        app:showAsAction="always"></item>
 
 </menu>
