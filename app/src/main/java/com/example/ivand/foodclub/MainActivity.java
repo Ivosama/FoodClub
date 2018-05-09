@@ -131,11 +131,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 eventArrayListMain.add(userEvent);
                 int roleCount = 0;  //new int for counting how many roles in this saved event
                 roleCount = separated.length - 9;   //roleCount becomes the remaining elements in the array after event-related elements are removed
-                if (roleCount % 4 == 0)     //makes sure it's not fucked
-                roleCount = roleCount / 4;      //Divides itself by 4, because each role has 4 elements.
-                for(int i = 0; i < roleCount; i++){
-                    Role tempRole = new Role(Integer.valueOf(separated[(10 + (i*4))]), separated[(11 + (i*4))], Integer.valueOf(separated[(12 + (i*4))]), Boolean.parseBoolean(separated[(13 + (i*4))]));     //ID, name, holderID, taken
-                    fakeEvent1.roles.add(tempRole);
+                if (roleCount % 4 == 0) {//makes sure it's not fucked
+                    roleCount = roleCount / 4;      //Divides itself by 4, because each role has 4 elements.
+                    for (int i = 0; i < roleCount; i++) {
+                        Role tempRole = new Role(Integer.valueOf(separated[(9 + (i * 4))]), separated[(10 + (i * 4))], Integer.valueOf(separated[(11 + (i * 4))]), Boolean.parseBoolean(separated[(12 + (i * 4))]));     //ID, name, holderID, taken
+                        userEvent.roles.add(tempRole);
+                    }
                 }
             }
 

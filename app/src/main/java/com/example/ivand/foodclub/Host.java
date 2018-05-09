@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import static java.lang.String.valueOf;
@@ -57,6 +58,8 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
     // Buttons
     Button post_event_button;
 
+    public ArrayList<Role> roles = new ArrayList<>();
+    Event event = new Event();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,9 +103,21 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
 
         try {
             receivedEvent = bundle.getParcelable("com.package.eventObject");
-
+            roles = receivedEvent.roles;
+            Toast.makeText(getApplicationContext(), "package received", Toast.LENGTH_SHORT).show();
+            for (int k = 0; k < receivedEvent.roles.size(); k++) {
+                Toast.makeText(getApplicationContext(), receivedEvent.roles.get(k).title, Toast.LENGTH_SHORT).show();
+            }
         } catch (Exception e) {
 
+        }
+
+        if (roles.size() < 1) {
+            event = new Event(ID, 1, dist, eventName, whatCooking, place, description, time, price);
+            //Toast.makeText(getApplicationContext(), "did not receive", Toast.LENGTH_LONG).show();
+        } else {
+            event = new Event(receivedEvent.ID, 1,receivedEvent.dist, receivedEvent.name, receivedEvent.menu, receivedEvent.place, receivedEvent.description, receivedEvent.time, receivedEvent.price);
+            //Toast.makeText(getApplicationContext(), "did receive", Toast.LENGTH_LONG).show();
         }
 
         time_input = (TextView)findViewById(R.id.time_input);
@@ -126,7 +141,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
 
                     price = Integer.valueOf(price_input.getText().toString());
 
-                    Event event = new Event(ID, 1, dist, eventName, whatCooking, place, description, time, price);
+
 
                     confirmPost(event);
 //framework to changing the layout of the toolbars
@@ -182,9 +197,9 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                 // Pop-up functionality (eg. opening the pop-up and sending the event to it).
                 currentEvent = new Event(ID, 1, dist, eventName, whatCooking, place, description, time, price);
                 Intent intent = new Intent(Host.this, PopUpRole.class);
-                intent.putExtra("com.package.eventRoles", currentEvent);
-                Toast.makeText(this,"Open AddRole PopUp", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Host.this, PopUpRole.class));
+                intent.putExtra("com.package.eventObject", currentEvent);
+                //Toast.makeText(this,"Open AddRole PopUp", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
 
@@ -235,12 +250,12 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
         confirm.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                event.ownerID = user.getId();
+                //event.ownerID = user.getId();
                 Intent intent = new Intent(Host.this, MainActivity.class); // Create intent to send Parcel to Map and List
                 intent.putExtra("com.package.eventObject", event);
                 intent.putExtra("com.package.userObject", user);
-                String ownerID = Integer.toString(event.getOwnerID());
-                Toast.makeText(getApplicationContext(), ownerID, Toast.LENGTH_LONG).show();
+                //String ownerID = Integer.toString(event.getOwnerID());
+                //Toast.makeText(getApplicationContext(), ownerID, Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });

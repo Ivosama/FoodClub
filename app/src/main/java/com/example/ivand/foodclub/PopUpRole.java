@@ -22,7 +22,7 @@ public class PopUpRole extends Activity{
     Button finish_btn;
 
     String role1, role2, role3, role4, role5 = "";
-    int amountRole1, amountRole2, amountRole3, amountRole4, amountRole5 = 0;
+    int amountRole1 = 0, amountRole2 = 0, amountRole3 = 0, amountRole4 = 0, amountRole5 = 0;
     int totalAmountRoles = 0;
 
     EditText role1_input, role2_input, role3_input, role4_input, role5_input;
@@ -35,6 +35,7 @@ public class PopUpRole extends Activity{
         Bundle bundle = getIntent().getExtras();
         try {
             receivedEvent = bundle.getParcelable("com.package.eventObject");
+            Toast.makeText(getApplicationContext(), receivedEvent.toString(), Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
 
@@ -108,40 +109,36 @@ public class PopUpRole extends Activity{
                     amountRole5 = 0;
                 }
 
-                totalAmountRoles = amountRole1 + amountRole2 + amountRole3 + amountRole4 + amountRole5;
-
-                for (int i = 0; i < totalAmountRoles; i++) {
-                    if (i < amountRole1) {
-                        tempRole = new Role(i, role1, 0, false);
-
-                        receivedEvent.roles.add(tempRole);
-                    }
-                }
 
 
                 int i;
                 for(i=0; i<amountRole1; i++){
-                    receivedEvent.addRole(new Role(i,role1));
+                    receivedEvent.addRole(new Role(i,role1, 0, false));
+                    totalAmountRoles ++;
                 }
-
-
 
                 for(i=0; i<amountRole2; i++){
-                    receivedEvent.addRole(new Role(i,role2));
+                    receivedEvent.addRole(new Role(i + totalAmountRoles,role2, 0, false));
+                    totalAmountRoles ++;
                 }
                 for(i=0; i<amountRole3; i++){
-                    receivedEvent.addRole(new Role(i,role3));
+                    receivedEvent.addRole(new Role(i + totalAmountRoles,role3, 0, false));
+                    totalAmountRoles ++;
                 }
                 for(i=0; i<amountRole4; i++){
-                    receivedEvent.addRole(new Role(i,role4));
+                    receivedEvent.addRole(new Role(i + totalAmountRoles,role4, 0, false));
+                    totalAmountRoles ++;
                 }
                 for(i=0; i<amountRole5; i++){
-                    receivedEvent.addRole(new Role(i,role5));
+                    receivedEvent.addRole(new Role(i + totalAmountRoles,role5, 0, false));
+                    totalAmountRoles ++;
                 }
 
-
+                for (int j = 0; j < totalAmountRoles; j++) {
+                    Toast.makeText(getApplicationContext(), receivedEvent.roles.get(j).title, Toast.LENGTH_SHORT).show();
+                }
                 Intent intent = new Intent(PopUpRole.this, Host.class);
-                intent.putExtra("com.package.eventRoles", receivedEvent);
+                intent.putExtra("com.package.eventObject", receivedEvent);
                 startActivity(intent);
 
             }
