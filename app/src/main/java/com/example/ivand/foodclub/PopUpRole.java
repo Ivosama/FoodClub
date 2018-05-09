@@ -80,40 +80,24 @@ public class PopUpRole extends Activity{
                 role3 = role3_input.getText().toString();
                 role4 = role4_input.getText().toString();
                 role5 = role5_input.getText().toString();
-
-
+                amountRole1 = Integer.valueOf(amountRole1_input.getText().toString());
+                amountRole2 = Integer.valueOf(amountRole2_input.getText().toString());
+                amountRole3 = Integer.valueOf(amountRole3_input.getText().toString());
+                amountRole4 = Integer.valueOf(amountRole4_input.getText().toString());
+                amountRole5 = Integer.valueOf(amountRole5_input.getText().toString());
+                /*
                 if(amountRole1 != 0){
+                    Toast.makeText(getApplicationContext(), "roles are more than 1", Toast.LENGTH_SHORT).show();
                     amountRole1 = Integer.valueOf(amountRole1_input.getText().toString());
                 } else{
                     amountRole1 = 0;
-                }
-
-                if(amountRole2 != 0){
-                    amountRole2 = Integer.valueOf(amountRole2_input.getText().toString());
-                } else{
-                    amountRole2 = 0;
-                }
-                if(amountRole3 != 0){
-                    amountRole3 = Integer.valueOf(amountRole3_input.getText().toString());
-                } else{
-                    amountRole3 = 0;
-                }
-                if(amountRole4 != 0){
-                    amountRole4 = Integer.valueOf(amountRole4_input.getText().toString());
-                } else{
-                    amountRole4 = 0;
-                }
-                if(amountRole5 != 0){
-                    amountRole5 = Integer.valueOf(amountRole5_input.getText().toString());
-                } else{
-                    amountRole5 = 0;
-                }
+                }*/
 
 
-
+                totalAmountRoles = 0;
                 int i;
                 for(i=0; i<amountRole1; i++){
-                    receivedEvent.addRole(new Role(i,role1, 0, false));
+                    receivedEvent.addRole(new Role(i, role1, 0, false));
                     totalAmountRoles ++;
                 }
 
@@ -133,10 +117,10 @@ public class PopUpRole extends Activity{
                     receivedEvent.addRole(new Role(i + totalAmountRoles,role5, 0, false));
                     totalAmountRoles ++;
                 }
-
+                /*
                 for (int j = 0; j < totalAmountRoles; j++) {
                     Toast.makeText(getApplicationContext(), receivedEvent.roles.get(j).title, Toast.LENGTH_SHORT).show();
-                }
+                }*/
                 Intent intent = new Intent(PopUpRole.this, Host.class);
                 intent.putExtra("com.package.eventObject", receivedEvent);
                 startActivity(intent);
