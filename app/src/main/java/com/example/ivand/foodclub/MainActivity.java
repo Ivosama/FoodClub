@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageButton imageProfile;
 
     public ArrayList<Event> eventArrayListMain = new ArrayList<Event>();
+    public ArrayList<User> userArrayListMain = new ArrayList<User>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         try {
             user = bundle.getParcelable("com.package.userObject");
-
+            Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             user = new User(1);
         }
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         try {
-            Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_LONG).show();
+
         } catch (Exception e) {
 
         }
@@ -102,7 +103,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Role fakeRole1 = new Role("DishWasher");
         Role fakeRole2 = new Role("Musician");
 
-        //fakeEvent1.roles.add(fakeRole1);
+        fakeEvent1.roles.add(fakeRole1);
+        fakeEvent1.roles.add(fakeRole2);
         fakeEvent2.roles.add(fakeRole1);
 
         eventArrayListMain.add(fakeEvent1);
@@ -187,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(MainActivity.this, Map_and_List.class); // Create intent to send Parcel to Map and List
         intent.putExtra("com.package.eventObjectList", eventArrayListMain);
         intent.putExtra("com.package.userObject", user);
+        intent.putExtra("com.package.userArray", userArrayListMain);
         startActivity(intent);
     }
 

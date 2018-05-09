@@ -33,6 +33,7 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
 
     public ArrayList<Event> eventArrayList = new ArrayList<Event>();
+    public ArrayList<User> userArrayList = new ArrayList<>();
 
     {
         list = new ArrayList();
@@ -73,6 +74,11 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
         } catch (Exception e) {
 
         }
+        try {
+            userArrayList = bundle.getParcelableArrayList("com.package.userArray");
+        } catch (Exception e) {
+
+        }
 
         listView = (ListView) findViewById(R.id.eventList);
         for (int i = 0; i < eventArrayList.size(); i++) {
@@ -101,9 +107,9 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("com.package.eventObject", event);
                 User tempUser = user;
                 intent.putExtra("com.package.userObject", tempUser);
+                intent.putExtra("com.package.userArray", userArrayList);
                 Toast.makeText(getApplicationContext(), "position = " + position + " name = " + event.name, Toast.LENGTH_LONG).show();
-                //startActivity(intent);
-                openViewEvent();
+                startActivity(intent);
             }
 
 
@@ -111,11 +117,6 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
 
     }
 
-
-    public void openViewEvent() {
-        Intent intent = new Intent(this, viewEvent.class);
-        startActivity(intent);
-    }
 
 
     @Override

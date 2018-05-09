@@ -40,6 +40,7 @@ public class viewEvent extends AppCompatActivity {
     ArrayAdapter adapter;
 
     public ArrayList<Role> eventRoleList = new ArrayList<Role>();
+    public ArrayList<User> userArrayList = new ArrayList<>();
     {
         list = new ArrayList();
     }
@@ -62,7 +63,16 @@ public class viewEvent extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
+
         try {
+            User tempUser = bundle.getParcelable("com.package.userObject");
+            user = tempUser;
+            Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+
+        }
+        try {
+
             receivedEvent = bundle.getParcelable("com.package.eventObject");
             title.setText(receivedEvent.name);
             food.setText(receivedEvent.menu);
@@ -74,10 +84,9 @@ public class viewEvent extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
         try {
-            User tempUser = bundle.getParcelable("com.package.userObject");
-            user = tempUser;
-            Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT).show();
+            userArrayList = bundle.getParcelableArrayList("com.package.userArray");
         } catch (Exception e) {
 
         }
@@ -118,11 +127,10 @@ public class viewEvent extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Toast.makeText(getApplicationContext(), "Clicked this " + position, Toast.LENGTH_LONG);
-                //Toast.makeText(Map_and_List.this, eventArrayList[6].name, Toast.LENGTH_SHORT).show();
-
 
                 //Intent intent = new Intent(viewEvent.this, viewEvent.class); // Create intent to send Parcel to Map and List
-                //Role role = eventRoleList.get(position);
+                Role role = eventRoleList.get(position);
+                // Put the popup here Poul
 
                 Toast.makeText(getApplicationContext(), "position = " + position + " name = " + eventRoleList.get(position).title, Toast.LENGTH_LONG).show();
                 //startActivity(intent);
@@ -144,6 +152,7 @@ public class viewEvent extends AppCompatActivity {
                 receivedEvent.ownerID = 0;
                 Intent intent = new Intent(viewEvent.this, MainActivity.class);
                 intent.putExtra("com.package.eventObject", receivedEvent);
+                intent.putExtra("com.package.userObject", user);
                 startActivity(intent);
             }
         });

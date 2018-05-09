@@ -64,7 +64,7 @@ public class SignUpActivity extends AppCompatActivity {
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
-        final int id = -0;
+        final int id = 1;
         final String firstName = editTextFirstName.getText().toString();
         final String lastName = editTextLastName.getText().toString();
         final String email = editTextEmail.getText().toString();
@@ -91,6 +91,7 @@ public class SignUpActivity extends AppCompatActivity {
         buttonSave.setEnabled(true);
         setResult(RESULT_OK, null);
         User user = new User(id,firstName,lastName,email, allergies, password,description);
+
         Bundle data = getIntent().getExtras();
         Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
         intent.putExtra("com.package.userObject", user);

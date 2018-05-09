@@ -16,13 +16,13 @@ public class User implements Parcelable {
     };
 
     
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String password;
-    private String allergies;
-    private String email;
-    private String description;
+    public int id;
+    public String firstName;
+    public String lastName;
+    public String password;
+    public String allergies;
+    public String email;
+    public String description;
 
 
     // Constructor

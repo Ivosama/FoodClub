@@ -41,6 +41,8 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
     int ID = 0;
     int dist = 5;
     User user = new User();
+    Event currentEvent;
+    Event receivedEvent;
 
     // Text fields
     EditText eventName_input;
@@ -79,6 +81,14 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
         Bundle bundle = getIntent().getExtras();
         try {
             user = bundle.getParcelable("com.package.userObject");
+
+        } catch (Exception e) {
+
+        }
+
+        Bundle bundle2 = getIntent().getExtras();
+        try {
+            receivedEvent = bundle2.getParcelable("com.package.eventObject");
 
         } catch (Exception e) {
 
@@ -137,10 +147,32 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                 Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.addRole_id:
-//Send this to poul and paste here the popUp code
-                //startActivity(new Intent(Map_and_List.this, PopUpRole.class));
-                Toast.makeText(this,"Open AddRole PopUp", Toast.LENGTH_SHORT).show();
+                // Code for setting event details and then sending to the pop-up for roles.
+                time_input = (TextView)findViewById(R.id.time_input);
 
+                eventName_input= (EditText) findViewById(R.id.eventName_input);
+                whatCooking_input= (EditText) findViewById(R.id.whatCooking_input);
+                place_input= (EditText) findViewById(R.id.place_input);
+                description_input= (EditText) findViewById(R.id.description_input);
+                price_input= (EditText) findViewById(R.id.price_input);
+
+                eventName = eventName_input.getText().toString();
+                whatCooking = whatCooking_input.getText().toString();
+                place = place_input.getText().toString();
+                description = description_input.getText().toString();
+                time = time_input.getText().toString();
+
+                if (price != 0) {
+                    price = Integer.valueOf(price_input.getText().toString());
+                } else {
+                    price = 0;
+                }
+                // Pop-up functionality (eg. opening the pop-up and sending the event to it).
+                currentEvent = new Event(ID, dist, eventName, whatCooking, place, description, time, price);
+                Intent intent = new Intent(Host.this, PopUpRole.class);
+                intent.putExtra("com.package.eventRoles", currentEvent);
+                Toast.makeText(this,"Open AddRole PopUp", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Host.this, PopUpRole.class));
         }
         return super.onOptionsItemSelected(item);
 
@@ -189,6 +221,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                 event.ownerID = user.getId();
                 Intent intent = new Intent(Host.this, MainActivity.class); // Create intent to send Parcel to Map and List
                 intent.putExtra("com.package.eventObject", event);
+                intent.putExtra("com.package.userObject", user);
                 String ownerID = Integer.toString(event.getOwnerID());
                 Toast.makeText(getApplicationContext(), ownerID, Toast.LENGTH_LONG).show();
                 startActivity(intent);

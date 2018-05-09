@@ -4,7 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_light">
+    android:background="@color/colorPrimary">
+
+    <EditText
+        android:id="@+id/role2_input"
+        android:layout_width="169dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/role1_input"
+        android:layout_below="@+id/role1_input"
+        android:ems="10"
+        android:hint="Role Title"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/role5_input"
+        android:layout_width="169dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/role1_input"
+        android:layout_below="@+id/role4_input"
+        android:ems="10"
+        android:hint="Role Title"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/role4_input"
+        android:layout_width="169dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/role1_input"
+        android:layout_below="@+id/role3_input"
+        android:ems="10"
+        android:hint="Role Title"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/role3_input"
+        android:layout_width="169dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/role1_input"
+        android:layout_below="@+id/role2_input"
+        android:ems="10"
+        android:hint="Role Title"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/role1_input"
+        android:layout_width="169dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="70dp"
+        android:ems="10"
+        android:hint="Role Title"
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/title"
@@ -12,29 +64,70 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
         android:text="Add New Roles"
         android:textColor="@android:color/background_dark"
         android:textSize="30sp" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="120dp"
+        android:id="@+id/finish"
+        android:layout_width="213dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="50dp"
-        android:layout_marginStart="50dp"
-        android:text="New Role" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/button"
-        android:layout_marginEnd="50dp"
-        android:layout_marginTop="0dp"
+        android:layout_centerHorizontal="true"
         android:text="Finish" />
+
+    <TextView
+        android:id="@+id/restraint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:text="Up to five different roles"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/amountRole5_input"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/amountRole1_input"
+        android:layout_alignTop="@+id/role5_input"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/amountRole4_input"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/role5_input"
+        android:layout_alignEnd="@+id/amountRole1_input"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/amountRole3_input"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/amountRole1_input"
+        android:layout_below="@+id/role2_input"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/amountRole2_input"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/amountRole1_input"
+        android:layout_below="@+id/role1_input"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/amountRole1_input"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/role1_input"
+        android:layout_toEndOf="@+id/restraint"
+        android:ems="10"
+        android:inputType="number" />
 
 </RelativeLayout>
