@@ -48,6 +48,10 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
     Event currentEvent;
     Event receivedEvent;
 
+    boolean received = false;
+    int ownerID = 2; // This is the owner ID! Has to be set manually if changed elsewhere!!
+    //Like read the above comment, is very important!!!!!!
+
     // Text fields
     EditText eventName_input;
     EditText whatCooking_input;
@@ -101,10 +105,11 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
         } catch (Exception e) {
 
         }
-
+        received = false;
         try {
             receivedEvent = bundle.getParcelable("com.package.eventObject");
             roles = receivedEvent.roles;
+            received = true;
             Toast.makeText(getApplicationContext(), "package received", Toast.LENGTH_SHORT).show();
             for (int k = 0; k < receivedEvent.roles.size(); k++) {
                 Toast.makeText(getApplicationContext(), receivedEvent.roles.get(k).title, Toast.LENGTH_SHORT).show();
@@ -114,10 +119,10 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
         }
 
         if (roles.size() < 1) {
-            event = new Event(ID, 1, dist, eventName, whatCooking, place, description, time, price);
+            event = new Event(ID, ownerID, dist, eventName, whatCooking, place, description, time, price);
             //Toast.makeText(getApplicationContext(), "did not receive", Toast.LENGTH_LONG).show();
         } else {
-            event = new Event(receivedEvent.ID, 1,receivedEvent.dist, receivedEvent.name, receivedEvent.menu, receivedEvent.place, receivedEvent.description, receivedEvent.time, receivedEvent.price);
+            event = new Event(receivedEvent.ID, ownerID,receivedEvent.dist, receivedEvent.name, receivedEvent.menu, receivedEvent.place, receivedEvent.description, receivedEvent.time, receivedEvent.price);
             //Toast.makeText(getApplicationContext(), "did receive", Toast.LENGTH_LONG).show();
         }
 
@@ -129,6 +134,36 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
         description_input= (EditText) findViewById(R.id.description_input);
         price_input= (EditText) findViewById(R.id.price_input);
 
+        if (received) {
+            try {
+                eventName_input.setText(receivedEvent.name);
+            } catch (Exception e) {
+
+            }
+            try {
+                whatCooking_input.setText(receivedEvent.menu);
+            } catch (Exception e) {
+
+            }
+            try {
+                place_input.setText(receivedEvent.place);
+            } catch (Exception e) {
+
+            }
+            try {
+                description_input.setText(receivedEvent.description);
+            } catch (Exception e) {
+
+            }
+            try {
+                price_input.setText(receivedEvent.price);
+            } catch (Exception e) {
+
+            }
+
+        }
+
+
         post_event_button = (Button) findViewById(R.id.post_event_button);
         post_event_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,12 +174,16 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                     place = place_input.getText().toString();
                     description = description_input.getText().toString();
                     time = time_input.getText().toString();
+                    try {
+                        price = Integer.valueOf(price_input.getText().toString());
+                    } catch (Exception e) {
+                        price = 0;
+                    }
 
-                    price = Integer.valueOf(price_input.getText().toString());
 
 
                     event.setID(1);
-                    event.ownerID = 1;
+                    event.ownerID = ownerID;
                     event.name = eventName;
                     event.menu = whatCooking;
                     event.place = place;
@@ -203,7 +242,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                     price = 0;
                 }
                 // Pop-up functionality (eg. opening the pop-up and sending the event to it).
-                currentEvent = new Event(ID, 1, dist, eventName, whatCooking, place, description, time, price);
+                currentEvent = new Event(ID, ownerID, dist, eventName, whatCooking, place, description, time, price);
                 Intent intent = new Intent(Host.this, PopUpRole.class);
                 intent.putExtra("com.package.eventObject", currentEvent);
                 //Toast.makeText(this,"Open AddRole PopUp", Toast.LENGTH_SHORT).show();
@@ -259,12 +298,18 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //event.ownerID = user.getId();
-                Intent intent = new Intent(Host.this, MainActivity.class); // Create intent to send Parcel to Map and List
-                intent.putExtra("com.package.eventObject", event);
-                intent.putExtra("com.package.userObject", user);
+
                 //String ownerID = Integer.toString(event.getOwnerID());
                 //Toast.makeText(getApplicationContext(), ownerID, Toast.LENGTH_LONG).show();
-                startActivity(intent);
+                try {
+                    Intent intent = new Intent(Host.this, MainActivity.class); // Create intent to send Parcel to Map and List
+                    intent.putExtra("com.package.eventObject", event);
+                    intent.putExtra("com.package.userObject", user);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         confirm.setNegativeButton("No", new DialogInterface.OnClickListener() {
