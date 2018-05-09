@@ -118,7 +118,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                     price = 0;
                 }
 
-                    Event event = new Event(ID, dist, eventName, whatCooking, place, description, time, price);
+                    Event event = new Event(ID, 1, dist, eventName, whatCooking, place, description, time, price);
 
                     confirmPost(event);
             }
