@@ -141,15 +141,46 @@ public class viewEvent extends AppCompatActivity {
         });
 
         Button deleteButton = (Button) findViewById(R.id.deleteButt);
+        Button leaveButton = (Button) findViewById(R.id.leaveButt);
+
+        // Visibility of delete button
         if (user.getId() == receivedEvent.ownerID) {
             deleteButton.setVisibility(View.VISIBLE);
+            leaveButton.setVisibility(View.GONE);
         } else {
             deleteButton.setVisibility(View.GONE);
+
+            // Visibility of leave button
+            for(int i = 0; i < receivedEvent.roles.size(); i++){
+                if(receivedEvent.roles.get(i).getHolderID() == user.getId() && receivedEvent.roles.get(i).isTaken == true){
+                    leaveButton.setVisibility(View.VISIBLE);
+                }
+            }
         }
+
+        // OnClickListener for deleting event
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 confirmDelete();
+            }
+        });
+
+        // OnClickListener for leaving event
+        leaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Messages not yet implemented", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
 }
@@ -199,7 +230,7 @@ public class viewEvent extends AppCompatActivity {
                 Host.userApplied = true;
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(), "you are now signed up as " + role.title, Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), "role.isTaken is now" + role.isTaken, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "role.isTaken is now " + role.isTaken, Toast.LENGTH_SHORT).show();
             }
         });
         confirmJ.setNegativeButton("nah", new DialogInterface.OnClickListener() {

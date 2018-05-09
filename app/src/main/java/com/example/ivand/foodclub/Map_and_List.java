@@ -9,16 +9,16 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Map_and_List extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,9 +33,11 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     Toolbar toolbar;
     NavigationView navigationView;
+    Button btnSort;
 
     public ArrayList<Event> eventArrayList = new ArrayList<Event>();
     public ArrayList<User> userArrayList = new ArrayList<>();
+    public ArrayList<Event> sortedEvents = new ArrayList<>();
 
     {
         list = new ArrayList();
@@ -105,6 +107,35 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
         Object[] eventList = new Object[list.size()];
         eventList = list.toArray(eventList);
 
+        Button btnSort = (Button) findViewById(R.id.btnSort);
+        btnSort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.clear();
+                for (int i = 0; i < eventArrayList.size(); i++) {
+                    Event tempEvent = eventArrayList.get(i);
+                    for(int j = 1; j < i; j++){
+                    Event tempEvent2 = eventArrayList.get(j);
+
+                    if(tempEvent.price > tempEvent2.price){
+                    String tempName = tempEvent.getName();
+                    list.add(tempName);}
+                    else {
+                        String tempName2 = tempEvent2.getName();
+                        list.add(tempName2);
+                    }
+                }
+//                Comparator<Event> compare = new Comparator<Event>() {
+//                    @Override
+//                    public int compare(Event o1, Event o2) {
+//                        if (o1.price < o2.price)
+//                            list.add(o2);
+//                        return o1.price;
+//
+//                    }
+//                };
+            }}
+        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -122,34 +153,34 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(getApplicationContext(), "position = " + position + " name = " + event.name, Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
-
-
         });
 
     }
 
 
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main_menu_map, menu);
+//
+//        return true;
+//    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu_map, menu);
 
-        return true;
-    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
             case R.id.aboutUs_id:
                 Toast.makeText(this, "About us clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.chat_id:
-                userInEvent=true;
+                userInEvent = true;
                 openChat();
-                Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "go to chat", Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -189,12 +220,16 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
     }
 
     public void openProfile() {
-        Intent intent = new Intent(this,ProfileActivity.class);
+        Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
+
     public void openTehSignup() {
-        Intent intent = new Intent(this,LoginActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+
+
+
 
 }
