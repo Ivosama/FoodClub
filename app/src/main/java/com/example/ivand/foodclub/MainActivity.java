@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Bundle bundle = getIntent().getExtras();
         try {
             receivedEvent = bundle.getParcelable("com.package.eventObject");
-            eventArrayListMain.add(receivedEvent);
+            //eventArrayListMain.add(receivedEvent);
             saveEvent(receivedEvent);
         } catch (Exception e) {
 
