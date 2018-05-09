@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         try {
             receivedEvent = bundle.getParcelable("com.package.eventObject");
             eventArrayListMain.add(receivedEvent);
+            saveEvent(receivedEvent);
         } catch (Exception e) {
 
         }
@@ -92,10 +93,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // ARRAY STUFF
 
-        Event fakeEvent1 = new Event(1, 1, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!","12:30", 5);
-        fakeEvent1.ownerID = 1;
-        Event fakeEvent2 = new Event(1, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00",  10);
-        fakeEvent2.ownerID = 2;
+        Event fakeEvent1 = new Event(1, 1,5,  "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!","12:30", 5);
+        //fakeEvent1.ownerID = 1;
+        Event fakeEvent2 = new Event(1, 2, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00",  10);
+        //fakeEvent2.ownerID = 2;
 
         User fakeUser = new User(1,"abc","abc","1234","no","2@2.com","caca");
         Role fakeRole1 = new Role("DishWasher");
@@ -122,7 +123,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         File file = new File(getApplicationContext().getFilesDir(),"userEvent");
         if(file.exists()) {
             String[] separated = loadSave().split("`");
-            Event userEvent = new Event(Integer.valueOf(separated[0]), Integer.valueOf(separated[1]), separated[2], separated[3], separated[4], separated[5], separated[6], Integer.valueOf(separated[7]));
+            Event userEvent = new Event(Integer.valueOf(separated[0]), Integer.valueOf(separated[1]), Integer.valueOf(separated[2]), separated[3], separated[4], separated[5], separated[6], separated[7], Integer.valueOf(separated[8]));
+            //Event userEvent = new Event(Integer.valueOf(separated[0]), Integer.valueOf(separated[1]), Integer.valueOf(separated[2]), separated[3], separated[4], separated[5], separated[6], separated[7], Integer.valueOf(separated[8]));
             if(!eventArrayListMain.contains(userEvent)) {
                 eventArrayListMain.add(userEvent);
             }
@@ -174,12 +176,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu_main, menu);
 
         return true;
-    }
+    }*/
 
     public void openMapAndList(){
         Intent intent = new Intent(MainActivity.this, Map_and_List.class); // Create intent to send Parcel to Map and List
@@ -238,16 +240,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return ret;
     }
 
-    public void saveEvent(String ID, String dist, String eventName, String whatCooking, String place, String description, String price){
+    public void saveEvent(Event event){
         File file = new File(getFilesDir(), "userEvent");
         String frank = "";
-        frank += (ID + "`");
-        frank += (dist + "`");
-        frank += (eventName + "`");
-        frank += (whatCooking + "`");
-        frank += (place + "`");
-        frank += (description + "`");
-        frank += (price + "`");
+        frank += (event.ID + "`");
+        frank += ("1`");
+        frank += (event.dist + "`");
+        frank += (event.name + "`");
+        frank += (event.menu + "`");
+        frank += (event.place + "`");
+        frank += (event.description + "`");
+        frank += (event.time + "`");
+        frank += (event.price + "`");
         writeToFile(frank, getBaseContext());
     }
 

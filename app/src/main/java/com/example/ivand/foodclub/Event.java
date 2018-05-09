@@ -58,7 +58,7 @@ public class Event implements Parcelable {
     }
 
         //constructor
-        public Event(int ID, int dist, String name, String menu, String place, String description, String time, int price) {
+        /*public Event(int ID, int dist, String name, String menu, String place, String description, String time, int price) {
 
             this.ID = ID;
             this.dist = dist;
@@ -68,9 +68,7 @@ public class Event implements Parcelable {
             this.description = description;
             this.time = time;
             this.price = price;
-
-
-        }
+        }*/
     public Event(int ID, int ownerID, int dist, String name, String menu, String place, String description, String time, int price) {
 
         this.ID = ID;
