@@ -18,7 +18,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Map_and_List extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -65,13 +64,11 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
 
         toggle.syncState();
 
-        if(MainActivity.userApplied || Host.userApplied || Map_and_List.userApplied){
+        if (MainActivity.userApplied || Host.userApplied || Map_and_List.userApplied) {
             getSupportActionBar().setTitle("Awaiting confirmation...");
-        }
-        else if(MainActivity.userIsHosting || Host.userIsHosting || Map_and_List.userIsHosting) {
+        } else if (MainActivity.userIsHosting || Host.userIsHosting || Map_and_List.userIsHosting) {
             getSupportActionBar().setTitle("Waiting for users...");
-        }
-        else{
+        } else {
             getSupportActionBar().setTitle("Food Club");
         }
 
@@ -114,17 +111,17 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
                 list.clear();
                 for (int i = 0; i < eventArrayList.size(); i++) {
                     Event tempEvent = eventArrayList.get(i);
-                    for(int j = 1; j < i; j++){
-                    Event tempEvent2 = eventArrayList.get(j);
+                    for (int j = 1; j < i; j++) {
+                        Event tempEvent2 = eventArrayList.get(j);
 
-                    if(tempEvent.price > tempEvent2.price){
-                    String tempName = tempEvent.getName();
-                    list.add(tempName);}
-                    else {
-                        String tempName2 = tempEvent2.getName();
-                        list.add(tempName2);
+                        if (tempEvent.price > tempEvent2.price) {
+                            String tempName = tempEvent.getName();
+                            list.add(tempName);
+                        } else {
+                            String tempName2 = tempEvent2.getName();
+                            list.add(tempName2);
+                        }
                     }
-                }
 //                Comparator<Event> compare = new Comparator<Event>() {
 //                    @Override
 //                    public int compare(Event o1, Event o2) {
@@ -134,7 +131,8 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
 //
 //                    }
 //                };
-            }}
+                }
+            }
         });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -164,8 +162,6 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
 //
 //        return true;
 //    }
-
-
 
 
     @Override
@@ -228,8 +224,6 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
-
-
 
 
 }
