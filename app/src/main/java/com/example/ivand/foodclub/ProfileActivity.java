@@ -19,10 +19,10 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        profileName = (TextView)findViewById(R.id.profileName);
-        textUsername = (TextView)findViewById(R.id.textUserName);
-        textAllergies = (TextView)findViewById(R.id.textAllergies);
-        textDescription = (TextView)findViewById(R.id.textDescription);
+        profileName = (TextView) findViewById(R.id.profileName);
+        textUsername = (TextView) findViewById(R.id.textUserName);
+        textAllergies = (TextView) findViewById(R.id.textAllergies);
+        textDescription = (TextView) findViewById(R.id.textDescription);
 
         User receivedUser = new User();
         Bundle bundle = getIntent().getExtras();
@@ -33,9 +33,9 @@ public class ProfileActivity extends AppCompatActivity {
             textUsername.setText(receivedUser.getfirstName());
             textAllergies.setText(receivedUser.getAllergies());
             textDescription.setText(receivedUser.getDescription());
-        }catch (Exception e){
+        } catch (Exception e) {
 
-            }
         }
     }
+}
 

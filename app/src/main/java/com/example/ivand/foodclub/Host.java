@@ -88,13 +88,11 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
 
         toggle.syncState();
 
-        if(MainActivity.userApplied || Host.userApplied || Map_and_List.userApplied){
+        if (MainActivity.userApplied || Host.userApplied || Map_and_List.userApplied) {
             getSupportActionBar().setTitle("Awaiting confirmation...");
-        }
-        else if(MainActivity.userIsHosting || Host.userIsHosting || Map_and_List.userIsHosting) {
+        } else if (MainActivity.userIsHosting || Host.userIsHosting || Map_and_List.userIsHosting) {
             getSupportActionBar().setTitle("Waiting for users...");
-        }
-        else{
+        } else {
             getSupportActionBar().setTitle("Food Club");
         }
 
@@ -122,17 +120,17 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
             event = new Event(ID, ownerID, dist, eventName, whatCooking, place, description, time, price);
             //Toast.makeText(getApplicationContext(), "did not receive", Toast.LENGTH_LONG).show();
         } else {
-            event = new Event(receivedEvent.ID, ownerID,receivedEvent.dist, receivedEvent.name, receivedEvent.menu, receivedEvent.place, receivedEvent.description, receivedEvent.time, receivedEvent.price);
+            event = new Event(receivedEvent.ID, ownerID, receivedEvent.dist, receivedEvent.name, receivedEvent.menu, receivedEvent.place, receivedEvent.description, receivedEvent.time, receivedEvent.price);
             //Toast.makeText(getApplicationContext(), "did receive", Toast.LENGTH_LONG).show();
         }
 
-        time_input = (TextView)findViewById(R.id.time_input);
+        time_input = (TextView) findViewById(R.id.time_input);
 
-        eventName_input= (EditText) findViewById(R.id.eventName_input);
-        whatCooking_input= (EditText) findViewById(R.id.whatCooking_input);
-        place_input= (EditText) findViewById(R.id.place_input);
-        description_input= (EditText) findViewById(R.id.description_input);
-        price_input= (EditText) findViewById(R.id.price_input);
+        eventName_input = (EditText) findViewById(R.id.eventName_input);
+        whatCooking_input = (EditText) findViewById(R.id.whatCooking_input);
+        place_input = (EditText) findViewById(R.id.place_input);
+        description_input = (EditText) findViewById(R.id.description_input);
+        price_input = (EditText) findViewById(R.id.price_input);
 
         if (received) {
             try {
@@ -169,32 +167,33 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public void onClick(View v) {
 
-                    eventName = eventName_input.getText().toString();
-                    whatCooking = whatCooking_input.getText().toString();
-                    place = place_input.getText().toString();
-                    description = description_input.getText().toString();
-                    time = time_input.getText().toString();
-                    try {
-                        price = Integer.valueOf(price_input.getText().toString());
-                    } catch (Exception e) {
-                        price = 0;
-                    }
+                eventName = eventName_input.getText().toString();
+                whatCooking = whatCooking_input.getText().toString();
+                place = place_input.getText().toString();
+                description = description_input.getText().toString();
+                time = time_input.getText().toString();
+                try {
+                    price = Integer.valueOf(price_input.getText().toString());
+                } catch (Exception e) {
+                    price = 0;
+                }
 
 
+                event.setID(1);
+                event.ownerID = ownerID;
+                event.name = eventName;
+                event.menu = whatCooking;
+                event.place = place;
+                event.description = description;
+                event.price = price;
+                event.roles = roles;
+                confirmPost(event);
 
-                    event.setID(1);
-                    event.ownerID = ownerID;
-                    event.name = eventName;
-                    event.menu = whatCooking;
-                    event.place = place;
-                    event.description = description;
-                    event.price = price;
-                    event.roles = roles;
-                    confirmPost(event);
-//framework to changing the layout of the toolbars
-                    MainActivity.userIsHosting = true;
-                    Map_and_List.userIsHosting = true;
-                    Host.userIsHosting = true;
+
+                //framework to changing the layout of the toolbars
+                MainActivity.userIsHosting = true;
+                Map_and_List.userIsHosting = true;
+                Host.userIsHosting = true;
             }
         });
 
@@ -212,23 +211,23 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
 
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
             case R.id.aboutUs_id:
                 Toast.makeText(this, "About us clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.chat_id:
                 openChat();
-                Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "go to chat", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.addRole_id:
                 // Code for setting event details and then sending to the pop-up for roles.
-                time_input = (TextView)findViewById(R.id.time_input);
+                time_input = (TextView) findViewById(R.id.time_input);
 
-                eventName_input= (EditText) findViewById(R.id.eventName_input);
-                whatCooking_input= (EditText) findViewById(R.id.whatCooking_input);
-                place_input= (EditText) findViewById(R.id.place_input);
-                description_input= (EditText) findViewById(R.id.description_input);
-                price_input= (EditText) findViewById(R.id.price_input);
+                eventName_input = (EditText) findViewById(R.id.eventName_input);
+                whatCooking_input = (EditText) findViewById(R.id.whatCooking_input);
+                place_input = (EditText) findViewById(R.id.place_input);
+                description_input = (EditText) findViewById(R.id.description_input);
+                price_input = (EditText) findViewById(R.id.price_input);
 
                 eventName = eventName_input.getText().toString();
                 whatCooking = whatCooking_input.getText().toString();
@@ -252,7 +251,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
 
     }
 
-    public void openChat(){
+    public void openChat() {
         Intent intent = new Intent(this, Chat.class);
         startActivity(intent);
     }
@@ -281,11 +280,12 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     public void openProfile() {
-        Intent intent = new Intent(this,ProfileActivity.class);
+        Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
+
     public void openTehSignup() {
-        Intent intent = new Intent(this,LoginActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
@@ -353,19 +353,20 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
         then printing it in the textView
          */
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
             /* Turn the time integers into strings, and then split it up
             to add zeroes in front of 1 digit time (eg. 8:2 should be 08:02)
              */
             String timeTemp = valueOf(hourOfDay).toString() + ":" + valueOf(minute).toString();
             String[] tempTime = timeTemp.split(":");
 
-            if(tempTime[0].length() < 2){
-                tempTime[0] = "0"+tempTime[0];
+            if (tempTime[0].length() < 2) {
+                tempTime[0] = "0" + tempTime[0];
             } else {
                 tempTime[0] = tempTime[0];
             }
-            if (tempTime[1].length() < 2){
-                tempTime[1] = "0"+tempTime[1];
+            if (tempTime[1].length() < 2) {
+                tempTime[1] = "0" + tempTime[1];
             } else {
                 tempTime[1] = tempTime[1];
             }

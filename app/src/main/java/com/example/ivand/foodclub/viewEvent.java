@@ -3,12 +3,9 @@ package com.example.ivand.foodclub;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +39,7 @@ public class viewEvent extends AppCompatActivity {
 
     public ArrayList<Role> eventRoleList = new ArrayList<Role>();
     public ArrayList<User> userArrayList = new ArrayList<>();
+
     {
         list = new ArrayList();
     }
@@ -52,13 +51,12 @@ public class viewEvent extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        title = (TextView)findViewById(R.id.eventTitleText);
-        food = (TextView)findViewById(R.id.eventFoodText);
-        place = (TextView)findViewById(R.id.eventPlaceText);
-        time = (TextView)findViewById(R.id.eventTimeText);
-        price = (TextView)findViewById(R.id.eventPriceText);
-        description = (TextView)findViewById(R.id.eventDescriptionText);
-
+        title = (TextView) findViewById(R.id.eventTitleText);
+        food = (TextView) findViewById(R.id.eventFoodText);
+        place = (TextView) findViewById(R.id.eventPlaceText);
+        time = (TextView) findViewById(R.id.eventTimeText);
+        price = (TextView) findViewById(R.id.eventPriceText);
+        description = (TextView) findViewById(R.id.eventDescriptionText);
 
 
         Bundle bundle = getIntent().getExtras();
@@ -110,7 +108,7 @@ public class viewEvent extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.eventRolesList);
         for (int i = 0; i < eventRoleList.size(); i++) {
             int size = eventRoleList.size();
-            Toast.makeText(getApplicationContext(),"" + size, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "" + size, Toast.LENGTH_LONG).show();
             Role tempRole = (Role) eventRoleList.get(i);
             String tempName = tempRole.getTitle();
             list.add(tempName);
@@ -151,8 +149,8 @@ public class viewEvent extends AppCompatActivity {
             deleteButton.setVisibility(View.GONE);
 
             // Visibility of leave button
-            for(int i = 0; i < receivedEvent.roles.size(); i++){
-                if(receivedEvent.roles.get(i).getHolderID() == user.getId() && receivedEvent.roles.get(i).isTaken == true){
+            for (int i = 0; i < receivedEvent.roles.size(); i++) {
+                if (receivedEvent.roles.get(i).getHolderID() == user.getId() && receivedEvent.roles.get(i).isTaken == true) {
                     leaveButton.setVisibility(View.VISIBLE);
                 }
             }
@@ -170,12 +168,13 @@ public class viewEvent extends AppCompatActivity {
         leaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                confirmLeave();
             }
         });
-}
+    }
 
 
+    // Function used for confirming a user deleting an event
     private void confirmDelete() {
         final AlertDialog.Builder confirmDelete = new AlertDialog.Builder(this);
         confirmDelete.setMessage("Are you sure you want to create this event?");
@@ -185,6 +184,9 @@ public class viewEvent extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 receivedEvent.ownerID = 0;
+                File dir = getFilesDir();
+                File file = new File(dir, "userEvent");
+                boolean deleteCheck = file.delete();
                 Intent intent = new Intent(viewEvent.this, MainActivity.class);
                 MainActivity.userIsHosting = false;
                 Map_and_List.userIsHosting = false;
@@ -204,15 +206,16 @@ public class viewEvent extends AppCompatActivity {
     }
 
 
-    private void confirmJoin(final Role role){
+    // Function used for confirming a users wish to join an event as a role
+    private void confirmJoin(final Role role) {
         final AlertDialog.Builder confirmJ = new AlertDialog.Builder(this);
         confirmJ.setMessage("Do you want to join the event as a " + role.title + "?");
-                confirmJ.setCancelable(false);
+        confirmJ.setCancelable(false);
 
         confirmJ.setPositiveButton("yeah", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(viewEvent.this , MainActivity.class);
+                Intent intent = new Intent(viewEvent.this, MainActivity.class);
                 role.holderID = user.getId();
                 role.isTaken = true;
                 MainActivity.userApplied = true;
@@ -230,6 +233,36 @@ public class viewEvent extends AppCompatActivity {
             }
         });
         confirmJ.create().show();
+    }
+
+
+    // Function to be used for the user pressing the leave button on an event
+    private void confirmLeave() {
+        final AlertDialog.Builder confirmLeave = new AlertDialog.Builder(this);
+        confirmLeave.setMessage("Are you sure you want to leave this event?");
+        confirmLeave.setCancelable(false);
+
+        confirmLeave.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(viewEvent.this, MainActivity.class);
+                for(int i = 0; i < receivedEvent.roles.size(); i++){
+                    if(receivedEvent.roles.get(i).getHolderID() == user.getId() && receivedEvent.roles.get(i).isTaken == true){
+                        receivedEvent.roles.get(i).holderID = 0;
+                        receivedEvent.roles.get(i).isTaken = false;
+                    }
+                }
+                intent.putExtra("com.package.eventObject", receivedEvent);
+                startActivity(intent);
+            }
+        });
+        confirmLeave.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                confirmLeave.setCancelable(true);
+            }
+        });
+        confirmLeave.create().show();
     }
 
 }

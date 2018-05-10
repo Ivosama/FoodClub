@@ -25,7 +25,7 @@ public class Role implements Parcelable {
         }
     };
 
-    public Role(Parcel in){
+    public Role(Parcel in) {
         this.roleID = in.readInt();
         this.title = in.readString();
         this.holderID = in.readInt();
@@ -37,6 +37,7 @@ public class Role implements Parcelable {
         }
 
     }
+
     @Override
     public int describeContents() {
         return 0;
@@ -60,10 +61,12 @@ public class Role implements Parcelable {
     Role() {
 
     }
+
     Role(int roleID, String title) {
         this.roleID = roleID;
         this.title = title;
     }
+
     Role(String title) {
         this.title = title;
     }
@@ -71,6 +74,7 @@ public class Role implements Parcelable {
     void setTitle(String title) {
         this.title = title;
     }
+
     String getTitle() {
         return (title);
     }
@@ -78,6 +82,7 @@ public class Role implements Parcelable {
     void setHolderID(int ID) {
         this.holderID = ID;
     }
+
     int getHolderID() {
         return (holderID);
     }
@@ -85,8 +90,9 @@ public class Role implements Parcelable {
     void setRoleID(int ID) {
         this.roleID = ID;
     }
+
     int getRoleID() {
-        return(roleID);
+        return (roleID);
     }
 
 }

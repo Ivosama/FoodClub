@@ -12,9 +12,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ivand.foodclub.R;
-import com.example.ivand.foodclub.SignUpActivity;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -24,10 +21,14 @@ public class LoginActivity extends AppCompatActivity {
 
     public User user; // Global user object for password / email check
 
-    @InjectView(R.id.input_email) EditText _emailText;
-    @InjectView(R.id.input_password) EditText _passwordText;
-    @InjectView(R.id.btn_login) Button _loginButton;
-    @InjectView(R.id.link_signup) TextView _signupLink;
+    @InjectView(R.id.input_email)
+    EditText _emailText;
+    @InjectView(R.id.input_password)
+    EditText _passwordText;
+    @InjectView(R.id.btn_login)
+    Button _loginButton;
+    @InjectView(R.id.link_signup)
+    TextView _signupLink;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         if (!validate()) {
             onLoginFailed();
             return;
-        }else{
+        } else {
             onLoginSuccess();
         }
 
@@ -138,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
         Bundle data = getIntent().getExtras();
-        if (user!= null) {
+        if (user != null) {
 
             _emailText.setError(null);
             String upassword = user.getPassword();
@@ -148,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
                 valid = false;
             }
 
-        }else{
+        } else {
             valid = false;
         }
         return valid;

@@ -15,7 +15,7 @@ public class User implements Parcelable {
         }
     };
 
-    
+
     public int id;
     public String firstName;
     public String lastName;
@@ -26,7 +26,7 @@ public class User implements Parcelable {
 
 
     // Constructor
-    public User(int id, String firstName, String lastName, String password, String allergies, String email, String description){
+    public User(int id, String firstName, String lastName, String password, String allergies, String email, String description) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,11 +36,11 @@ public class User implements Parcelable {
         this.description = description;
     }
 
-    public User(){
+    public User() {
 
     }
 
-    public  User(int id) {
+    public User(int id) {
         this.id = id;
     }
 
@@ -99,16 +99,16 @@ public class User implements Parcelable {
     public void setAllergies(String allergies) {
         this.allergies = allergies;
     }
-    
+
     // Parcelling part
-    public User(Parcel in){
+    public User(Parcel in) {
         this.id = in.readInt();
         this.firstName = in.readString();
-        this.lastName =  in.readString();
-        this.email =  in.readString();
-        this.password =  in.readString();
+        this.lastName = in.readString();
+        this.email = in.readString();
+        this.password = in.readString();
         this.allergies = in.readString();
-        this.description =  in.readString();
+        this.description = in.readString();
     }
 
     @Override

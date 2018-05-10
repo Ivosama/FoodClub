@@ -14,7 +14,7 @@ import android.widget.Toast;
  * Created by PolleAnker
  */
 
-public class PopUpRole extends Activity{
+public class PopUpRole extends Activity {
 
     Event receivedEvent = new Event();
     Role tempRole = new Role();
@@ -51,24 +51,23 @@ public class PopUpRole extends Activity{
         int width = dm.widthPixels;
         int height = dm.widthPixels;
 
-        getWindow().setLayout((int)(width*.9), (int)(height*1.1));
+        getWindow().setLayout((int) (width * .9), (int) (height * 1.1));
 
 
-        role1_input= (EditText) findViewById(R.id.role1_input);
+        role1_input = (EditText) findViewById(R.id.role1_input);
 
-        role2_input= (EditText) findViewById(R.id.role2_input);
-        role3_input= (EditText) findViewById(R.id.role3_input);
-        role4_input= (EditText) findViewById(R.id.role4_input);
-        role5_input= (EditText) findViewById(R.id.role5_input);
+        role2_input = (EditText) findViewById(R.id.role2_input);
+        role3_input = (EditText) findViewById(R.id.role3_input);
+        role4_input = (EditText) findViewById(R.id.role4_input);
+        role5_input = (EditText) findViewById(R.id.role5_input);
 
 
-        amountRole1_input= (EditText) findViewById(R.id.amountRole1_input);
+        amountRole1_input = (EditText) findViewById(R.id.amountRole1_input);
 
-        amountRole2_input= (EditText) findViewById(R.id.amountRole2_input);
-        amountRole3_input= (EditText) findViewById(R.id.amountRole3_input);
-        amountRole4_input= (EditText) findViewById(R.id.amountRole4_input);
-        amountRole5_input= (EditText) findViewById(R.id.amountRole5_input);
-
+        amountRole2_input = (EditText) findViewById(R.id.amountRole2_input);
+        amountRole3_input = (EditText) findViewById(R.id.amountRole3_input);
+        amountRole4_input = (EditText) findViewById(R.id.amountRole4_input);
+        amountRole5_input = (EditText) findViewById(R.id.amountRole5_input);
 
 
         finish_btn.setOnClickListener(new View.OnClickListener() {
@@ -96,26 +95,26 @@ public class PopUpRole extends Activity{
 
                 totalAmountRoles = 0;
                 int i;
-                for(i=0; i<amountRole1; i++){
+                for (i = 0; i < amountRole1; i++) {
                     receivedEvent.addRole(new Role(i, role1, 0, false));
-                    totalAmountRoles ++;
+                    totalAmountRoles++;
                 }
 
-                for(i=0; i<amountRole2; i++){
-                    receivedEvent.addRole(new Role(i + totalAmountRoles,role2, 0, false));
-                    totalAmountRoles ++;
+                for (i = 0; i < amountRole2; i++) {
+                    receivedEvent.addRole(new Role(i + totalAmountRoles, role2, 0, false));
+                    totalAmountRoles++;
                 }
-                for(i=0; i<amountRole3; i++){
-                    receivedEvent.addRole(new Role(i + totalAmountRoles,role3, 0, false));
-                    totalAmountRoles ++;
+                for (i = 0; i < amountRole3; i++) {
+                    receivedEvent.addRole(new Role(i + totalAmountRoles, role3, 0, false));
+                    totalAmountRoles++;
                 }
-                for(i=0; i<amountRole4; i++){
-                    receivedEvent.addRole(new Role(i + totalAmountRoles,role4, 0, false));
-                    totalAmountRoles ++;
+                for (i = 0; i < amountRole4; i++) {
+                    receivedEvent.addRole(new Role(i + totalAmountRoles, role4, 0, false));
+                    totalAmountRoles++;
                 }
-                for(i=0; i<amountRole5; i++){
-                    receivedEvent.addRole(new Role(i + totalAmountRoles,role5, 0, false));
-                    totalAmountRoles ++;
+                for (i = 0; i < amountRole5; i++) {
+                    receivedEvent.addRole(new Role(i + totalAmountRoles, role5, 0, false));
+                    totalAmountRoles++;
                 }
                 /*
                 for (int j = 0; j < totalAmountRoles; j++) {
@@ -128,5 +127,5 @@ public class PopUpRole extends Activity{
 
             }
         });
-        }
     }
+}

@@ -1,10 +1,8 @@
 package com.example.ivand.foodclub;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -18,14 +16,22 @@ import butterknife.InjectView;
 public class SignUpActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
 
-    @InjectView(R.id.editTextFirstName) EditText editTextFirstName;
-    @InjectView(R.id.editTextLastName) EditText editTextLastName;
-    @InjectView(R.id.editTextEmail) EditText editTextEmail;
-    @InjectView(R.id.editTextPassword) EditText editTextPassword;
-    @InjectView(R.id.editTextAllergies) EditText editTextAllergies;
-    @InjectView(R.id.editProfileDescription) EditText editProfileDescritpion;
-    @InjectView(R.id.buttonSave) Button buttonSave;
-   // @InjectView(R.id.link_login) TextView _loginLink;
+    @InjectView(R.id.editTextFirstName)
+    EditText editTextFirstName;
+    @InjectView(R.id.editTextLastName)
+    EditText editTextLastName;
+    @InjectView(R.id.editTextEmail)
+    EditText editTextEmail;
+    @InjectView(R.id.editTextPassword)
+    EditText editTextPassword;
+    @InjectView(R.id.editTextAllergies)
+    EditText editTextAllergies;
+    @InjectView(R.id.editProfileDescription)
+    EditText editProfileDescritpion;
+    @InjectView(R.id.buttonSave)
+    Button buttonSave;
+
+    // @InjectView(R.id.link_login) TextView _loginLink;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,14 +78,13 @@ public class SignUpActivity extends AppCompatActivity {
         final String allergies = editTextAllergies.getText().toString();
         final String description = editProfileDescritpion.getText().toString();
 
-        // TODO: Implement your own signup logic here.
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onSignupSuccess or onSignupFailed
                         // depending on success
-                        onSignupSuccess(id,firstName,lastName,email,allergies,password,description);
+                        onSignupSuccess(id, firstName, lastName, email, allergies, password, description);
                         // onSignupFailed();
                         progressDialog.dismiss();
                     }
@@ -90,10 +95,10 @@ public class SignUpActivity extends AppCompatActivity {
     public void onSignupSuccess(int id, String firstName, String lastName, String email, String allergies, String password, String description) {
         buttonSave.setEnabled(true);
         setResult(RESULT_OK, null);
-        User user = new User(id,firstName,lastName,email, allergies, password,description);
+        User user = new User(id, firstName, lastName, email, allergies, password, description);
 
         Bundle data = getIntent().getExtras();
-        Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
+        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
         intent.putExtra("com.package.userObject", user);
         startActivity(intent);
         finish();
@@ -157,4 +162,4 @@ public class SignUpActivity extends AppCompatActivity {
 //        });
 //        confirm.create().show();
 
-    }
+}
