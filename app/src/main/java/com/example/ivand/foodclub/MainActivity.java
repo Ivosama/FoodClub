@@ -60,23 +60,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Event receivedEvent = new Event();
 
         Bundle bundle = getIntent().getExtras();
-        try {
-            receivedEvent = bundle.getParcelable("com.package.eventObject");
-            //eventArrayListMain.add(receivedEvent);
-            if (receivedEvent.ownerID != 0) {
-                saveEvent(receivedEvent);
-            }
 
-        } catch (Exception e) {
-
-        }
         try {
             user = bundle.getParcelable("com.package.userObject");
             Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             user = new User(1);
         }
+        try {
+            receivedEvent = bundle.getParcelable("com.package.eventObject");
+            //eventArrayListMain.add(receivedEvent);
+            if (receivedEvent.ownerID != 0) {
+                if (receivedEvent.ownerID == user.id) {
+                    saveEvent(receivedEvent);
+                }
 
+            }
+
+        } catch (Exception e) {
+
+        }
 
         //PROFILE STUFF
 
@@ -89,12 +92,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // ARRAY STUFF
 
-        Event fakeEvent1 = new Event(1, 1, 5, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!", "12:30", 5);
+        Event fakeEvent1 = new Event(2, 3, 5, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!", "12:30", 5);
         //fakeEvent1.ownerID = 1;
         /*if (receivedEvent.getOwnerID() == 0 && receivedEvent.ID == fakeEvent1.ID) {
             fakeEvent1.ownerID = 0;
         }*/
-        Event fakeEvent2 = new Event(1, 2, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00", 10);
+        Event fakeEvent2 = new Event(3, 4, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00", 10);
         //fakeEvent2.ownerID = 2;
 
         User fakeUser = new User(1, "abc", "abc", "1234", "no", "2@2.com", "caca");
@@ -114,8 +117,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         }
+        if (receivedEvent.ownerID != user.id) {
+            for (int i = 0; i < eventArrayListMain.size(); i++) {
+                if (receivedEvent.getID() == eventArrayListMain.get(i).getID()) {
+                    for (int j = 0; j < eventArrayListMain.get(i).roles.size(); j++)
+                    {
 
+                        eventArrayListMain.get(i).roles = receivedEvent.roles;
+                        break;
 
+                    }
+                }
+
+            }
+        }
+        // Remove / Add stuff from eventArrayListMain
         for (int i = 0; i < eventArrayListMain.size(); i++) {
             int removalID;
             if (eventArrayListMain.get(i).getOwnerID() == 0) {
@@ -126,6 +142,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 }
             }
+
         }
 
         File file = new File(getApplicationContext().getFilesDir(), "userEvent");

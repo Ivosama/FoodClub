@@ -108,7 +108,7 @@ public class viewEvent extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.eventRolesList);
         for (int i = 0; i < eventRoleList.size(); i++) {
             int size = eventRoleList.size();
-            Toast.makeText(getApplicationContext(), "" + size, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "" + size, Toast.LENGTH_LONG).show();
             Role tempRole = (Role) eventRoleList.get(i);
             String tempName = tempRole.getTitle();
             list.add(tempName);
@@ -127,8 +127,23 @@ public class viewEvent extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(), "Clicked this " + position, Toast.LENGTH_LONG);
 
                 //Intent intent = new Intent(viewEvent.this, viewEvent.class); // Create intent to send Parcel to Map and List
-                Role role = eventRoleList.get(position);
-                confirmJoin(role);
+                if (user.id == receivedEvent.ownerID) {
+                    Toast.makeText(getApplicationContext(), "You are automatically the host - This is your event!", Toast.LENGTH_LONG).show();
+                } else {
+                    Role role = eventRoleList.get(position);
+                    if (role.holderID != user.id && role.isTaken == false) {
+                        receivedEvent.roles.get(position).isTaken = true;
+                        receivedEvent.roles.get(position).holderID = user.id;
+                        Toast.makeText(getApplicationContext(),"holder id: " + receivedEvent.roles.get(position).holderID, Toast.LENGTH_SHORT);
+                        confirmJoin(role);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Role taken", Toast.LENGTH_SHORT).show();
+                    }
+
+                    //Toast.makeText(getApplicationContext(), "User id is " + user.id, Toast.LENGTH_LONG);
+
+                }
+
 
                 //Toast.makeText(getApplicationContext(), "position = " + position + " name = " + eventRoleList.get(position).title, Toast.LENGTH_LONG).show();
                 //startActivity(intent);
@@ -146,6 +161,7 @@ public class viewEvent extends AppCompatActivity {
             deleteButton.setVisibility(View.VISIBLE);
             leaveButton.setVisibility(View.GONE);
         } else {
+            leaveButton.setVisibility(View.GONE);
             deleteButton.setVisibility(View.GONE);
 
             // Visibility of leave button
@@ -216,6 +232,9 @@ public class viewEvent extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(viewEvent.this, MainActivity.class);
+
+                intent.putExtra("com.package.eventObject", receivedEvent);
+
                 role.holderID = user.getId();
                 role.isTaken = true;
 
@@ -223,8 +242,9 @@ public class viewEvent extends AppCompatActivity {
                 Map_and_List.userApplied = true;
                 Host.userApplied = true;
                 startActivity(intent);
-                Toast.makeText(getApplicationContext(), "you are now signed up as " + role.title, Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), "role.isTaken is now " + role.isTaken, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"" + receivedEvent.roles.get(0).holderID, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "you are now signed up as " + role.title, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "role.isTaken is now " + role.isTaken, Toast.LENGTH_SHORT).show();
             }
         });
         confirmJ.setNegativeButton("nah", new DialogInterface.OnClickListener() {

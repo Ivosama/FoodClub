@@ -49,7 +49,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
     Event receivedEvent;
 
     boolean received = false;
-    int ownerID = 2; // This is the owner ID! Has to be set manually if changed elsewhere!!
+    int ownerID = 1; // This is the owner ID! Has to be set manually if changed elsewhere!!
     //Like read the above comment, is very important!!!!!!
 
     // Text fields
@@ -99,9 +99,10 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
         Bundle bundle = getIntent().getExtras();
         try {
             user = bundle.getParcelable("com.package.userObject");
-
+            ownerID = user.id;
+            Toast.makeText(getApplicationContext(), "" + ownerID, Toast.LENGTH_LONG).show();
         } catch (Exception e) {
-
+            Toast.makeText(getApplicationContext(), "User not received", Toast.LENGTH_SHORT).show();
         }
         received = false;
         try {
@@ -297,14 +298,16 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
         confirm.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //event.ownerID = user.getId();
+                //event.ownerID = ownerID;
 
                 //String ownerID = Integer.toString(event.getOwnerID());
                 //Toast.makeText(getApplicationContext(), ownerID, Toast.LENGTH_LONG).show();
                 try {
+
                     Intent intent = new Intent(Host.this, MainActivity.class); // Create intent to send Parcel to Map and List
                     intent.putExtra("com.package.eventObject", event);
                     intent.putExtra("com.package.userObject", user);
+                    Toast.makeText(getApplicationContext(), "" + event.getOwnerID(), Toast.LENGTH_LONG);
                     startActivity(intent);
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
