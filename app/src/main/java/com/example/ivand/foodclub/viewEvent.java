@@ -245,7 +245,13 @@ public class viewEvent extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(viewEvent.this, MainActivity.class);
-                // Change holder id variable etc.
+                for(int i = 0; i < receivedEvent.roles.size(); i++){
+                    if(receivedEvent.roles.get(i).getHolderID() == user.getId() && receivedEvent.roles.get(i).isTaken == true){
+                        receivedEvent.roles.get(i).holderID = 0;
+                        receivedEvent.roles.get(i).isTaken = false;
+                    }
+                }
+                intent.putExtra("com.package.eventObject", receivedEvent);
                 startActivity(intent);
             }
         });
