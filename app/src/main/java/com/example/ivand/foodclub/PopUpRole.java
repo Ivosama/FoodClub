@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -93,6 +94,7 @@ public class PopUpRole extends Activity {
                 }*/
 
 
+
                 totalAmountRoles = 0;
                 int i;
                 for (i = 0; i < amountRole1; i++) {
@@ -125,6 +127,91 @@ public class PopUpRole extends Activity {
                 intent.putExtra("com.package.eventObject", receivedEvent);
                 startActivity(intent);
 
+            }
+        });
+
+        role1_input.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                role1_input.setHint("");
+                return false;
+            }
+        });
+
+        role1_input.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    role1_input.setHint("Role Title");
+                }
+            }
+        });
+
+        role2_input.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                role2_input.setHint("");
+                return false;
+            }
+        });
+
+        role2_input.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    role2_input.setHint("Role Title");
+                }
+            }
+        });
+
+        role3_input.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                role3_input.setHint("");
+                return false;
+            }
+        });
+
+        role3_input.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    role3_input.setHint("Role Title");
+                }
+            }
+        });
+
+        role4_input.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                role4_input.setHint("");
+                return false;
+            }
+        });
+
+        role4_input.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    role4_input.setHint("Role Title");
+                }
+            }
+        });
+
+        role5_input.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                role5_input.setHint("");
+                return false;
+            }
+        });
+
+        role5_input.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    role5_input.setHint("Role Title");
+                }
             }
         });
     }
