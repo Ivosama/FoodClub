@@ -32,8 +32,9 @@ public class Event implements Parcelable {
         Role tempRole = role;
         this.roles.add(tempRole);
     }
+
     public Role getRole() {
-        return (roles.get(roles.size()-1));
+        return (roles.get(roles.size() - 1));
     }
 
     public int getOwnerID() {
@@ -57,7 +58,7 @@ public class Event implements Parcelable {
         this.name = name;
     }
 
-        //constructor
+    //constructor
         /*public Event(int ID, int dist, String name, String menu, String place, String description, String time, int price) {
 
             this.ID = ID;
@@ -86,13 +87,13 @@ public class Event implements Parcelable {
 
 
     public String getName() {
-            return(this.name);
-        }
+        return (this.name);
+    }
 
-    public Event(Parcel in){
-            this.ID = in.readInt();
-            this.ownerID = in.readInt();
-            this.dist = in.readInt();
+    public Event(Parcel in) {
+        this.ID = in.readInt();
+        this.ownerID = in.readInt();
+        this.dist = in.readInt();
         this.name = in.readString();
         this.menu = in.readString();
         this.place = in.readString();
@@ -112,9 +113,9 @@ public class Event implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-            dest.writeInt(this.ID);
-            dest.writeInt(this.ownerID);
-            dest.writeInt(this.dist);
+        dest.writeInt(this.ID);
+        dest.writeInt(this.ownerID);
+        dest.writeInt(this.dist);
         dest.writeString(this.name);
         dest.writeString(this.menu);
         dest.writeString(this.place);

@@ -3,12 +3,9 @@ package com.example.ivand.foodclub;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -41,6 +38,7 @@ public class viewEvent extends AppCompatActivity {
 
     public ArrayList<Role> eventRoleList = new ArrayList<Role>();
     public ArrayList<User> userArrayList = new ArrayList<>();
+
     {
         list = new ArrayList();
     }
@@ -52,13 +50,12 @@ public class viewEvent extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        title = (TextView)findViewById(R.id.eventTitleText);
-        food = (TextView)findViewById(R.id.eventFoodText);
-        place = (TextView)findViewById(R.id.eventPlaceText);
-        time = (TextView)findViewById(R.id.eventTimeText);
-        price = (TextView)findViewById(R.id.eventPriceText);
-        description = (TextView)findViewById(R.id.eventDescriptionText);
-
+        title = (TextView) findViewById(R.id.eventTitleText);
+        food = (TextView) findViewById(R.id.eventFoodText);
+        place = (TextView) findViewById(R.id.eventPlaceText);
+        time = (TextView) findViewById(R.id.eventTimeText);
+        price = (TextView) findViewById(R.id.eventPriceText);
+        description = (TextView) findViewById(R.id.eventDescriptionText);
 
 
         Bundle bundle = getIntent().getExtras();
@@ -110,7 +107,7 @@ public class viewEvent extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.eventRolesList);
         for (int i = 0; i < eventRoleList.size(); i++) {
             int size = eventRoleList.size();
-            Toast.makeText(getApplicationContext(),"" + size, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "" + size, Toast.LENGTH_LONG).show();
             Role tempRole = (Role) eventRoleList.get(i);
             String tempName = tempRole.getTitle();
             list.add(tempName);
@@ -151,8 +148,8 @@ public class viewEvent extends AppCompatActivity {
             deleteButton.setVisibility(View.GONE);
 
             // Visibility of leave button
-            for(int i = 0; i < receivedEvent.roles.size(); i++){
-                if(receivedEvent.roles.get(i).getHolderID() == user.getId() && receivedEvent.roles.get(i).isTaken == true){
+            for (int i = 0; i < receivedEvent.roles.size(); i++) {
+                if (receivedEvent.roles.get(i).getHolderID() == user.getId() && receivedEvent.roles.get(i).isTaken == true) {
                     leaveButton.setVisibility(View.VISIBLE);
                 }
             }
@@ -173,7 +170,7 @@ public class viewEvent extends AppCompatActivity {
                 confirmLeave();
             }
         });
-}
+    }
 
 
     // Function used for confirming a user deleting an event
@@ -206,15 +203,15 @@ public class viewEvent extends AppCompatActivity {
 
 
     // Function used for confirming a users wish to join an event as a role
-    private void confirmJoin(final Role role){
+    private void confirmJoin(final Role role) {
         final AlertDialog.Builder confirmJ = new AlertDialog.Builder(this);
         confirmJ.setMessage("Do you want to join the event as a " + role.title + "?");
-                confirmJ.setCancelable(false);
+        confirmJ.setCancelable(false);
 
         confirmJ.setPositiveButton("yeah", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(viewEvent.this , MainActivity.class);
+                Intent intent = new Intent(viewEvent.this, MainActivity.class);
                 role.holderID = user.getId();
                 role.isTaken = true;
                 MainActivity.userApplied = true;

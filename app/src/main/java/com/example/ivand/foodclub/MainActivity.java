@@ -78,14 +78,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
-
-
-        try {
-
-        } catch (Exception e) {
-
-        }
-
         //PROFILE STUFF
 
         /*
@@ -97,15 +89,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // ARRAY STUFF
 
-        Event fakeEvent1 = new Event(1, 1,5,  "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!","12:30", 5);
+        Event fakeEvent1 = new Event(1, 1, 5, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!", "12:30", 5);
         //fakeEvent1.ownerID = 1;
         /*if (receivedEvent.getOwnerID() == 0 && receivedEvent.ID == fakeEvent1.ID) {
             fakeEvent1.ownerID = 0;
         }*/
-        Event fakeEvent2 = new Event(1, 2, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00",  10);
+        Event fakeEvent2 = new Event(1, 2, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00", 10);
         //fakeEvent2.ownerID = 2;
 
-        User fakeUser = new User(1,"abc","abc","1234","no","2@2.com","caca");
+        User fakeUser = new User(1, "abc", "abc", "1234", "no", "2@2.com", "caca");
         Role fakeRole1 = new Role("DishWasher");
         Role fakeRole2 = new Role("Musician");
 
@@ -136,12 +128,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
 
-        File file = new File(getApplicationContext().getFilesDir(),"userEvent");
-        if(file.exists()) {
+        File file = new File(getApplicationContext().getFilesDir(), "userEvent");
+        if (file.exists()) {
             String[] separated = loadSave().split("`");
             Event userEvent = new Event(Integer.valueOf(separated[0]), Integer.valueOf(separated[1]), Integer.valueOf(separated[2]), separated[3], separated[4], separated[5], separated[6], separated[7], Integer.valueOf(separated[8]));
             //Event userEvent = new Event(Integer.valueOf(separated[0]), Integer.valueOf(separated[1]), Integer.valueOf(separated[2]), separated[3], separated[4], separated[5], separated[6], separated[7], Integer.valueOf(separated[8]));
-            if(!eventArrayListMain.contains(userEvent)) {
+            if (!eventArrayListMain.contains(userEvent)) {
                 eventArrayListMain.add(userEvent);
                 int roleCount = 0;  //new int for counting how many roles in this saved event
                 roleCount = separated.length - 9;   //roleCount becomes the remaining elements in the array after event-related elements are removed
@@ -167,16 +159,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        if(MainActivity.userApplied || Host.userApplied || Map_and_List.userApplied){
+        if (MainActivity.userApplied || Host.userApplied || Map_and_List.userApplied) {
             getSupportActionBar().setTitle("Awaiting confirmation...");
-        }
-        else if(MainActivity.userIsHosting || Host.userIsHosting || Map_and_List.userIsHosting) {
+        } else if (MainActivity.userIsHosting || Host.userIsHosting || Map_and_List.userIsHosting) {
             getSupportActionBar().setTitle("Waiting for users...");
-        }
-        else{
+        } else {
             getSupportActionBar().setTitle("Food Club");
         }
-
 
 
         imageProfile = (ImageButton) findViewById(R.id.imageProfile);
@@ -197,11 +186,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-    ////this is changed
+        ////this is changed
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.open_drawer, R.string.close_drawer);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
         drawerLayout.setDrawerListener(toggle);
 
         toggle.syncState();
@@ -215,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }*/
 
-    public void openMapAndList(){
+    public void openMapAndList() {
         Intent intent = new Intent(MainActivity.this, Map_and_List.class); // Create intent to send Parcel to Map and List
         intent.putExtra("com.package.eventObjectList", eventArrayListMain);
         intent.putExtra("com.package.userObject", user);
@@ -223,25 +212,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
-    public void openHost(){
+    public void openHost() {
         Intent intent = new Intent(this, Host.class);
         intent.putExtra("com.package.userObject", user);
         startActivity(intent);
     }
+
     public void openProfile() {
-       Intent intent = new Intent(this,ProfileActivity.class);
-       intent.putExtra("com.package.userObject", user);
-       startActivity(intent);
-    }
-   public void openTehSignup() {
-        Intent intent = new Intent(this,LoginActivity.class);
+        Intent intent = new Intent(this, ProfileActivity.class);
+        intent.putExtra("com.package.userObject", user);
         startActivity(intent);
     }
 
-   public String loadSave(){
-       String temp = readFromFile(getBaseContext());
-       return temp;
-       }
+    public void openTehSignup() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public String loadSave() {
+        String temp = readFromFile(getBaseContext());
+        return temp;
+    }
 
     private String readFromFile(Context context) {
 
@@ -250,21 +241,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         try {
             InputStream inputStream = context.openFileInput("userEvent");
 
-            if ( inputStream != null ) {
+            if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String receiveString = "";
                 StringBuilder stringBuilder = new StringBuilder();
 
-                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                while ((receiveString = bufferedReader.readLine()) != null) {
                     stringBuilder.append(receiveString);
                 }
 
                 inputStream.close();
                 ret = stringBuilder.toString();
             }
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             Log.e("login activity", "File not found: " + e.toString());
         } catch (IOException e) {
             Log.e("login activity", "Can not read file: " + e.toString());
@@ -273,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return ret;
     }
 
-    public void saveEvent(Event event){
+    public void saveEvent(Event event) {
         File file = new File(getFilesDir(), "userEvent");
         String frank = "";
         frank += (event.ID + "`");
@@ -285,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         frank += (event.description + "`");
         frank += (event.time + "`");
         frank += (event.price + "`");
-        for(int i = 0; i < event.roles.size(); i++){
+        for (int i = 0; i < event.roles.size(); i++) {
             frank += (Integer.toString(event.roles.get(i).getRoleID()) + "`");
             frank += (event.roles.get(i).getTitle() + "`");
             frank += (Integer.toString(event.roles.get(i).getHolderID()) + "`");    //converts IDs to strings and throws them at Frank
@@ -294,35 +284,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         writeToFile(frank, getBaseContext());
     }
 
-    private void writeToFile(String data,Context context) {
+    private void writeToFile(String data, Context context) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("userEvent", Context.MODE_PRIVATE));
             outputStreamWriter.write(data);
             outputStreamWriter.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
-//Code for listening to the menu bottons in tooldbar
+
+    //Code for listening to the menu bottons in tooldbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
             case R.id.aboutUs_id:
                 Toast.makeText(this, "About us clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.chat_id:
-                Toast.makeText(this,"go to chat", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "go to chat", Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
 
     }
 
-//Code for listening to buttons in the drawer menu
+    //Code for listening to buttons in the drawer menu
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -333,7 +323,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "log out code", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.goToRoom_id:
-               // Toast.makeText(this, "Go to room test", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, "Go to room test", Toast.LENGTH_SHORT).show();
                 openTehSignup();
                 break;
             case R.id.profile_id:
