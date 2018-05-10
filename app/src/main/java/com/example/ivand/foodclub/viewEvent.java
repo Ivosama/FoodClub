@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -183,6 +184,9 @@ public class viewEvent extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 receivedEvent.ownerID = 0;
+                File dir = getFilesDir();
+                File file = new File(dir, "userEvent");
+                boolean deleteCheck = file.delete();
                 Intent intent = new Intent(viewEvent.this, MainActivity.class);
                 MainActivity.userIsHosting = false;
                 Map_and_List.userIsHosting = false;
