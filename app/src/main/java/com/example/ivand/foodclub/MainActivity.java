@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 }
             }
+            userIsHosting = true;
 
         }
 
@@ -182,7 +183,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         imgBtnHost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openHost();
+                if(userIsHosting == true){  //puts user in their event if they already have one
+                    Intent intent = new Intent(MainActivity.this, viewEvent.class); // Create intent to send Parcel to Map and List
+                    Event event = eventArrayListMain.get(eventArrayListMain.size()-1);  //last thing in the list
+                    intent.putExtra("com.package.eventObject", event);
+                    User tempUser = user;
+                    intent.putExtra("com.package.userObject", tempUser);
+                    intent.putExtra("com.package.userArray", userArrayListMain);
+                    startActivity(intent);
+                }
+                else {
+                    openHost();
+                }
             }
         });
 
