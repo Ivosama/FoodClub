@@ -8,47 +8,52 @@
 
     <EditText
         android:id="@+id/role2_input"
-        android:layout_width="169dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/role1_input"
         android:layout_below="@+id/role1_input"
         android:ems="10"
         android:hint="Role Title"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/role5_input"
-        android:layout_width="169dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/role1_input"
         android:layout_below="@+id/role4_input"
         android:ems="10"
         android:hint="Role Title"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:selectAllOnFocus="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <EditText
         android:id="@+id/role4_input"
-        android:layout_width="169dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/role1_input"
         android:layout_below="@+id/role3_input"
         android:ems="10"
         android:hint="Role Title"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/role3_input"
-        android:layout_width="169dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/role1_input"
         android:layout_below="@+id/role2_input"
         android:ems="10"
         android:hint="Role Title"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/role1_input"
-        android:layout_width="169dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -56,7 +61,8 @@
         android:layout_marginTop="70dp"
         android:ems="10"
         android:hint="Role Title"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:singleLine="true" />
 
     <TextView
         android:id="@+id/title"
@@ -93,6 +99,7 @@
         android:layout_alignTop="@+id/role5_input"
         android:ems="10"
         android:inputType="number"
+        android:singleLine="true"
         android:text="0" />
 
     <EditText
@@ -103,6 +110,7 @@
         android:layout_alignEnd="@+id/amountRole1_input"
         android:ems="10"
         android:inputType="number"
+        android:singleLine="true"
         android:text="0" />
 
     <EditText
@@ -113,6 +121,7 @@
         android:layout_below="@+id/role2_input"
         android:ems="10"
         android:inputType="number"
+        android:singleLine="true"
         android:text="0" />
 
     <EditText
@@ -123,6 +132,7 @@
         android:layout_below="@+id/role1_input"
         android:ems="10"
         android:inputType="number"
+        android:singleLine="true"
         android:text="0" />
 
     <EditText
@@ -133,6 +143,7 @@
         android:layout_toEndOf="@+id/restraint"
         android:ems="10"
         android:inputType="number"
+        android:singleLine="true"
         android:text="0" />
 
 </RelativeLayout>
