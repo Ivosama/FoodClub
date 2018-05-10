@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private User user;
     private boolean isLoggedIn;
 
-    public static boolean userApplied, userInEvent, userIsHosting, userExist;
+    public static boolean userApplied, userInEvent, userIsHosting;
 
     ImageButton imgBtnEat;
     ImageButton imgBtnHost;
@@ -197,12 +197,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    /*@Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu_main, menu);
 
         return true;
-    }*/
+    }
 
     public void openMapAndList() {
         Intent intent = new Intent(MainActivity.this, Map_and_List.class); // Create intent to send Parcel to Map and List

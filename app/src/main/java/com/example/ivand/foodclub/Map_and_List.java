@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,7 +28,7 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
     ArrayAdapter adapter;
     User user = new User();
 
-    public static boolean userApplied, userInEvent, userIsHosting, userExist;
+    public static boolean userApplied, userInEvent, userIsHosting;
 
     private DrawerLayout drawerLayout;
     Toolbar toolbar;
@@ -156,12 +157,12 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
     }
 
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.main_menu_map, menu);
-//
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu_map, menu);
+
+        return true;
+    }
 
 
     @Override

@@ -37,7 +37,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
     Toolbar toolbar;
     NavigationView navigationView;
 
-    public static boolean userApplied, userInEvent, userIsHosting, userExist;
+    public static boolean userApplied, userInEvent, userIsHosting;
 
     // Initial variables
     String eventName, whatCooking, place, description, time;
