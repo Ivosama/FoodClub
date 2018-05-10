@@ -145,8 +145,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 }
             }
-            userIsHosting = true;
-
+            MainActivity.userIsHosting = true;
+            Host.userIsHosting = true;
+            Map_and_List.userIsHosting = true;
         }
 
         // END OF ARRAY STUFF

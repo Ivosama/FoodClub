@@ -218,6 +218,7 @@ public class viewEvent extends AppCompatActivity {
                 Intent intent = new Intent(viewEvent.this, MainActivity.class);
                 role.holderID = user.getId();
                 role.isTaken = true;
+
                 MainActivity.userApplied = true;
                 Map_and_List.userApplied = true;
                 Host.userApplied = true;
@@ -252,6 +253,10 @@ public class viewEvent extends AppCompatActivity {
                         receivedEvent.roles.get(i).isTaken = false;
                     }
                 }
+                MainActivity.userApplied = false;
+                Map_and_List.userApplied = false;
+                Host.userApplied = false;
+
                 intent.putExtra("com.package.eventObject", receivedEvent);
                 startActivity(intent);
             }
