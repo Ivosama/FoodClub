@@ -1,6 +1,7 @@
 package com.example.ivand.foodclub;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -8,6 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -202,8 +204,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (MainActivity.userApplied || Host.userApplied || Map_and_List.userApplied) {
             getSupportActionBar().setTitle("Awaiting confirmation...");
+
+            new android.os.Handler().postDelayed(
+                    new Runnable() {
+                        public void run() {
+                            userAccepted();
+                            getSupportActionBar().setTitle("Food Club");
+                            MainActivity.userApplied = false;
+                            Host.userApplied = false;
+                            Map_and_List.userApplied = false;
+                        }
+                    }, 5000);
         } else if (MainActivity.userIsHosting || Host.userIsHosting || Map_and_List.userIsHosting) {
             getSupportActionBar().setTitle("Waiting for users...");
+
+            new android.os.Handler().postDelayed(
+                    new Runnable() {
+                        public void run() {
+                            acceptUser();
+                        }
+                    }, 5000);
         } else {
             getSupportActionBar().setTitle("Food Club");
         }
@@ -385,4 +405,51 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return false;
     }
+
+    private void userAccepted() {
+        final AlertDialog.Builder userAccepted = new AlertDialog.Builder(this);
+        userAccepted.setMessage("You have been accepted in the event for which you applied!");
+        userAccepted.setCancelable(false);
+
+        userAccepted.setPositiveButton("Event Details", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Toast.makeText(MainActivity.this, "Take me to church", Toast.LENGTH_SHORT).show();
+                //code with userInEvent;
+            }
+        });
+        userAccepted.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                userAccepted.setCancelable(true);
+            }
+        });
+        userAccepted.create().show();
+    }
+
+    private void acceptUser() {
+        final AlertDialog.Builder acceptUser = new AlertDialog.Builder(this);
+        acceptUser.setMessage("You got a request to join your event.");
+        acceptUser.setCancelable(false);
+
+        acceptUser.setPositiveButton("Event Details", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Toast.makeText(MainActivity.this, "The mtf was accepted", Toast.LENGTH_SHORT).show();
+                //code with userInEvent;
+            }
+        });
+        acceptUser.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Toast.makeText(MainActivity.this, "The user has been notified", Toast.LENGTH_SHORT).show();
+                acceptUser.setCancelable(true);
+            }
+        });
+        acceptUser.create().show();
+    }
 }
+
