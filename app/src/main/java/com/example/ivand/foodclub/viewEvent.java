@@ -2,6 +2,7 @@ package com.example.ivand.foodclub;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -112,7 +113,6 @@ public class viewEvent extends AppCompatActivity {
             Role tempRole = (Role) eventRoleList.get(i);
             String tempName = tempRole.getTitle();
             list.add(tempName);
-
         }
 
         adapter = new ArrayAdapter(viewEvent.this, android.R.layout.simple_list_item_1, list);
@@ -235,7 +235,7 @@ public class viewEvent extends AppCompatActivity {
 
                 intent.putExtra("com.package.eventObject", receivedEvent);
 
-                role.holderID = user.getId();
+                role.holderID = userArrayList.get(0).getId();
                 role.isTaken = true;
 
                 MainActivity.userApplied = true;

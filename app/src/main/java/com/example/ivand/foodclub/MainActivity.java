@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageButton imageProfile;
 
     public ArrayList<Event> eventArrayListMain = new ArrayList<Event>();
-    public ArrayList<User> userArrayListMain = new ArrayList<User>();
+    public ArrayList<User> userArrayListMain;
+
+    private final static String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Event receivedEvent = new Event();
 
         Bundle bundle = getIntent().getExtras();
+
+        userArrayListMain = new ArrayList<User>();
 
         try {
             user = bundle.getParcelable("com.package.userObject");
@@ -101,6 +105,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //fakeEvent2.ownerID = 2;
 
         User fakeUser = new User(1, "abc", "abc", "1234", "no", "2@2.com", "caca");
+        User fakeUser2 = new User(5, "Analyn", "Krem", "1234", "latex", "horny@slut.com", "wakadoodle");
+        User fakeUser3 = new User(6, "Azucar", "Moreno", "1234", "Water", "sweet@candy.com", "slurp slurp");
+        User fakeUser4 = new User(7, "Bambi", "Nomom", "1234", "poachers", "lost@jungle.com", "oh! boom");
+        User fakeUser5 = new User(8, "Rabbit", "Ribbit", "1234", "Frogs and carrots", "nomnom@rr.com", "Supelhelo");
+//Adding users to the array list
+        userArrayListMain.add(fakeUser);
+        userArrayListMain.add(fakeUser2);
+        userArrayListMain.add(fakeUser3);
+        userArrayListMain.add(fakeUser4);
+        userArrayListMain.add(fakeUser5);
+
+//testing size of array list user
+        for (int i = 0; i < userArrayListMain.size(); i++) {
+            Log.d(TAG, "onCreate: " +userArrayListMain.get(i));
+        }
+
+
         Role fakeRole1 = new Role("DishWasher");
         Role fakeRole2 = new Role("Musician");
 
@@ -248,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
-    public void openProfile() {
+    public void openProfile(User user) {
         Intent intent = new Intent(this, ProfileActivity.class);
         intent.putExtra("com.package.userObject", user);
         startActivity(intent);
@@ -339,7 +360,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
         return super.onOptionsItemSelected(item);
-
     }
 
     //Code for listening to buttons in the drawer menu
@@ -357,7 +377,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 openTehSignup();
                 break;
             case R.id.profile_id:
-                openProfile();
+                openProfile(userArrayListMain.get(0));
                 //Toast.makeText(this, "Go to profile", Toast.LENGTH_SHORT).show();
                 break;
 
