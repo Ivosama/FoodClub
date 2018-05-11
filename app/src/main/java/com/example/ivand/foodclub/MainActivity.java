@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         Role fakeRole1 = new Role("DishWasher");
+        fakeRole1.isTaken = true;
         Role fakeRole2 = new Role("Musician");
 
         fakeEvent1.roles.add(fakeRole1);

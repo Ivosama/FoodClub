@@ -36,7 +36,7 @@ public class viewEvent extends AppCompatActivity {
 
     ListView listView;
     List list;
-    ArrayAdapter adapter;
+    roleListAdapter adapter;
 
     public ArrayList<Role> eventRoleList = new ArrayList<Role>();
     public ArrayList<User> userArrayList = new ArrayList<>();
@@ -107,15 +107,7 @@ public class viewEvent extends AppCompatActivity {
 
         // Populate the graphical Role listview with roles from the event
         listView = (ListView) findViewById(R.id.eventRolesList);
-        for (int i = 0; i < eventRoleList.size(); i++) {
-            int size = eventRoleList.size();
-            //Toast.makeText(getApplicationContext(), "" + size, Toast.LENGTH_LONG).show();
-            Role tempRole = (Role) eventRoleList.get(i);
-            String tempName = tempRole.getTitle();
-            list.add(tempName);
-        }
-
-        adapter = new ArrayAdapter(viewEvent.this, android.R.layout.simple_list_item_1, list);
+        adapter = new roleListAdapter(viewEvent.this, eventRoleList);
         listView.setAdapter(adapter);
 
         Object[] roleList = new Object[list.size()];
