@@ -36,12 +36,13 @@ public class roleListAdapter extends ArrayAdapter<Role> {
         // Fill views with specific data
         roleTitle.setText(role.getTitle());
 
+
         if(role.isTaken == true){
             takenOrNot.setImageResource(R.drawable.taken_icon);
-            convertView.setBackgroundColor(Color.RED);
+            convertView.setBackgroundColor(Color.parseColor("#F5574A"));
         }else if(role.isTaken == false){
             takenOrNot.setImageResource(R.drawable.free_icon);
-            convertView.setBackgroundColor(Color.GREEN);
+            convertView.setBackgroundColor(Color.parseColor("#3FC451"));
         }
 
         // Return the new view so it can be shown
