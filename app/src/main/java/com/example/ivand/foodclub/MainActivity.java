@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fakeEvent1.ownerID = 0;
         }*/
         Event fakeEvent2 = new Event(3, 4, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00", 10);
+        Event fakeEvent3 = new Event(4, 5, 1, "Andrei's Mititei Extravaganza", "Mititeis with a LOT of mustard", "Kanalstein", "There will be so much food you will event have extra to take home to your dog", "10:00", 7);
         //fakeEvent2.ownerID = 2;
 
         User fakeUser = new User(1, "abc", "abc", "1234", "no", "2@2.com", "caca");
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 //testing size of array list user
         for (int i = 0; i < userArrayListMain.size(); i++) {
-            Log.d(TAG, "onCreate: " +userArrayListMain.get(i));
+            Log.d(TAG, "onCreate: " + userArrayListMain.get(i));
         }
 
 
@@ -139,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         eventArrayListMain.add(fakeEvent1);
         eventArrayListMain.add(fakeEvent2);
+        eventArrayListMain.add(fakeEvent3);
         if (receivedEvent.getOwnerID() == 0) {
             for (int i = 0; i < eventArrayListMain.size(); i++) {
                 if (receivedEvent.ID == eventArrayListMain.get(i).ID) {
@@ -149,8 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (receivedEvent.ownerID != user.id) {
             for (int i = 0; i < eventArrayListMain.size(); i++) {
                 if (receivedEvent.getID() == eventArrayListMain.get(i).getID()) {
-                    for (int j = 0; j < eventArrayListMain.get(i).roles.size(); j++)
-                    {
+                    for (int j = 0; j < eventArrayListMain.get(i).roles.size(); j++) {
 
                         eventArrayListMain.get(i).roles = receivedEvent.roles;
                         break;
@@ -280,16 +281,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         imgBtnHost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(userIsHosting == true){  //puts user in their event if they already have one
+                if (userIsHosting == true) {  //puts user in their event if they already have one
                     Intent intent = new Intent(MainActivity.this, viewEvent.class); // Create intent to send Parcel to Map and List
-                    Event event = eventArrayListMain.get(eventArrayListMain.size()-1);  //last thing in the list
+                    Event event = eventArrayListMain.get(eventArrayListMain.size() - 1);  //last thing in the list
                     intent.putExtra("com.package.eventObject", event);
                     User tempUser = user;
                     intent.putExtra("com.package.userObject", tempUser);
                     intent.putExtra("com.package.userArray", userArrayListMain);
                     startActivity(intent);
-                }
-                else {
+                } else {
                     openHost();
                 }
             }
