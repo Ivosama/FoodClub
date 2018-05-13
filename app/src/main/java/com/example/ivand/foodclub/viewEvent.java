@@ -281,6 +281,7 @@ public class viewEvent extends AppCompatActivity {
                     }
                 }
                 MainActivity.userApplied = false;
+                MainActivity.userInEvent = false;
                 Map_and_List.userApplied = false;
                 Host.userApplied = false;
 
