@@ -137,6 +137,8 @@ public class viewEvent extends AppCompatActivity {
 
                     }
 
+                } else {
+                    Toast.makeText(getApplicationContext(), "You are hosting another event!", Toast.LENGTH_LONG).show();
                 }
 
 
