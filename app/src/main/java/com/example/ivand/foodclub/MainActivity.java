@@ -503,7 +503,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                Toast.makeText(MainActivity.this, "Take me to church", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, viewEvent.class);
+                for (int i = 0; i < eventArrayListMain.size(); i++) {
+                    for (int j = 0; j < eventArrayListMain.get(i).roles.size(); j++) {
+                        if (eventArrayListMain.get(i).roles.get(j).getHolderID() == user.getId()) {
+                            tempEventID = eventArrayListMain.get(i).roles.get(j).getHolderID();
+                        }
+                    }
+                }
+                Event tempEvent = new Event();
+                tempEvent = eventArrayListMain.get(tempEventID);
+                intent.putExtra("com.package.eventObject", eventArrayListMain.get(tempEventID));
+                intent.putExtra("com.package.userObject", user);
+
+                startActivity(intent);
+                //Toast.makeText(MainActivity.this, "Take me to church", Toast.LENGTH_SHORT).show();
                 //code with userInEvent;
             }
         });
