@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         try {
             user = bundle.getParcelable("com.package.userObject");
-            //Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             user = new User(1);
         }
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Event fakeEvent3 = new Event(4, 5, 1, "Andrei's Mititei Extravaganza", "Mititeis with a LOT of mustard", "Kanalstein", "There will be so much food you will event have extra to take home to your dog", "10:00", 7);
         //fakeEvent2.ownerID = 2;
 
-        User fakeUser = new User(1, "abc", "abc", "1234", "no", "2@2.com", "caca");
+        User fakeUser = new User(2, "abc", "abc", "1234", "no", "2@2.com", "caca");
         User fakeUser2 = new User(5, "Analyn", "Krem", "1234", "latex", "horny@slut.com", "wakadoodle");
         User fakeUser3 = new User(6, "Azucar", "Moreno", "1234", "Water", "sweet@candy.com", "slurp slurp");
         User fakeUser4 = new User(7, "Bambi", "Nomom", "1234", "poachers", "lost@jungle.com", "oh! boom");
@@ -475,12 +475,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 eventArrayListMain.get(tempEventID).roles.get(tempRoleID).isTaken = true;
             }
         });
-        confirmUser.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                confirmUser.setCancelable(true);
-            }
-        });
+
 
         confirmUser.setNeutralButton("View profile", new DialogInterface.OnClickListener() {
             @Override
@@ -504,6 +499,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+
+
+
+        confirmUser.create().show();
     }
 
     private void userAccepted() {
@@ -540,7 +539,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 userAccepted.setCancelable(true);
             }
         });
-        userAccepted.create().show();
+        //userAccepted.create().show();
     }
     /*
     private void acceptUser() {
