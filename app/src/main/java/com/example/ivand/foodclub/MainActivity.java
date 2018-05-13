@@ -3,6 +3,7 @@ package com.example.ivand.foodclub;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -46,11 +47,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private User user;
     private boolean isLoggedIn;
 
-    public static boolean userApplied, userInEvent, userIsHosting;
+    public static boolean userApplied = false, userInEvent = false, userIsHosting = false;
 
     ImageButton imgBtnEat;
     ImageButton imgBtnHost;
     ImageButton imageProfile;
+
+    int tempRoleID = 0;
+    int tempEventID = 0;
+    private  boolean isAccepted = true;
 
     public ArrayList<Event> eventArrayListMain = new ArrayList<Event>();
     public ArrayList<User> userArrayListMain;
@@ -189,6 +194,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             MainActivity.userIsHosting = true;
             Host.userIsHosting = true;
             Map_and_List.userIsHosting = true;
+
+            // Countdown for users to join
+            new CountDownTimer(5000, 1000) {
+                public void onTick(long millisUntilFinished) {
+
+                }
+                public void onFinish() {
+
+                    User randomUser = new User();
+                    randomUser.setfirstName("Jens");
+                    randomUser.setLastName("Ole");
+                    confirmUser(randomUser);
+                }
+
+            }.start();
+            new CountDownTimer(21000, 1000) {
+                public void onTick(long millisUntilFinished) {
+
+                }
+                public void onFinish() {
+
+                    User randomUser = new User();
+                    randomUser.setfirstName("Ole");
+                    randomUser.setLastName("Jensen");
+                    confirmUser(randomUser);
+                }
+
+            }.start();
+        }
+
+        if (!isAccepted) {
+
         }
 
         // END OF ARRAY STUFF
@@ -221,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             new android.os.Handler().postDelayed(
                     new Runnable() {
                         public void run() {
-                            acceptUser();
+                            //acceptUser();
                         }
                     }, 5000);
         } else {
@@ -268,6 +305,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -406,6 +445,55 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
+    // DIALOG bOX FOR CONFIRMING RANDOM USERS JOINING
+    private void confirmUser(final User randomUser) {
+        final AlertDialog.Builder confirmUser = new AlertDialog.Builder(this);
+
+        Role tempRole = new Role();
+
+        tempRole.title = "No roles available";
+        for (int i = 0; i < eventArrayListMain.size(); i++) {
+            if (eventArrayListMain.get(i).getID() == user.getId()) {
+                tempEventID = i;
+                for (int j = 0; j < eventArrayListMain.get(i).roles.size(); j++) {
+                    if (eventArrayListMain.get(i).roles.get(j).isTaken == false) {
+                        tempRole = eventArrayListMain.get(i).roles.get(j);
+                        tempRoleID = j;
+                    }
+                }
+            }
+        }
+        confirmUser.setMessage("User " + randomUser.firstName + " " + randomUser.lastName + " wants to join your event as a " + tempRole.title  );
+        confirmUser.setCancelable(false);
+
+
+
+        confirmUser.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                eventArrayListMain.get(tempEventID).roles.get(tempRoleID).setHolderID(randomUser.getId());
+                eventArrayListMain.get(tempEventID).roles.get(tempRoleID).isTaken = true;
+            }
+        });
+
+        confirmUser.setNeutralButton("View profile", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                intent.putExtra("com.package.userObject", randomUser);
+                startActivity(intent);
+            }
+        });
+
+        confirmUser.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                confirmUser.setCancelable(true);
+            }
+        });
+        confirmUser.create().show();
+    }
+
     private void userAccepted() {
         final AlertDialog.Builder userAccepted = new AlertDialog.Builder(this);
         userAccepted.setMessage("You have been accepted in the event for which you applied!");
@@ -427,7 +515,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
         userAccepted.create().show();
     }
-
+    /*
     private void acceptUser() {
         final AlertDialog.Builder acceptUser = new AlertDialog.Builder(this);
         acceptUser.setMessage("You got a request to join your event.");
@@ -450,6 +538,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
         acceptUser.create().show();
-    }
+    }*/
 }
 

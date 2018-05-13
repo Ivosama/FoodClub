@@ -36,6 +36,11 @@ public class ProfileActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
+        if (receivedUser.getId() != 1) {
+
+        }
+
     }
 }
 

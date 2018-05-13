@@ -120,7 +120,7 @@ public class viewEvent extends AppCompatActivity {
 
                 //Intent intent = new Intent(viewEvent.this, viewEvent.class); // Create intent to send Parcel to Map and List
                 if (user.id == receivedEvent.ownerID) {
-                    Toast.makeText(getApplicationContext(), "You are automatically the host - This is your event!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "This is your event - Your role is being the host!", Toast.LENGTH_LONG).show();
                 } else {
                     Role role = eventRoleList.get(position);
                     if (role.holderID != user.id && role.isTaken == false) {
