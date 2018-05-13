@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 //testing size of array list user
         for (int i = 0; i < userArrayListMain.size(); i++) {
-            Log.d(TAG, "onCreate: " +userArrayListMain.get(i));
+            Log.d(TAG, "onCreate: " + userArrayListMain.get(i));
         }
 
 
@@ -146,8 +146,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (receivedEvent.ownerID != user.id) {
             for (int i = 0; i < eventArrayListMain.size(); i++) {
                 if (receivedEvent.getID() == eventArrayListMain.get(i).getID()) {
-                    for (int j = 0; j < eventArrayListMain.get(i).roles.size(); j++)
-                    {
+                    for (int j = 0; j < eventArrayListMain.get(i).roles.size(); j++) {
 
                         eventArrayListMain.get(i).roles = receivedEvent.roles;
                         break;
@@ -245,16 +244,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         imgBtnHost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(userIsHosting == true){  //puts user in their event if they already have one
+                if (userIsHosting == true) {  //puts user in their event if they already have one
                     Intent intent = new Intent(MainActivity.this, viewEvent.class); // Create intent to send Parcel to Map and List
-                    Event event = eventArrayListMain.get(eventArrayListMain.size()-1);  //last thing in the list
+                    Event event = eventArrayListMain.get(eventArrayListMain.size() - 1);  //last thing in the list
                     intent.putExtra("com.package.eventObject", event);
                     User tempUser = user;
                     intent.putExtra("com.package.userObject", tempUser);
                     intent.putExtra("com.package.userArray", userArrayListMain);
                     startActivity(intent);
-                }
-                else {
+                } else {
                     openHost();
                 }
             }

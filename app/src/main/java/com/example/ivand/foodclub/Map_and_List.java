@@ -112,8 +112,8 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 list.clear();
-                sort(eventArrayList, 0, eventArrayList.size()-1);
-                for(int i = 0; i < eventArrayList.size(); i++){
+                sort(eventArrayList, 0, eventArrayList.size() - 1);
+                for (int i = 0; i < eventArrayList.size(); i++) {
                     Event tempEvent = eventArrayList.get(i);
 
                     String tempName = tempEvent.getName();
@@ -128,8 +128,8 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 list.clear();
-                sortTime(eventArrayList, 0, eventArrayList.size()-1);
-                for(int i = 0; i < eventArrayList.size(); i++){
+                sortTime(eventArrayList, 0, eventArrayList.size() - 1);
+                for (int i = 0; i < eventArrayList.size(); i++) {
                     Event tempEvent = eventArrayList.get(i);
 
                     String tempName = tempEvent.getName();
@@ -230,116 +230,100 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
-    public void merge(ArrayList<Event> arr, int l, int m, int r)
-    {
+    public void merge(ArrayList<Event> arr, int l, int m, int r) {
         int n1 = m - l + 1;
         int n2 = r - m;
 
         ArrayList<Event> L = new ArrayList<Event>();
         ArrayList<Event> R = new ArrayList<Event>();
 
-        for (int i=0; i<n1; ++i)
+        for (int i = 0; i < n1; ++i)
             L.add(arr.get(l + i));
-        for (int j=0; j<n2; ++j)
-            R.add(arr.get(m + 1+ j));
+        for (int j = 0; j < n2; ++j)
+            R.add(arr.get(m + 1 + j));
 
         int i = 0, j = 0;
         int k = l;
 
-        while (i < n1 && j < n2)
-        {
+        while (i < n1 && j < n2) {
             if (L.get(i).price <= R.get(j).price)
-          //  if (L.get(i).time.compareTo(R.get(j).time) <= 0)
+            //  if (L.get(i).time.compareTo(R.get(j).time) <= 0)
             {
                 arr.set(k, L.get(i));
                 i++;
-            }
-            else
-            {
+            } else {
                 arr.set(k, R.get(j));
                 j++;
             }
             k++;
         }
 
-        while (i < n1)
-        {
+        while (i < n1) {
             arr.set(k, L.get(i));
             i++;
             k++;
         }
 
-        while (j < n2)
-        {
+        while (j < n2) {
             arr.set(k, R.get(j));
             j++;
             k++;
         }
     }
 
-    public void mergeTime(ArrayList<Event> arr, int l, int m, int r)
-    {
+    public void mergeTime(ArrayList<Event> arr, int l, int m, int r) {
         int n1 = m - l + 1;
         int n2 = r - m;
 
         ArrayList<Event> L = new ArrayList<Event>();
         ArrayList<Event> R = new ArrayList<Event>();
 
-        for (int i=0; i<n1; ++i)
+        for (int i = 0; i < n1; ++i)
             L.add(arr.get(l + i));
-        for (int j=0; j<n2; ++j)
-            R.add(arr.get(m + 1+ j));
+        for (int j = 0; j < n2; ++j)
+            R.add(arr.get(m + 1 + j));
 
         int i = 0, j = 0;
         int k = l;
 
-        while (i < n1 && j < n2)
-        {
-            if (L.get(i).time.compareTo(R.get(j).time) <= 0)
-            {
+        while (i < n1 && j < n2) {
+            if (L.get(i).time.compareTo(R.get(j).time) <= 0) {
                 arr.set(k, L.get(i));
                 i++;
-            }
-            else
-            {
+            } else {
                 arr.set(k, R.get(j));
                 j++;
             }
             k++;
         }
 
-        while (i < n1)
-        {
+        while (i < n1) {
             arr.set(k, L.get(i));
             i++;
             k++;
         }
 
-        while (j < n2)
-        {
+        while (j < n2) {
             arr.set(k, R.get(j));
             j++;
             k++;
         }
     }
-    public void sort(ArrayList<Event> arr, int l, int r)
-    {
-        if (l < r)
-        {
-            int m = (l+r)/2;
+
+    public void sort(ArrayList<Event> arr, int l, int r) {
+        if (l < r) {
+            int m = (l + r) / 2;
             sort(arr, l, m);
-            sort(arr , m+1, r);
+            sort(arr, m + 1, r);
             merge(arr, l, m, r);
         }
     }
 
-    public void sortTime(ArrayList<Event> arr, int l, int r)
-    {
-        if (l < r)
-        {
-            int m = (l+r)/2;
+    public void sortTime(ArrayList<Event> arr, int l, int r) {
+        if (l < r) {
+            int m = (l + r) / 2;
             sortTime(arr, l, m);
-            sortTime(arr , m+1, r);
+            sortTime(arr, m + 1, r);
             mergeTime(arr, l, m, r);
         }
     }
