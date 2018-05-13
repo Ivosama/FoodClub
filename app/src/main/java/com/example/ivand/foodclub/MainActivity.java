@@ -451,7 +451,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Role tempRole = new Role();
 
-        tempRole.title = "No roles available";
+        tempRole.title = " ";
         for (int i = 0; i < eventArrayListMain.size(); i++) {
             if (eventArrayListMain.get(i).getID() == user.getId()) {
                 tempEventID = i;
@@ -475,27 +475,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 eventArrayListMain.get(tempEventID).roles.get(tempRoleID).isTaken = true;
             }
         });
-
-        confirmUser.setNeutralButton("View profile", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                intent.putExtra("com.package.userObject", randomUser);
-                startActivity(intent);
-            }
-        });
-
         confirmUser.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 confirmUser.setCancelable(true);
             }
         });
-        confirmUser.create().show();
+
+        confirmUser.setNeutralButton("View profile", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        final AlertDialog dialog = confirmUser.create();
+        dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Boolean wantToCloseDialog = false;
+                if(wantToCloseDialog) {
+                    dialog.dismiss();
+                }
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                intent.putExtra("com.package.userObject", randomUser);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+        //confirmUser.create().show();
     }
 
     private void userAccepted() {
         final AlertDialog.Builder userAccepted = new AlertDialog.Builder(this);
+
         userAccepted.setMessage("You have been accepted in the event for which you applied!");
         userAccepted.setCancelable(false);
 
