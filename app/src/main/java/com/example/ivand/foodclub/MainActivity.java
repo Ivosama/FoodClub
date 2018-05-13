@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         try {
             user = bundle.getParcelable("com.package.userObject");
-            Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             user = new User(1);
         }
@@ -504,10 +504,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-
-
-
-        //confirmUser.create().show();
     }
 
     private void userAccepted() {
