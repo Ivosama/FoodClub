@@ -38,6 +38,15 @@
         app:srcCompat="@drawable/map_view" />
 
     <Button
+        android:id="@+id/btnSortTime"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_below="@+id/textView2"
+        android:layout_toStartOf="@+id/btnSort"
+        android:text="Earliest"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+    <Button
         android:id="@+id/btnSort"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"

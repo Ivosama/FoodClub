@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Map_and_List extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,10 +35,10 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     NavigationView navigationView;
     Button btnSort;
+    Button btnSortTime;
 
     public ArrayList<Event> eventArrayList = new ArrayList<Event>();
     public ArrayList<User> userArrayList = new ArrayList<>();
-    public ArrayList<Event> sortedEvents = new ArrayList<>();
 
     {
         list = new ArrayList();
@@ -92,6 +93,7 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
         }
 
         listView = (ListView) findViewById(R.id.eventList);
+
         for (int i = 0; i < eventArrayList.size(); i++) {
             Event tempEvent = eventArrayList.get(i);
 
@@ -110,30 +112,32 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 list.clear();
-                for (int i = 0; i < eventArrayList.size(); i++) {
+                sort(eventArrayList, 0, eventArrayList.size()-1);
+                for(int i = 0; i < eventArrayList.size(); i++){
                     Event tempEvent = eventArrayList.get(i);
-                    for (int j = 1; j < i; j++) {
-                        Event tempEvent2 = eventArrayList.get(j);
 
-                        if (tempEvent.price > tempEvent2.price) {
-                            String tempName = tempEvent.getName();
-                            list.add(tempName);
-                        } else {
-                            String tempName2 = tempEvent2.getName();
-                            list.add(tempName2);
-                        }
-                    }
-//                Comparator<Event> compare = new Comparator<Event>() {
-//                    @Override
-//                    public int compare(Event o1, Event o2) {
-//                        if (o1.price < o2.price)
-//                            list.add(o2);
-//                        return o1.price;
-//
-//                    }
-//                };
+                    String tempName = tempEvent.getName();
+                    list.add(tempName);
                 }
+                adapter.notifyDataSetChanged();
             }
+        });
+
+        Button btnSortTime = (Button) findViewById(R.id.btnSortTime);
+        btnSortTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.clear();
+                sortTime(eventArrayList, 0, eventArrayList.size()-1);
+                for(int i = 0; i < eventArrayList.size(); i++){
+                    Event tempEvent = eventArrayList.get(i);
+
+                    String tempName = tempEvent.getName();
+                    list.add(tempName);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
         });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -226,5 +230,118 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
+    public void merge(ArrayList<Event> arr, int l, int m, int r)
+    {
+        int n1 = m - l + 1;
+        int n2 = r - m;
+
+        ArrayList<Event> L = new ArrayList<Event>();
+        ArrayList<Event> R = new ArrayList<Event>();
+
+        for (int i=0; i<n1; ++i)
+            L.add(arr.get(l + i));
+        for (int j=0; j<n2; ++j)
+            R.add(arr.get(m + 1+ j));
+
+        int i = 0, j = 0;
+        int k = l;
+
+        while (i < n1 && j < n2)
+        {
+            if (L.get(i).price <= R.get(j).price)
+          //  if (L.get(i).time.compareTo(R.get(j).time) <= 0)
+            {
+                arr.set(k, L.get(i));
+                i++;
+            }
+            else
+            {
+                arr.set(k, R.get(j));
+                j++;
+            }
+            k++;
+        }
+
+        while (i < n1)
+        {
+            arr.set(k, L.get(i));
+            i++;
+            k++;
+        }
+
+        while (j < n2)
+        {
+            arr.set(k, R.get(j));
+            j++;
+            k++;
+        }
+    }
+
+    public void mergeTime(ArrayList<Event> arr, int l, int m, int r)
+    {
+        int n1 = m - l + 1;
+        int n2 = r - m;
+
+        ArrayList<Event> L = new ArrayList<Event>();
+        ArrayList<Event> R = new ArrayList<Event>();
+
+        for (int i=0; i<n1; ++i)
+            L.add(arr.get(l + i));
+        for (int j=0; j<n2; ++j)
+            R.add(arr.get(m + 1+ j));
+
+        int i = 0, j = 0;
+        int k = l;
+
+        while (i < n1 && j < n2)
+        {
+            if (L.get(i).time.compareTo(R.get(j).time) <= 0)
+            {
+                arr.set(k, L.get(i));
+                i++;
+            }
+            else
+            {
+                arr.set(k, R.get(j));
+                j++;
+            }
+            k++;
+        }
+
+        while (i < n1)
+        {
+            arr.set(k, L.get(i));
+            i++;
+            k++;
+        }
+
+        while (j < n2)
+        {
+            arr.set(k, R.get(j));
+            j++;
+            k++;
+        }
+    }
+    public void sort(ArrayList<Event> arr, int l, int r)
+    {
+        if (l < r)
+        {
+            int m = (l+r)/2;
+            sort(arr, l, m);
+            sort(arr , m+1, r);
+            merge(arr, l, m, r);
+        }
+    }
+
+    public void sortTime(ArrayList<Event> arr, int l, int r)
+    {
+        if (l < r)
+        {
+            int m = (l+r)/2;
+            sortTime(arr, l, m);
+            sortTime(arr , m+1, r);
+            mergeTime(arr, l, m, r);
+        }
+    }
 
 }

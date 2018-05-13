@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fakeEvent1.ownerID = 0;
         }*/
         Event fakeEvent2 = new Event(3, 4, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00", 10);
+        Event fakeEvent3 = new Event(4, 5, 1, "Andrei's Mititei Extravaganza", "Mititeis with a LOT of mustard", "Kanalstein", "There will be so much food you will event have extra to take home to your dog", "10:00", 7);
         //fakeEvent2.ownerID = 2;
 
         User fakeUser = new User(1, "abc", "abc", "1234", "no", "2@2.com", "caca");
@@ -134,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         eventArrayListMain.add(fakeEvent1);
         eventArrayListMain.add(fakeEvent2);
+        eventArrayListMain.add(fakeEvent3);
         if (receivedEvent.getOwnerID() == 0) {
             for (int i = 0; i < eventArrayListMain.size(); i++) {
                 if (receivedEvent.ID == eventArrayListMain.get(i).ID) {
