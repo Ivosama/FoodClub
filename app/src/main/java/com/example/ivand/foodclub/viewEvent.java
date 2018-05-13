@@ -119,16 +119,16 @@ public class viewEvent extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(), "Clicked this " + position, Toast.LENGTH_LONG);
 
                 //Intent intent = new Intent(viewEvent.this, viewEvent.class); // Create intent to send Parcel to Map and List
-                if (!MainActivity.userIsHosting) {
+                if (!MainActivity.userInEvent) {
                     if (user.id == receivedEvent.ownerID) {
                         Toast.makeText(getApplicationContext(), "This is your event - Your role is being the host!", Toast.LENGTH_LONG).show();
+
                     } else {
                         Role role = eventRoleList.get(position);
                         if (role.holderID != user.id && role.isTaken == false) {
-                            receivedEvent.roles.get(position).isTaken = true;
-                            receivedEvent.roles.get(position).holderID = user.id;
+
                             Toast.makeText(getApplicationContext(),"holder id: " + receivedEvent.roles.get(position).holderID, Toast.LENGTH_SHORT);
-                            confirmJoin(role);
+                            confirmJoin(role, position);
                         } else {
                             Toast.makeText(getApplicationContext(), "Role taken", Toast.LENGTH_SHORT).show();
                         }
@@ -138,7 +138,7 @@ public class viewEvent extends AppCompatActivity {
                     }
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "You are hosting another event!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "You are attending another event!", Toast.LENGTH_LONG).show();
                 }
 
 
@@ -159,14 +159,16 @@ public class viewEvent extends AppCompatActivity {
             deleteButton.setVisibility(View.VISIBLE);
             leaveButton.setVisibility(View.GONE);
         } else {
-            leaveButton.setVisibility(View.GONE);
+
             deleteButton.setVisibility(View.GONE);
 
             // Visibility of leave button
-            for (int i = 0; i < receivedEvent.roles.size(); i++) {
-                if (receivedEvent.roles.get(i).getHolderID() == user.getId() && receivedEvent.roles.get(i).isTaken == true) {
-                    leaveButton.setVisibility(View.VISIBLE);
-                }
+            leaveButton.setVisibility(View.GONE);
+
+        }
+        for (int i = 0; i < receivedEvent.roles.size(); i++) {
+            if (receivedEvent.roles.get(i).holderID == user.getId()) {
+                leaveButton.setVisibility(View.VISIBLE);
             }
         }
 
@@ -221,7 +223,7 @@ public class viewEvent extends AppCompatActivity {
 
 
     // Function used for confirming a users wish to join an event as a role
-    private void confirmJoin(final Role role) {
+    private void confirmJoin(final Role role, final int position) {
         final AlertDialog.Builder confirmJ = new AlertDialog.Builder(this);
         confirmJ.setMessage("Do you want to join the event as a " + role.title + "?");
         confirmJ.setCancelable(false);
@@ -229,18 +231,25 @@ public class viewEvent extends AppCompatActivity {
         confirmJ.setPositiveButton("yeah", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
+
                 Intent intent = new Intent(viewEvent.this, MainActivity.class);
 
+                receivedEvent.roles.get(position).setHolderID(user.id);
                 intent.putExtra("com.package.eventObject", receivedEvent);
+                intent.putExtra("com.package.userObject", user);
+                intent.putExtra("com.package.userArray", userArrayList);
 
-                role.holderID = userArrayList.get(0).getId();
+                role.holderID = user.getId();
                 role.isTaken = true;
+
+
 
                 MainActivity.userApplied = true;
                 Map_and_List.userApplied = true;
                 Host.userApplied = true;
                 startActivity(intent);
-                Toast.makeText(getApplicationContext(),"" + receivedEvent.roles.get(0).holderID, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"" + receivedEvent.roles.get(0).holderID, Toast.LENGTH_LONG).show();
                 //Toast.makeText(getApplicationContext(), "you are now signed up as " + role.title, Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getApplicationContext(), "role.isTaken is now " + role.isTaken, Toast.LENGTH_SHORT).show();
             }

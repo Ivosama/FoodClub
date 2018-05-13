@@ -154,12 +154,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (receivedEvent.ownerID != user.id) {
             for (int i = 0; i < eventArrayListMain.size(); i++) {
                 if (receivedEvent.getID() == eventArrayListMain.get(i).getID()) {
-                    for (int j = 0; j < eventArrayListMain.get(i).roles.size(); j++) {
-
-                        eventArrayListMain.get(i).roles = receivedEvent.roles;
-                        break;
-
-                    }
+                    eventArrayListMain.set(i, receivedEvent);
                 }
 
             }
@@ -524,7 +519,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         userAccepted.setMessage("You have been accepted in the event for which you applied!");
         userAccepted.setCancelable(false);
-
+        userInEvent = true;
         userAccepted.setPositiveButton("Event Details", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -537,10 +532,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         }
                     }
                 }
-                Event tempEvent = new Event();
-                tempEvent = eventArrayListMain.get(tempEventID);
+
                 intent.putExtra("com.package.eventObject", eventArrayListMain.get(tempEventID));
                 intent.putExtra("com.package.userObject", user);
+                intent.putExtra("com.package.userArray", userArrayListMain);
 
                 startActivity(intent);
                 //Toast.makeText(MainActivity.this, "Take me to church", Toast.LENGTH_SHORT).show();
