@@ -119,22 +119,26 @@ public class viewEvent extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(), "Clicked this " + position, Toast.LENGTH_LONG);
 
                 //Intent intent = new Intent(viewEvent.this, viewEvent.class); // Create intent to send Parcel to Map and List
-                if (user.id == receivedEvent.ownerID) {
-                    Toast.makeText(getApplicationContext(), "This is your event - Your role is being the host!", Toast.LENGTH_LONG).show();
-                } else {
-                    Role role = eventRoleList.get(position);
-                    if (role.holderID != user.id && role.isTaken == false) {
-                        receivedEvent.roles.get(position).isTaken = true;
-                        receivedEvent.roles.get(position).holderID = user.id;
-                        Toast.makeText(getApplicationContext(),"holder id: " + receivedEvent.roles.get(position).holderID, Toast.LENGTH_SHORT);
-                        confirmJoin(role);
+                if (!MainActivity.userIsHosting) {
+                    if (user.id == receivedEvent.ownerID) {
+                        Toast.makeText(getApplicationContext(), "This is your event - Your role is being the host!", Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(getApplicationContext(), "Role taken", Toast.LENGTH_SHORT).show();
+                        Role role = eventRoleList.get(position);
+                        if (role.holderID != user.id && role.isTaken == false) {
+                            receivedEvent.roles.get(position).isTaken = true;
+                            receivedEvent.roles.get(position).holderID = user.id;
+                            Toast.makeText(getApplicationContext(),"holder id: " + receivedEvent.roles.get(position).holderID, Toast.LENGTH_SHORT);
+                            confirmJoin(role);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Role taken", Toast.LENGTH_SHORT).show();
+                        }
+
+                        //Toast.makeText(getApplicationContext(), "User id is " + user.id, Toast.LENGTH_LONG);
+
                     }
 
-                    //Toast.makeText(getApplicationContext(), "User id is " + user.id, Toast.LENGTH_LONG);
-
                 }
+
 
 
                 //Toast.makeText(getApplicationContext(), "position = " + position + " name = " + eventRoleList.get(position).title, Toast.LENGTH_LONG).show();

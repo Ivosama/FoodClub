@@ -37,6 +37,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -133,9 +134,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Role fakeRole1 = new Role("DishWasher");
         fakeRole1.isTaken = true;
         Role fakeRole2 = new Role("Musician");
+        Role fakeRole3 = new Role("Dog");
 
         fakeEvent1.roles.add(fakeRole1);
         fakeEvent1.roles.add(fakeRole2);
+        fakeEvent1.roles.add(fakeRole3);
         fakeEvent2.roles.add(fakeRole1);
 
         eventArrayListMain.add(fakeEvent1);
@@ -201,11 +204,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 public void onTick(long millisUntilFinished) {
 
                 }
+
+                Random r = new Random();
+                int i = r.nextInt(userArrayListMain.size() - 0);
                 public void onFinish() {
 
                     User randomUser = new User();
-                    randomUser.setfirstName("Jens");
-                    randomUser.setLastName("Ole");
+                    randomUser = userArrayListMain.get(i);
                     confirmUser(randomUser);
                 }
 
@@ -214,11 +219,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 public void onTick(long millisUntilFinished) {
 
                 }
+                Random r = new Random();
+                int i = r.nextInt(userArrayListMain.size() - 0);
+
+
                 public void onFinish() {
 
                     User randomUser = new User();
-                    randomUser.setfirstName("Ole");
-                    randomUser.setLastName("Jensen");
+                    randomUser = userArrayListMain.get(i);
                     confirmUser(randomUser);
                 }
 
@@ -476,6 +484,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        confirmUser.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                confirmUser.setCancelable(true);
+            }
+        });
 
         confirmUser.setNeutralButton("View profile", new DialogInterface.OnClickListener() {
             @Override
@@ -502,7 +516,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        confirmUser.create().show();
+        //confirmUser.create().show();
     }
 
     private void userAccepted() {
@@ -539,7 +553,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 userAccepted.setCancelable(true);
             }
         });
-        //userAccepted.create().show();
+        userAccepted.create().show();
     }
     /*
     private void acceptUser() {
