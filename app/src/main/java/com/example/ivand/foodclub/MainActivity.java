@@ -257,6 +257,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         }
                     }, 5000);
         } else if (MainActivity.userIsHosting || Host.userIsHosting || Map_and_List.userIsHosting) {
+
             getSupportActionBar().setTitle("Waiting for users...");
 
             for (int k = 0; k < eventArrayListMain.size(); k++) {

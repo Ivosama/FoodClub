@@ -180,15 +180,21 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                 }
 
 
-                event.setID(1);
-                event.ownerID = ownerID;
-                event.name = eventName;
-                event.menu = whatCooking;
-                event.place = place;
-                event.description = description;
-                event.price = price;
-                event.roles = roles;
-                confirmPost(event);
+
+                if (roles.size() != 0) {
+                    event.setID(1);
+                    event.ownerID = ownerID;
+                    event.name = eventName;
+                    event.menu = whatCooking;
+                    event.place = place;
+                    event.description = description;
+                    event.price = price;
+                    event.roles = roles;
+                    confirmPost(event);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please add roles before posting!", Toast.LENGTH_SHORT).show();
+                }
+
 
 
                 //framework to changing the layout of the toolbars
