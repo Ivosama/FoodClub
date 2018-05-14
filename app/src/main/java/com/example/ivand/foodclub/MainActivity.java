@@ -496,6 +496,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(DialogInterface dialog, int which) {
                 eventArrayListMain.get(tempEventID).roles.get(tempRoleID).setHolderID(randomUser.getId());
                 eventArrayListMain.get(tempEventID).roles.get(tempRoleID).isTaken = true;
+                saveEvent(eventArrayListMain.get(tempEventID));
+
             }
         });
 

@@ -298,4 +298,14 @@ public class viewEvent extends AppCompatActivity {
         confirmLeave.create().show();
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(viewEvent.this, MainActivity.class));
+        finish();
+
+    }
+
+
 }
