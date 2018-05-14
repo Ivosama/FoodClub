@@ -436,8 +436,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "log out code", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.goToRoom_id:
-                // Toast.makeText(this, "Go to room test", Toast.LENGTH_SHORT).show();
-                openTehSignup();
+                if (userIsHosting == true) {  //puts user in their event if they already have one
+                    Intent intent = new Intent(MainActivity.this, viewEvent.class); // Create intent to send Parcel to Map and List
+                    Event event = eventArrayListMain.get(eventArrayListMain.size() - 1);  //last thing in the list
+                    intent.putExtra("com.package.eventObject", event);
+                    User tempUser = user;
+                    intent.putExtra("com.package.userObject", tempUser);
+                    intent.putExtra("com.package.userArray", userArrayListMain);
+                    startActivity(intent);
+                } else {
+                    openHost();
+                }
                 break;
             case R.id.profile_id:
                 openProfile(userArrayListMain.get(0));
