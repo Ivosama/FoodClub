@@ -470,71 +470,83 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // DIALOG bOX FOR CONFIRMING RANDOM USERS JOINING
     private void confirmUser(final User randomUser) {
-        final AlertDialog.Builder confirmUser = new AlertDialog.Builder(this);
 
-        Role tempRole = new Role();
+        for (int k = 0; k < eventArrayListMain.size(); k++) {
+            if (eventArrayListMain.get(k).getID() == user.getId()) {
+                tempEventID = k;
+                for (int m = 0; m < eventArrayListMain.get(k).roles.size(); m++) {
+                    if (eventArrayListMain.get(k).roles.get(m).isTaken == false) {
+                        final AlertDialog.Builder confirmUser = new AlertDialog.Builder(this);
 
-        tempRole.title = " ";
-        for (int i = 0; i < eventArrayListMain.size(); i++) {
-            if (eventArrayListMain.get(i).getID() == user.getId()) {
-                tempEventID = i;
-                for (int j = 0; j < eventArrayListMain.get(i).roles.size(); j++) {
-                    if (eventArrayListMain.get(i).roles.get(j).isTaken == false) {
-                        tempRole = eventArrayListMain.get(i).roles.get(j);
-                        tempRoleID = j;
+                        Role tempRole = new Role();
+
+                        tempRole.title = " ";
+                        for (int i = 0; i < eventArrayListMain.size(); i++) {
+                            if (eventArrayListMain.get(i).getID() == user.getId()) {
+                                tempEventID = i;
+                                for (int j = 0; j < eventArrayListMain.get(i).roles.size(); j++) {
+                                    if (eventArrayListMain.get(i).roles.get(j).isTaken == false) {
+                                        tempRole = eventArrayListMain.get(i).roles.get(j);
+                                        tempRoleID = j;
+                                    }
+                                }
+                            }
+                        }
+                        confirmUser.setMessage("User " + randomUser.firstName + " " + randomUser.lastName + " wants to join your event as a " + tempRole.title  );
+                        confirmUser.setCancelable(false);
+
+
+
+                        confirmUser.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                eventArrayListMain.get(tempEventID).roles.get(tempRoleID).setHolderID(randomUser.getId());
+                                eventArrayListMain.get(tempEventID).roles.get(tempRoleID).isTaken = true;
+                                saveEvent(eventArrayListMain.get(tempEventID));
+
+                            }
+                        });
+
+                        confirmUser.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                confirmUser.setCancelable(true);
+                            }
+                        });
+
+                        confirmUser.setNeutralButton("View profile", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+
+                        final AlertDialog dialog = confirmUser.create();
+                        dialog.show();
+                        dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Boolean wantToCloseDialog = false;
+                                if(wantToCloseDialog) {
+                                    dialog.dismiss();
+                                }
+                                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                                intent.putExtra("com.package.userObject", randomUser);
+                                startActivity(intent);
+                            }
+                        });
+
+
+
+
+                        //confirmUser.create().show();
                     }
                 }
             }
         }
-        confirmUser.setMessage("User " + randomUser.firstName + " " + randomUser.lastName + " wants to join your event as a " + tempRole.title  );
-        confirmUser.setCancelable(false);
-
-
-
-        confirmUser.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                eventArrayListMain.get(tempEventID).roles.get(tempRoleID).setHolderID(randomUser.getId());
-                eventArrayListMain.get(tempEventID).roles.get(tempRoleID).isTaken = true;
-                saveEvent(eventArrayListMain.get(tempEventID));
-
-            }
-        });
-
-        confirmUser.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                confirmUser.setCancelable(true);
-            }
-        });
-
-        confirmUser.setNeutralButton("View profile", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
-        final AlertDialog dialog = confirmUser.create();
-        dialog.show();
-        dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Boolean wantToCloseDialog = false;
-                if(wantToCloseDialog) {
-                    dialog.dismiss();
-                }
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                intent.putExtra("com.package.userObject", randomUser);
-                startActivity(intent);
-            }
-        });
-
-
-
-
-        //confirmUser.create().show();
     }
+
+
 
     private void userAccepted() {
         final AlertDialog.Builder userAccepted = new AlertDialog.Builder(this);
