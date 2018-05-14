@@ -419,10 +419,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "About us clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.chat_id:
+                userInEvent = true;
+                openChat();
                 Toast.makeText(this, "go to chat", Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void openChat() {
+        if (userInEvent) {
+            Intent intent = new Intent(this, Chat.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "You haven't join an event", Toast.LENGTH_SHORT).show();
+        }
     }
 
     //Code for listening to buttons in the drawer menu

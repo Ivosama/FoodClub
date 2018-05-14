@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/imageProfile_chat"
         android:padding="5dp"
-        android:text="Lord and saviour"
+        android:text="Not yet Implemented"
         android:textSize="30sp" />
 
     <ImageButton
