@@ -259,12 +259,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (MainActivity.userIsHosting || Host.userIsHosting || Map_and_List.userIsHosting) {
             getSupportActionBar().setTitle("Waiting for users...");
 
-            new android.os.Handler().postDelayed(
-                    new Runnable() {
-                        public void run() {
-                            //acceptUser();
+            for (int k = 0; k < eventArrayListMain.size(); k++) {
+                if (eventArrayListMain.get(k).getID() == user.getId()) {
+                    tempEventID = k;
+                    for (int m = 0; m < eventArrayListMain.get(k).roles.size(); m++) {
+                        if (eventArrayListMain.get(k).roles.get(m).isTaken == true) {
+                            getSupportActionBar().setTitle("Your event is full");
                         }
-                    }, 5000);
+                    }
+                }
+            }
         } else {
             getSupportActionBar().setTitle("Food Club");
         }
