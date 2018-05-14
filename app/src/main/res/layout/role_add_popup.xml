@@ -4,7 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/ic_launcher_background">
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorAccent" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorAccent" />
 
     <EditText
         android:id="@+id/role2_input"
@@ -80,6 +96,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp"
+        android:background="@color/colorAccent"
         android:text="Finish" />
 
     <TextView
@@ -98,6 +116,7 @@
         android:layout_alignEnd="@+id/amountRole1_input"
         android:layout_alignTop="@+id/role5_input"
         android:ems="10"
+        android:hint="0"
         android:inputType="number"
         android:singleLine="true"
         android:text="0" />
@@ -109,6 +128,7 @@
         android:layout_above="@+id/role5_input"
         android:layout_alignEnd="@+id/amountRole1_input"
         android:ems="10"
+        android:hint="0"
         android:inputType="number"
         android:singleLine="true"
         android:text="0" />
@@ -120,6 +140,7 @@
         android:layout_alignEnd="@+id/amountRole1_input"
         android:layout_below="@+id/role2_input"
         android:ems="10"
+        android:hint="0"
         android:inputType="number"
         android:singleLine="true"
         android:text="0" />
@@ -131,6 +152,7 @@
         android:layout_alignEnd="@+id/amountRole1_input"
         android:layout_below="@+id/role1_input"
         android:ems="10"
+        android:hint="0"
         android:inputType="number"
         android:singleLine="true"
         android:text="0" />
@@ -142,8 +164,25 @@
         android:layout_alignTop="@+id/role1_input"
         android:layout_toEndOf="@+id/restraint"
         android:ems="10"
+        android:hint="0"
         android:inputType="number"
         android:singleLine="true"
         android:text="0" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorAccent" />
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorAccent" />
 
 </RelativeLayout>

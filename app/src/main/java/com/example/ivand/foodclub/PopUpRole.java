@@ -80,6 +80,7 @@ public class PopUpRole extends Activity {
                 role3 = role3_input.getText().toString();
                 role4 = role4_input.getText().toString();
                 role5 = role5_input.getText().toString();
+
                 amountRole1 = Integer.valueOf(amountRole1_input.getText().toString());
                 amountRole2 = Integer.valueOf(amountRole2_input.getText().toString());
                 amountRole3 = Integer.valueOf(amountRole3_input.getText().toString());
