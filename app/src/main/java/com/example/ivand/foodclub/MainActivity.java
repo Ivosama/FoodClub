@@ -136,10 +136,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fakeRole1.isTaken = true;
         Role fakeRole2 = new Role("Musician");
         Role fakeRole3 = new Role("Guest");
+        Role fakeRole4 = new Role("Dog");
 
         fakeEvent1.roles.add(fakeRole1);
         fakeEvent1.roles.add(fakeRole2);
         fakeEvent1.roles.add(fakeRole3);
+        fakeEvent2.roles.add(fakeRole3);
         fakeEvent2.roles.add(fakeRole1);
         fakeEvent4.roles.add(fakeRole1);
         fakeEvent4.roles.add(fakeRole3);
