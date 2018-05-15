@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        if (MainActivity.userApplied || Host.userApplied || Map_and_List.userApplied) {
+        if (MainActivity.userApplied || Host.userApplied) {
             getSupportActionBar().setTitle("Awaiting confirmation...");
 
             new android.os.Handler().postDelayed(
@@ -266,6 +266,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     for (int m = 0; m < eventArrayListMain.get(k).roles.size(); m++) {
                         if (eventArrayListMain.get(k).roles.get(m).isTaken == true) {
                             getSupportActionBar().setTitle("Your event is full");
+                            Map_and_List.userIsHosting = false;
                         }
                     }
                 }

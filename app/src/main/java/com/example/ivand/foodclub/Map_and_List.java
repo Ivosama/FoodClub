@@ -55,7 +55,7 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+//        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         drawerLayout = findViewById(R.id.drawer_layout);
 
         navigationView = findViewById(R.id.nav_view);
@@ -66,9 +66,9 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
 
         toggle.syncState();
 
-        if (MainActivity.userApplied || Host.userApplied || Map_and_List.userApplied) {
+        if (MainActivity.userApplied) {
             getSupportActionBar().setTitle("Awaiting confirmation...");
-        } else if (MainActivity.userIsHosting || Host.userIsHosting || Map_and_List.userIsHosting) {
+        } else if (Map_and_List.userIsHosting) {
             getSupportActionBar().setTitle("Waiting for users...");
         } else {
             getSupportActionBar().setTitle("Food Club");
