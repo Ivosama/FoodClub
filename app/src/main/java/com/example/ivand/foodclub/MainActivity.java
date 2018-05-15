@@ -494,10 +494,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     if (eventArrayListMain.get(i).roles.get(j).isTaken == false) {
                                         tempRole = eventArrayListMain.get(i).roles.get(j);
                                         tempRoleID = j;
+
                                     }
                                 }
                             }
                         }
+
                         confirmUser.setMessage("User " + randomUser.firstName + " " + randomUser.lastName + " wants to join your event as a " + tempRole.title  );
                         confirmUser.setCancelable(false);
 
@@ -506,9 +508,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         confirmUser.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+
                                 eventArrayListMain.get(tempEventID).roles.get(tempRoleID).setHolderID(randomUser.getId());
                                 eventArrayListMain.get(tempEventID).roles.get(tempRoleID).isTaken = true;
                                 saveEvent(eventArrayListMain.get(tempEventID));
+
+                                for (int k = 0; k < eventArrayListMain.size(); k++) {
+                                    if (eventArrayListMain.get(k).getID() == user.getId()) {
+                                        tempEventID = k;
+                                        for (int m = 0; m < eventArrayListMain.get(k).roles.size(); m++) {
+                                            if (eventArrayListMain.get(k).roles.get(m).isTaken == true) {
+                                                getSupportActionBar().setTitle("Your event is full");
+                                                Map_and_List.userIsHosting = false;
+                                            }
+                                        }
+                                    }
+                                }
 
                             }
                         });
