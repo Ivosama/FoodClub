@@ -567,7 +567,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 for (int i = 0; i < eventArrayListMain.size(); i++) {
                     for (int j = 0; j < eventArrayListMain.get(i).roles.size(); j++) {
                         if (eventArrayListMain.get(i).roles.get(j).getHolderID() == user.getId()) {
-                            tempEventID = eventArrayListMain.get(i).roles.get(j).getHolderID();
+                            tempEventID = i;
                         }
                     }
                 }
