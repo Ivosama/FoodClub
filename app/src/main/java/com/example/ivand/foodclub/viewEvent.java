@@ -286,6 +286,7 @@ public class viewEvent extends AppCompatActivity {
                 Host.userApplied = false;
 
                 intent.putExtra("com.package.eventObject", receivedEvent);
+                intent.putExtra("com.package.userObject", user);
                 startActivity(intent);
             }
         });
@@ -302,7 +303,11 @@ public class viewEvent extends AppCompatActivity {
     public void onBackPressed()
     {
         super.onBackPressed();
-        startActivity(new Intent(viewEvent.this, MainActivity.class));
+        Intent intent = new Intent(viewEvent.this, MainActivity.class);
+        intent.putExtra("com.package.eventObject", receivedEvent);
+        intent.putExtra("com.package.userObject", user);
+
+        startActivity(intent);
         finish();
 
     }
