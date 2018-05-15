@@ -9,6 +9,7 @@
     <item
         android:title=""
         android:id="@+id/chat_id"
+        android:visible="false"
         android:icon="@drawable/chat"
         app:showAsAction="always"></item>
 

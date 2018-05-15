@@ -75,7 +75,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+//        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         drawerLayout = findViewById(R.id.drawer_layout);
 
         getSupportActionBar().setTitle("Host an event");
