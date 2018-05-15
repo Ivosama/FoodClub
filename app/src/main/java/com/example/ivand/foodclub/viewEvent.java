@@ -66,7 +66,7 @@ public class viewEvent extends AppCompatActivity {
         try {
             User tempUser = bundle.getParcelable("com.package.userObject");
             user = tempUser;
-            Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
 
         }
@@ -97,7 +97,7 @@ public class viewEvent extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(),"" + size, Toast.LENGTH_LONG).show();
                 try {
                     Role tempRole = (Role) receivedEvent.roles.get(i);
-                    Toast.makeText(getApplicationContext(), tempRole.title, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), tempRole.title, Toast.LENGTH_SHORT).show();
                     eventRoleList.add(tempRole);
                 } catch (Exception e) {
 
@@ -127,7 +127,7 @@ public class viewEvent extends AppCompatActivity {
                         Role role = eventRoleList.get(position);
                         if (role.holderID != user.id && role.isTaken == false) {
 
-                            Toast.makeText(getApplicationContext(),"holder id: " + receivedEvent.roles.get(position).holderID, Toast.LENGTH_SHORT);
+                            //Toast.makeText(getApplicationContext(),"holder id: " + receivedEvent.roles.get(position).holderID, Toast.LENGTH_SHORT);
                             confirmJoin(role, position);
                         } else {
                             Toast.makeText(getApplicationContext(), "Role taken", Toast.LENGTH_SHORT).show();
@@ -138,7 +138,7 @@ public class viewEvent extends AppCompatActivity {
                     }
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "You are attending another event!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "You are already attending an event!", Toast.LENGTH_LONG).show();
                 }
 
 
@@ -207,6 +207,10 @@ public class viewEvent extends AppCompatActivity {
                 MainActivity.userIsHosting = false;
                 Map_and_List.userIsHosting = false;
                 Host.userIsHosting = false;
+                MainActivity.userApplied = false;
+                MainActivity.userInEvent = false;
+                Map_and_List.userApplied = false;
+                Host.userApplied = false;
                 intent.putExtra("com.package.eventObject", receivedEvent);
                 intent.putExtra("com.package.userObject", user);
                 startActivity(intent);
@@ -286,6 +290,7 @@ public class viewEvent extends AppCompatActivity {
                 Host.userApplied = false;
 
                 intent.putExtra("com.package.eventObject", receivedEvent);
+                intent.putExtra("com.package.userObject", user);
                 startActivity(intent);
             }
         });
@@ -302,7 +307,11 @@ public class viewEvent extends AppCompatActivity {
     public void onBackPressed()
     {
         super.onBackPressed();
-        startActivity(new Intent(viewEvent.this, MainActivity.class));
+        Intent intent = new Intent(viewEvent.this, MainActivity.class);
+        intent.putExtra("com.package.eventObject", receivedEvent);
+        intent.putExtra("com.package.userObject", user);
+
+        //startActivity(intent);
         finish();
 
     }
