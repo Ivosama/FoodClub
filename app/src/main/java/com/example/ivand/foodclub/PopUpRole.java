@@ -18,6 +18,7 @@ import android.widget.Toast;
 public class PopUpRole extends Activity {
 
     Event receivedEvent = new Event();
+    User user = new User();
     Role tempRole = new Role();
 
     Button finish_btn;
@@ -38,6 +39,12 @@ public class PopUpRole extends Activity {
             receivedEvent = bundle.getParcelable("com.package.eventObject");
             //Toast.makeText(getApplicationContext(), receivedEvent.toString(), Toast.LENGTH_SHORT).show();
 
+        } catch (Exception e) {
+
+        }
+
+        try {
+            user = bundle.getParcelable("com.package.userObject");
         } catch (Exception e) {
 
         }
@@ -126,6 +133,7 @@ public class PopUpRole extends Activity {
 
                 Intent intent = new Intent(PopUpRole.this, Host.class);
                 intent.putExtra("com.package.eventObject", receivedEvent);
+                intent.putExtra("com.package.userObject", user);
                 startActivity(intent);
 
             }

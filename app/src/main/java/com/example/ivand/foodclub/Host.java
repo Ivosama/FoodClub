@@ -100,19 +100,21 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
         try {
             user = bundle.getParcelable("com.package.userObject");
             ownerID = user.id;
-            Toast.makeText(getApplicationContext(), "" + ownerID, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "" + ownerID, Toast.LENGTH_LONG).show();
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "User not received", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "User not received", Toast.LENGTH_SHORT).show();
         }
         received = false;
         try {
             receivedEvent = bundle.getParcelable("com.package.eventObject");
             roles = receivedEvent.roles;
             received = true;
-            Toast.makeText(getApplicationContext(), "package received", Toast.LENGTH_SHORT).show();
-            for (int k = 0; k < receivedEvent.roles.size(); k++) {
-                Toast.makeText(getApplicationContext(), receivedEvent.roles.get(k).title, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Roles added!", Toast.LENGTH_SHORT).show();
+            int k = 0;
+            for (k = 0; k < receivedEvent.roles.size(); k++) {
+                //Toast.makeText(getApplicationContext(), receivedEvent.roles.get(k).title, Toast.LENGTH_SHORT).show();
             }
+            Toast.makeText(getApplicationContext(),"" + k + " roles added!", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
 
         }
@@ -250,6 +252,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                 // Pop-up functionality (eg. opening the pop-up and sending the event to it).
                 currentEvent = new Event(ID, ownerID, dist, eventName, whatCooking, place, description, time, price);
                 Intent intent = new Intent(Host.this, PopUpRole.class);
+                intent.putExtra("com.package.userObject", user);
                 intent.putExtra("com.package.eventObject", currentEvent);
                 //Toast.makeText(this,"Open AddRole PopUp", Toast.LENGTH_SHORT).show();
                 startActivity(intent);

@@ -207,6 +207,10 @@ public class viewEvent extends AppCompatActivity {
                 MainActivity.userIsHosting = false;
                 Map_and_List.userIsHosting = false;
                 Host.userIsHosting = false;
+                MainActivity.userApplied = false;
+                MainActivity.userInEvent = false;
+                Map_and_List.userApplied = false;
+                Host.userApplied = false;
                 intent.putExtra("com.package.eventObject", receivedEvent);
                 intent.putExtra("com.package.userObject", user);
                 startActivity(intent);
@@ -307,7 +311,7 @@ public class viewEvent extends AppCompatActivity {
         intent.putExtra("com.package.eventObject", receivedEvent);
         intent.putExtra("com.package.userObject", user);
 
-        startActivity(intent);
+        //startActivity(intent);
         finish();
 
     }
