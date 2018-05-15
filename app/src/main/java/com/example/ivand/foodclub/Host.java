@@ -161,6 +161,11 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
             } catch (Exception e) {
 
             }
+            try {
+                time_input.setText(receivedEvent.time);
+            } catch (Exception e){
+
+            }
 
         }
 
