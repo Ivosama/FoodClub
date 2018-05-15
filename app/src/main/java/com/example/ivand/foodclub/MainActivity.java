@@ -104,13 +104,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // ARRAY STUFF
 
-        Event fakeEvent1 = new Event(2, 3, 5, "Poul's Event motherfuckers!", "Pasta ala Poul", "Poul's place, which is very nice and large and good and the windows are oh so fine. The place is located in Nørresundby which is kindof not 10 minutes from basis", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!", "12:30", 5);
+        Event fakeEvent1 = new Event(2, 3, 5, "Italian Food", "Pasta", "Wharfroad 27", "Hey all! Come eat some of my delicious pasta. Oh, and btw - I am wild!", "18:20", 5);
         //fakeEvent1.ownerID = 1;
         /*if (receivedEvent.getOwnerID() == 0 && receivedEvent.ID == fakeEvent1.ID) {
             fakeEvent1.ownerID = 0;
         }*/
-        Event fakeEvent2 = new Event(3, 4, 1, "BASISBAR TODAY!", "Beers, en masse!", "BasisBar, of course!", "Fucking Basisbar, what more is there to say?!?!?", "14:00", 10);
-        Event fakeEvent3 = new Event(4, 5, 1, "Andrei's Mititei Extravaganza", "Mititeis with a LOT of mustard", "Kanalstein", "There will be so much food you will event have extra to take home to your dog", "10:00", 7);
+        Event fakeEvent2 = new Event(3, 4, 1, "The best dinner you'll ever go to", "Beers, en masse! Oh, and maybe some food", "Strettstreet 4", "Going to eat some food, but mostly drink beers", "14:00", 10);
+        Event fakeEvent3 = new Event(4, 5, 1, "Andrei's Mititei Extravaganza", "Mititeis with a LOT of mustard", "Kanalstein 19", "There will be so much food you will even have extra to take home to your dog", "10:00", 7);
+        Event fakeEvent4 = new Event(5, 10, 80, "Cool Mongolian Food", "Buuz", "Karl den stores gade 20", "We're going to eat some mongolian cuissine, primarily Buuz. Please join!", "20:00", 25);
         //fakeEvent2.ownerID = 2;
 
         User fakeUser = new User(2, "abc", "abc", "1234", "no", "2@2.com", "caca");
@@ -131,15 +132,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
-        Role fakeRole1 = new Role("DishWasher");
+        Role fakeRole1 = new Role("Dishwasher");
         fakeRole1.isTaken = true;
         Role fakeRole2 = new Role("Musician");
-        Role fakeRole3 = new Role("Dog");
+        Role fakeRole3 = new Role("Guest");
 
         fakeEvent1.roles.add(fakeRole1);
         fakeEvent1.roles.add(fakeRole2);
         fakeEvent1.roles.add(fakeRole3);
         fakeEvent2.roles.add(fakeRole1);
+        fakeEvent4.roles.add(fakeRole1);
+        fakeEvent4.roles.add(fakeRole3);
+        fakeEvent4.roles.add(fakeRole3);
+        fakeEvent4.roles.add(fakeRole2);
+        fakeEvent3.roles.add(fakeRole2);
+        fakeEvent3.roles.add(fakeRole1);
+        fakeEvent3.roles.add(fakeRole3);
 
         eventArrayListMain.add(fakeEvent1);
         eventArrayListMain.add(fakeEvent2);
