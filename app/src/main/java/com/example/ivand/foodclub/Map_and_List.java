@@ -153,7 +153,7 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
                 User tempUser = user;
                 intent.putExtra("com.package.userObject", tempUser);
                 intent.putExtra("com.package.userArray", userArrayList);
-                Toast.makeText(getApplicationContext(), "position = " + position + " name = " + event.name, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "position = " + position + " name = " + event.name, Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });
@@ -216,7 +216,7 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, Chat.class);
             startActivity(intent);
         } else {
-            Toast.makeText(this, "You haven't join an event", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You haven't joined an event", Toast.LENGTH_SHORT).show();
         }
     }
 

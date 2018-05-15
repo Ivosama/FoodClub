@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         try {
             user = bundle.getParcelable("com.package.userObject");
-            Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             user = new User(1);
         }
@@ -437,7 +437,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, Chat.class);
             startActivity(intent);
         } else {
-            Toast.makeText(this, "You haven't join an event", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You haven't joined an event", Toast.LENGTH_SHORT).show();
         }
     }
 

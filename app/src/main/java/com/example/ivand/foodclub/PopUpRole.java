@@ -36,7 +36,7 @@ public class PopUpRole extends Activity {
         Bundle bundle = getIntent().getExtras();
         try {
             receivedEvent = bundle.getParcelable("com.package.eventObject");
-            Toast.makeText(getApplicationContext(), receivedEvent.toString(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), receivedEvent.toString(), Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
 

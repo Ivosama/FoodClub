@@ -313,7 +313,8 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                     Intent intent = new Intent(Host.this, MainActivity.class); // Create intent to send Parcel to Map and List
                     intent.putExtra("com.package.eventObject", event);
                     intent.putExtra("com.package.userObject", user);
-                    Toast.makeText(getApplicationContext(), "" + event.getOwnerID(), Toast.LENGTH_LONG);
+                    //
+                    // Toast.makeText(getApplicationContext(), "" + event.getOwnerID(), Toast.LENGTH_LONG);
                     startActivity(intent);
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
