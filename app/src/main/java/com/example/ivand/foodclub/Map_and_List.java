@@ -199,8 +199,8 @@ public class Map_and_List extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "log out code", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.goToRoom_id:
-                // Toast.makeText(this, "Go to room test", Toast.LENGTH_SHORT).show();
-                openTehSignup();
+                Toast.makeText(this, "Please go to the main page", Toast.LENGTH_SHORT).show();
+                //openTehSignup();
                 break;
             case R.id.profile_id:
                 openProfile();
