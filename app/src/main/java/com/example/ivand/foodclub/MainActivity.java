@@ -197,6 +197,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     for (int i = 0; i < roleCount; i++) {
                         Role tempRole = new Role(Integer.valueOf(separated[(9 + (i * 4))]), separated[(10 + (i * 4))], Integer.valueOf(separated[(11 + (i * 4))]), Boolean.parseBoolean(separated[(12 + (i * 4))]));     //ID, name, holderID, taken
                         userEvent.roles.add(tempRole);
+
                     }
                 }
             }
@@ -308,7 +309,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     intent.putExtra("com.package.userObject", tempUser);
                     intent.putExtra("com.package.userArray", userArrayListMain);
                     startActivity(intent);
-                } else {
+                }
+                else if (userApplied == true){
+                    Toast toast = Toast.makeText(getApplicationContext(), "You've already joined an event!", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else {
                     openHost();
                 }
             }
