@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -62,6 +63,7 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
 
     // Buttons
     Button post_event_button;
+    FloatingActionButton add_roles;
 
     public ArrayList<Role> roles = new ArrayList<>();
     Event event = new Event();
@@ -169,6 +171,41 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
 
         }
 
+        add_roles = (FloatingActionButton) findViewById(R.id.addRole_id);
+        add_roles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Code for setting event details and then sending to the pop-up for roles.
+                time_input = (TextView) findViewById(R.id.time_input);
+
+                eventName_input = (EditText) findViewById(R.id.eventName_input);
+                whatCooking_input = (EditText) findViewById(R.id.whatCooking_input);
+                place_input = (EditText) findViewById(R.id.place_input);
+                description_input = (EditText) findViewById(R.id.description_input);
+                price_input = (EditText) findViewById(R.id.price_input);
+
+                eventName = eventName_input.getText().toString();
+                whatCooking = whatCooking_input.getText().toString();
+                place = place_input.getText().toString();
+                description = description_input.getText().toString();
+                time = time_input.getText().toString();
+
+                if (price != 0) {
+                    price = Integer.valueOf(price_input.getText().toString());
+                } else {
+                    price = 0;
+                }
+                // Pop-up functionality (eg. opening the pop-up and sending the event to it).
+                currentEvent = new Event(ID, ownerID, dist, eventName, whatCooking, place, description, time, price);
+                Intent intent = new Intent(Host.this, PopUpRole.class);
+                intent.putExtra("com.package.userObject", user);
+                intent.putExtra("com.package.eventObject", currentEvent);
+                //Toast.makeText(this,"Open AddRole PopUp", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+        });
+
+
 
         post_event_button = (Button) findViewById(R.id.post_event_button);
         post_event_button.setOnClickListener(new View.OnClickListener() {
@@ -233,34 +270,6 @@ public class Host extends AppCompatActivity implements NavigationView.OnNavigati
                 openChat();
                 Toast.makeText(this, "go to chat", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.addRole_id:
-                // Code for setting event details and then sending to the pop-up for roles.
-                time_input = (TextView) findViewById(R.id.time_input);
-
-                eventName_input = (EditText) findViewById(R.id.eventName_input);
-                whatCooking_input = (EditText) findViewById(R.id.whatCooking_input);
-                place_input = (EditText) findViewById(R.id.place_input);
-                description_input = (EditText) findViewById(R.id.description_input);
-                price_input = (EditText) findViewById(R.id.price_input);
-
-                eventName = eventName_input.getText().toString();
-                whatCooking = whatCooking_input.getText().toString();
-                place = place_input.getText().toString();
-                description = description_input.getText().toString();
-                time = time_input.getText().toString();
-
-                if (price != 0) {
-                    price = Integer.valueOf(price_input.getText().toString());
-                } else {
-                    price = 0;
-                }
-                // Pop-up functionality (eg. opening the pop-up and sending the event to it).
-                currentEvent = new Event(ID, ownerID, dist, eventName, whatCooking, place, description, time, price);
-                Intent intent = new Intent(Host.this, PopUpRole.class);
-                intent.putExtra("com.package.userObject", user);
-                intent.putExtra("com.package.eventObject", currentEvent);
-                //Toast.makeText(this,"Open AddRole PopUp", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
 

@@ -6,11 +6,5 @@
         android:id="@+id/aboutUs_id"
         android:title="About us"/>
 
-    <item
-        android:title=""
-        android:id="@+id/addRole_id"
-        android:icon="@drawable/add_roles"
-        app:showAsAction="always"></item>
-
 
 </menu>

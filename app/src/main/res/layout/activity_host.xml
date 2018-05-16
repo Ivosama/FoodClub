@@ -94,4 +94,17 @@
         android:background="@android:color/holo_blue_dark"
         android:text="Post" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addRole_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="39dp"
+        android:layout_marginTop="78dp"
+        android:clickable="true"
+        android:src="@drawable/account_multiple_plus"
+        app:elevation="4dp"
+        app:srcCompat="@drawable/account_multiple_plus" />
+
 </RelativeLayout>
