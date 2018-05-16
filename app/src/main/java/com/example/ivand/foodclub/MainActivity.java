@@ -115,9 +115,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //fakeEvent2.ownerID = 2;
 
         User fakeUser = new User(2, "abc", "abc", "1234", "no", "2@2.com", "caca");
-        User fakeUser2 = new User(5, "Analyn", "Krem", "1234", "latex", "horny@slut.com", "wakadoodle");
-        User fakeUser3 = new User(6, "Azucar", "Moreno", "1234", "Water", "sweet@candy.com", "slurp slurp");
-        User fakeUser4 = new User(7, "Bambi", "Nomom", "1234", "poachers", "lost@jungle.com", "oh! boom");
+        User fakeUser2 = new User(5, "Analyn", "Krem", "1234", "Peanuts", "horny@slut.com", "wakadoodle");
+        User fakeUser3 = new User(6, "Azucar", "Moreno", "1234", "Cold Water", "sweet@candy.com", "slurp slurp");
+        User fakeUser4 = new User(7, "Bambi", "Nomom", "1234", "Poachers", "lost@jungle.com", "oh! boom");
         User fakeUser5 = new User(8, "Rabbit", "Ribbit", "1234", "Frogs and carrots", "nomnom@rr.com", "Supelhelo");
 //Adding users to the array list
         userArrayListMain.add(fakeUser);
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Role fakeRole1 = new Role("Dishwasher");
         fakeRole1.isTaken = true;
-        Role fakeRole2 = new Role("Musician");
+        Role fakeRole2 = new Role("Cook helper");
         Role fakeRole3 = new Role("Guest");
         Role fakeRole4 = new Role("Dog");
 
