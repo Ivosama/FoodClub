@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private boolean isLoggedIn;
 
     public static boolean userApplied = false, userInEvent = false, userIsHosting = false;
+    public static int eventJoinedID = 0;
 
     ImageButton imgBtnEat;
     ImageButton imgBtnHost;
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Event fakeEvent2 = new Event(3, 4, 1, "The best dinner you'll ever go to", "Beers, en masse! Oh, and maybe some food", "Strettstreet 4", "Going to eat some food, but mostly drink beers", "14:00", 10);
         Event fakeEvent3 = new Event(4, 5, 1, "Andrei's Mititei Extravaganza", "Mititeis with a LOT of mustard", "Kanalstein 19", "There will be so much food you will even have extra to take home to your dog", "10:00", 7);
         Event fakeEvent4 = new Event(5, 10, 80, "Cool Mongolian Food", "Buuz", "Karl den stores gade 20", "We're going to eat some mongolian cuissine, primarily Buuz. Please join!", "20:00", 25);
+        Event fakeEvent5 = new Event(6, 12, 50, "Simple quick pasta", "Pasta with meat sauce", "Bonnesensgade 9", "I made way too much sauce, come take some please", "17:00", 15);
         //fakeEvent2.ownerID = 2;
 
         User fakeUser = new User(2, "abc", "abc", "1234", "no", "2@2.com", "caca");
@@ -119,12 +121,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         User fakeUser3 = new User(6, "Azucar", "Moreno", "1234", "Cold Water", "sweet@candy.com", "slurp slurp");
         User fakeUser4 = new User(7, "Bambi", "Nomom", "1234", "Poachers", "lost@jungle.com", "oh! boom");
         User fakeUser5 = new User(8, "Rabbit", "Ribbit", "1234", "Frogs and carrots", "nomnom@rr.com", "Supelhelo");
+        User fakeUser6 = new User(9, "Tronald", "Dump", "1234", "Beans, noodles", "great@America.com", "I require additional walls");
 //Adding users to the array list
         userArrayListMain.add(fakeUser);
         userArrayListMain.add(fakeUser2);
         userArrayListMain.add(fakeUser3);
         userArrayListMain.add(fakeUser4);
         userArrayListMain.add(fakeUser5);
+        userArrayListMain.add(fakeUser6);
 
 //testing size of array list user
         for (int i = 0; i < userArrayListMain.size(); i++) {
@@ -150,10 +154,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fakeEvent3.roles.add(fakeRole2);
         fakeEvent3.roles.add(fakeRole1);
         fakeEvent3.roles.add(fakeRole3);
+        fakeEvent5.roles.add(fakeRole1);
+        fakeEvent5.roles.add(fakeRole3);
+        fakeEvent5.roles.add(fakeRole3);
+        fakeEvent5.roles.add(fakeRole2);
 
         eventArrayListMain.add(fakeEvent1);
         eventArrayListMain.add(fakeEvent2);
         eventArrayListMain.add(fakeEvent3);
+        eventArrayListMain.add(fakeEvent4);
+        eventArrayListMain.add(fakeEvent5);
         if (receivedEvent.getOwnerID() == 0) {
             for (int i = 0; i < eventArrayListMain.size(); i++) {
                 if (receivedEvent.ID == eventArrayListMain.get(i).ID) {
@@ -477,7 +487,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     intent.putExtra("com.package.userObject", tempUser);
                     intent.putExtra("com.package.userArray", userArrayListMain);
                     startActivity(intent);
-                } else {
+                }
+                else if (userApplied == true || userInEvent == true){
+                    Intent intent = new Intent (MainActivity.this, viewEvent.class);
+                    int tempEventID = 0;
+                    for(int i = 0; i < eventArrayListMain.size(); i++){
+                        if (eventArrayListMain.get(i).ID == eventJoinedID){
+                            tempEventID = i;
+                        }
+                    }
+                    Event event = eventArrayListMain.get(tempEventID);
+                    intent.putExtra("com.package.eventObject", event);
+                    User tempUser = user;
+                    intent.putExtra("com.package.userObject", tempUser);
+                    intent.putExtra("com.package.userArray", userArrayListMain);
+                    startActivity(intent);
+                }
+                else {
                     openHost();
                 }
                 break;

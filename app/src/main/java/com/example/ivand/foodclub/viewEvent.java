@@ -252,6 +252,7 @@ public class viewEvent extends AppCompatActivity {
                 MainActivity.userApplied = true;
                 Map_and_List.userApplied = true;
                 Host.userApplied = true;
+                MainActivity.eventJoinedID = receivedEvent.ID;
                 startActivity(intent);
                 //Toast.makeText(getApplicationContext(),"" + receivedEvent.roles.get(0).holderID, Toast.LENGTH_LONG).show();
                 //Toast.makeText(getApplicationContext(), "you are now signed up as " + role.title, Toast.LENGTH_SHORT).show();
